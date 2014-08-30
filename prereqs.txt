@@ -3,3 +3,8 @@ git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 cp dotzshrc ~/.zshrc
 
 chsh -s /bin/zsh
+
+# set up spf vim:
+curl http://j.mp/spf13-vim3 -L -o - | sh
+
+cp dotvimrc.local ~/.vimrc.local

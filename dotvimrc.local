@@ -1,0 +1,5 @@
+set background=light
+set whichwrap=b,s
+autocmd FileType haskell setlocal shiftwidth=4 softtabstop=4
+set virtualedit=
+set wrap
