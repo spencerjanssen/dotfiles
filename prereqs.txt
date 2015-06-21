@@ -10,3 +10,8 @@ chsh -s /bin/zsh
 curl http://j.mp/spf13-vim3 -L -o - | sh
 
 cp dotvimrc.local ~/.vimrc.local
+
+# export gnome terminal settings
+gconftool-2 --dump '/apps/gnome-terminal' > gnome-terminal-conf.xml
+# import gnome terminal settings
+gconftool-2 --load gnome-terminal-conf.xml
