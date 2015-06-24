@@ -1,0 +1,3 @@
+URxvt*scrollBar: false
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
+URxvt*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=12
