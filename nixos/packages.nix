@@ -70,22 +70,16 @@
     xlibs.xmodmap
     file
     gnome3.gnome-disk-utility
-    deluge
-    python27Packages.flexget
     pavucontrol
     weston
-    kodi
     gnumake
     evince
     texLiveFull
     gnumake
     python27Packages.buttersink
     htop
-    qemu
-    cdrkit
     zip
     unzip
-    spice
     autoconf
     automake
     gettext
