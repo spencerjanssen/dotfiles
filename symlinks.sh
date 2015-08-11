@@ -7,6 +7,7 @@ ln -s dotfiles/dotgvimrc.local .gvimrc.local
 ln -s dotfiles/dotvimrc.before.local .vimrc.before.local
 ln -s dotfiles/dotvimrc.local .vimrc.local
 ln -s dotfiles/dotzshrc .zshrc
+ln -s dotfiles/dotxsession .xsession
 
 cd $HOME/.xmonad
 ln -s ../dotfiles/xmonad.hs

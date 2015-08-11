@@ -1,0 +1,10 @@
+#!/bin/sh
+
+xmodmap .Xmodmap
+xflux -z 68516 &
+taffybar &
+xset -dpms
+xset s off
+nitrogen --set-tiled wallpaper/wallpaper.jpg
+
+dbus-launch xmonad
