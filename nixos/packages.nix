@@ -74,7 +74,6 @@
     weston
     gnumake
     evince
-    texLiveFull
     gnumake
     python27Packages.buttersink
     htop
