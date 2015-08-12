@@ -21,6 +21,7 @@
   services.openssh = {
     enable = true;
     permitRootLogin = "no";
+    passwordAuthentication = false;
   };
 
   services.dbus.enable = true;
