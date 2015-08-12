@@ -45,7 +45,7 @@ chainloader +1
   services.wakeonlan.interfaces = [ { interface = "enp1s0"; method = "magicpacket"; } ];
   services.xserver.synaptics.enable = true;
 
-  nix.extraOptions = "ssh-substituter-hosts nix-ssh@192.168.1.200";
-  nix.distributedBuilds = true;
-  nix.buildMachines = [ { hostName = "192.168.1.200"; maxJobs = 4; sshKey = "/home/sjanssen/.ssh/id_rsa"; sshUser = "sjanssen"; system = "x86_64-linux"; } ];
+  # nix.extraOptions = "ssh-substituter-hosts = nix-ssh@192.168.1.200";
+  nix.distributedBuilds = false;
+  # nix.buildMachines = [ { hostName = "192.168.1.200"; maxJobs = 4; sshKey = "/home/sjanssen/.ssh/id_rsa"; sshUser = "sjanssen"; system = "x86_64-linux"; } ];
 }
