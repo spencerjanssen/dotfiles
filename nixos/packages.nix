@@ -70,6 +70,7 @@
     xlibs.xmodmap
     file
     gnome3.gnome-disk-utility
+    gnome3.gnome_terminal
     pavucontrol
     weston
     gnumake
