@@ -3,6 +3,7 @@
 xmodmap .Xmodmap
 xflux -z 68516 &
 taffybar &
+nm-applet &
 xset -dpms
 xset s off
 nitrogen --set-tiled wallpaper/wallpaper.jpg
