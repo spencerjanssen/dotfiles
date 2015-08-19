@@ -72,6 +72,7 @@
     file
     gnome3.gnome-disk-utility
     gnome3.gnome_terminal
+    gnome3.nautilus
     pavucontrol
     weston
     gnumake
