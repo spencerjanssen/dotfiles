@@ -94,6 +94,7 @@
     nix-prefetch-scripts
     pkgconfig
     scrot
+    ncdu
 
     (pkgs.haskellngPackages.ghcWithPackages (self : [
         self.mtl
