@@ -3,6 +3,13 @@
 {
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org"];
 
+  # this prevents nix from garbage collecting build dependencies, especially
+  # helpful with texlive which has very large source downloads
+  nix.extraOptions = ''
+    gc-keep-outputs = true
+    gc-keep-derivations = true
+  '';
+
   security.sudo.wheelNeedsPassword = false;
 
   networking.networkmanager.enable = true;
