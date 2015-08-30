@@ -8,6 +8,7 @@
       ./flexgetservice.nix
       ./packages.nix
       ./users.nix
+      ./update_daily.nix
     ];
 
   # Use the GRUB 2 boot loader.
