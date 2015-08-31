@@ -53,6 +53,6 @@ menuentry "Ubuntu boot partition" {
     cdrkit
     spice
     qemu
-    texLiveFull
+    texLive
   ];
 }
