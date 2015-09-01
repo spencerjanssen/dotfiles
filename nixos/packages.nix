@@ -102,6 +102,7 @@
     pkgconfig
     scrot
     ncdu
+    dropbox
 
     (pkgs.haskellngPackages.ghcWithPackages (self : [
         self.mtl
