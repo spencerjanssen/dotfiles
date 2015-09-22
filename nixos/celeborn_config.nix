@@ -54,5 +54,8 @@ menuentry "Ubuntu boot partition" {
     spice
     qemu
     texLive
+
+    # skype needs a bunch of 32 bit libs unfortunately
+    skype
   ];
 }
