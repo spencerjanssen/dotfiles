@@ -10,6 +10,8 @@
     gc-keep-derivations = true
   '';
 
+  boot.cleanTmpDir = true;
+
   security.sudo.wheelNeedsPassword = false;
 
   networking.networkmanager.enable = true;
