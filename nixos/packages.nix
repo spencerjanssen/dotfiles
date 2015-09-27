@@ -105,6 +105,7 @@
     scrot
     ncdu
     dropbox
+    cabal2nix
 
     (pkgs.haskellngPackages.ghcWithPackages (self : [
         self.mtl
