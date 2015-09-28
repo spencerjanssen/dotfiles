@@ -106,12 +106,16 @@
     ncdu
     dropbox
     cabal2nix
+    vimPlugins.ghc-mod-vim
+    # required for ghc-mod-vim
+    vimPlugins.vimproc
 
     (pkgs.haskellngPackages.ghcWithPackages (self : [
         self.mtl
         self.xmonad
         self.taffybar
         self.cabal-install
+        self.ghc-mod
     ]))
   ];
 }

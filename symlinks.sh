@@ -6,6 +6,7 @@ ln -s dotfiles/dotXdefaults .Xdefaults
 ln -s dotfiles/dotgvimrc.local .gvimrc.local
 ln -s dotfiles/dotvimrc.before.local .vimrc.before.local
 ln -s dotfiles/dotvimrc.local .vimrc.local
+ln -s dotfiles/dotvimrc.bundles.local .vimrc.bundles.local
 ln -s dotfiles/dotzshrc .zshrc
 ln -s dotfiles/dotzshenv .zshenv
 ln -s dotfiles/dotxsession .xsession
