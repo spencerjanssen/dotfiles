@@ -9,6 +9,7 @@
       ./packages.nix
       ./users.nix
       ./update_daily.nix
+      ./hydra.nix
     ];
 
   # Use the GRUB 2 boot loader.
