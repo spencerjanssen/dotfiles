@@ -14,6 +14,9 @@ in {
     hydraURL = "http://192.168.1.200:2000";
     notificationSender = "spencerjanssen@gmail.com";
     port = 2000;
+    extraConfig = ''
+        binary_cache_secret_key_file = /var/lib/hydra/secret
+    '';
   };
   # Hydra requires postgresql to run
   services.postgresql.enable = true;
