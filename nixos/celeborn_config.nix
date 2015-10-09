@@ -4,7 +4,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+      ./celeborn-hardware-configuration.nix
       ./flexgetservice.nix
       ./packages.nix
       ./users.nix
