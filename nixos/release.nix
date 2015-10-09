@@ -1,7 +1,7 @@
-{ nixpkgs_ ? <nixpkgs> }:
+{ nixpkgs ? <nixpkgs> }:
 
 let
-  nixos = nixpkgs_ + "/nixos";
+  nixos = nixpkgs + "/nixos";
   eval = {conf}: (import (nixos + "/lib/eval-config.nix") {
     modules = [ conf ];
   }).config.system.build.toplevel;
