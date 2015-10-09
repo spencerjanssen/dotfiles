@@ -46,7 +46,7 @@ chainloader +1
   services.xserver.synaptics.enable = true;
 
   nix.binaryCaches = [
-    "http://192.168.1.200"
+    "http://192.168.1.200:2000"
     "https://cache.nixos.org/"
   ];
 
