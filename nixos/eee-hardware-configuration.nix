@@ -18,6 +18,11 @@
       options = "subvol=@nix";
     };
 
+  fileSystems."/media/btr" =
+    { device = "/dev/disk/by-uuid/8719734d-1270-43ca-ba7a-8233ef843daa";
+      fsType = "btrfs";
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/6b0facb1-ba8d-479a-b3b2-bbf3583d6798";
       fsType = "ext3";
