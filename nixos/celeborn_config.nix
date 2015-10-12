@@ -8,7 +8,7 @@
       ./flexgetservice.nix
       ./packages.nix
       ./users.nix
-      ./update_daily.nix
+      # ./update_daily.nix
       ./hydra.nix
     ];
 
