@@ -57,6 +57,7 @@ menuentry "Ubuntu boot partition" {
     qemu
     texLive
     haskellPackages.yesod-bin
+    ntfs3g
 
     # skype needs a bunch of 32 bit libs unfortunately
     skype

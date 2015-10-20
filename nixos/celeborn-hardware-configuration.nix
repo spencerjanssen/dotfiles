@@ -86,6 +86,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/media/windows" =
+    { device = "/dev/disk/by-uuid/A04653AD46538348";
+      options = "default,noauto";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/bdf48c89-3a8a-4742-9d3b-ca17b6c2e2fc"; }
     ];
