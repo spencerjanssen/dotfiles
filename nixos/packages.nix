@@ -10,6 +10,8 @@
     gc-keep-derivations = true
   '';
 
+  nix.trustedBinaryCaches = [ "http://hydra.nixos.org/" ];
+
   boot.cleanTmpDir = true;
 
   security.sudo.wheelNeedsPassword = false;
