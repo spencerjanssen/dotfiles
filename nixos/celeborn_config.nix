@@ -59,6 +59,7 @@ menuentry "Ubuntu boot partition" {
     haskellPackages.yesod-bin
     ntfs3g
     linuxPackages.virtualbox
+    nixopsUnstable
 
     # skype needs a bunch of 32 bit libs unfortunately
     skype
