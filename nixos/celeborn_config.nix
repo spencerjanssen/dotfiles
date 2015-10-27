@@ -46,6 +46,8 @@ menuentry "Ubuntu boot partition" {
   time.timeZone = "US/Central";
 
   services.xserver.videoDrivers = [ "nvidia" ];
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "sjanssen" ];
 
   # packages that aren't shared with other machines:
   environment.systemPackages = with pkgs; [
