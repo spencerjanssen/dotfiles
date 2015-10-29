@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let hydra = (import <nixpkgs> {}).fetchgit {
     url = https://github.com/NixOS/hydra;
-    rev = "53c80d9526fb029b7adde47d0cfaa39a80926c48";
-    sha256 = "1dr3n55gyxq4g71hpcgpr2p1wymmmhwvb5bv2qgmv5hcfrppxwpl";
+    rev = "47593235142c8be99f53f2543e93330338f16f7e";
+    sha256 = "0ifyhwhks8g9n0bhbp3xa68chqigafq07nk91xih1pn6s8xqdxq0";
 }
 ;
 in {
