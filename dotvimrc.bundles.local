@@ -1,2 +1,5 @@
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'pbrisbin/vim-syntax-shakespeare'
+UnBundle 'honza/vim-snippets'
+UnBundle 'Shougo/neosnippet'
+UnBundle 'Shougo/neosnippet-snippets'
