@@ -112,6 +112,7 @@
     vimPlugins.ghc-mod-vim
     # required for ghc-mod-vim
     vimPlugins.vimproc
+    atom
 
     (pkgs.haskellngPackages.ghcWithPackages (self : [
         self.mtl
