@@ -16,6 +16,8 @@ import XMonad.Util.SpawnOnce
 import XMonad.Layout.LayoutScreens
 import XMonad.Layout.TwoPane
 
+import Data.List (isPrefixOf)
+
 import qualified Data.Map as M
 
 main = xmonad . pagerHints . ewmh $ defaultConfig
@@ -32,6 +34,8 @@ main = xmonad . pagerHints . ewmh $ defaultConfig
                 <+> manageSpawn
                 <+> (isFullscreen --> doFullFloat)
                 <+> (className =? "Kodi" --> doShift "tv")
+                -- float chrome extension windows, mainly for hangouts popups
+                <+> (isPrefixOf "crx_" <$> appName --> doFloat)
     }
  where
     tiled     = HintedTile 1 0.03 0.5 TopLeft
