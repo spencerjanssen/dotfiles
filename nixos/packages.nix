@@ -57,6 +57,7 @@
   services.xserver.displayManager.kdm.enable = true;
 
   fonts = {
+    fontconfig.ultimate.enable = true;
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
