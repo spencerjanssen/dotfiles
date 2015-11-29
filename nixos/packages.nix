@@ -28,6 +28,9 @@
       enablePepperPDF = true;
       enableWideVine = true;
     };
+    firefox = {
+      enableAdobeFlash = true;
+    };
   };
 
   services.openssh = {
@@ -114,6 +117,8 @@
     # required for ghc-mod-vim
     vimPlugins.vimproc
     atom
+    firefox
+    flashplayer
 
     (pkgs.haskellngPackages.ghcWithPackages (self : [
         self.mtl
