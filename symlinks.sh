@@ -11,6 +11,7 @@ ln -s dotfiles/dotzshrc .zshrc
 ln -s dotfiles/dotzshenv .zshenv
 ln -s dotfiles/dotxsession .xsession
 ln -s dotfiles/dotgitconfig .gitconfig
+ln -s dotfiles/dotinputrc .inputrc
 
 cd $HOME/.xmonad
 ln -s ../dotfiles/xmonad.hs
