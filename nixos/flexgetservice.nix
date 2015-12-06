@@ -3,14 +3,16 @@
 {
     systemd.services.flexget =
     let myflexget = (pkgs.lib.overrideDerivation pkgs.python27Packages.flexget (attrs: {
-            propagatedBuildInputs = [pkgs.deluge];
+            propagatedBuildInputs = [pkgs.python27Packages.deluge];
         }));
     in {
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" "local-fs.target" "deluge.service"];
         description = "flexget";
         path = [ pkgs.python27Packages.flexget
-            pkgs.deluge];
+            pkgs.python27Packages.deluge
+            pkgs.deluge
+            ];
         serviceConfig = {
             Type = "simple";
             User = "sjanssen";
