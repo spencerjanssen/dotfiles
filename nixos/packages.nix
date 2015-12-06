@@ -120,7 +120,7 @@
     firefox
     flashplayer
 
-    (pkgs.haskellngPackages.ghcWithPackages (self : [
+    (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
         self.xmonad
         self.taffybar
