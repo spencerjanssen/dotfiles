@@ -64,6 +64,7 @@ menuentry "Ubuntu boot partition" {
     ntfs3g
     linuxPackages.virtualbox
     nixopsUnstable
+    awscli
 
     # skype needs a bunch of 32 bit libs unfortunately
     skype
