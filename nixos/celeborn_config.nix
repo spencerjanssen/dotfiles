@@ -11,6 +11,7 @@
       # ./update_daily.nix
       # ./hydra.nix
       ./celeborn_samba.nix
+      ./btrfs_backup.nix
     ];
 
   # Use the GRUB 2 boot loader.
