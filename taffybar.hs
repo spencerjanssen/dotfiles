@@ -12,6 +12,7 @@ import System.Taffybar.Widgets.PollingBar
 import System.Taffybar.Widgets.PollingGraph
 
 import System.Information.CPU
+import System.Posix.Process (forkProcess)
 
 cpuCallback = do
   (userLoad, systemLoad, totalLoad) <- cpuLoad
@@ -27,18 +28,21 @@ pagerConf = defaultPagerConfig
     }
 
 main = do
-  let cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1)
+    let cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1)
                                                       , (1, 0, 1, 0.5)
                                                       ]
                                   , graphLabel = Just "cpu"
                                   }
-  let clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
-      pager = taffyPagerNew pagerConf
-      note = notifyAreaNew defaultNotificationConfig
-      wea = weatherNew (defaultWeatherConfig "KLNK") 10
-      cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-      tray = systrayNew
-  defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager, note ]
-                                        , endWidgets = [ tray, wea, clock, netMonitorNew 2 "wlp4s0", cpu]
-                                        , barHeight = 20
-                                        }
+        clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
+        pager = taffyPagerNew pagerConf
+        note = notifyAreaNew defaultNotificationConfig
+        wea = weatherNew (defaultWeatherConfig "KLNK") 10
+        cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
+        tray = systrayNew
+        conf n extra = defaultTaffybarConfig
+                    { startWidgets = [ pager, note ]
+                    , endWidgets = extra ++ [ wea, clock, netMonitorNew 2 "enp2s0", cpu]
+                    , barHeight = 20
+                    , monitorNumber = n }
+    forkProcess $ defaultTaffybar $ conf 0 []
+    defaultTaffybar $ conf 1 [tray]
