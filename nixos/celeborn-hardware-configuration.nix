@@ -15,7 +15,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/4051a4bb-ab65-45cc-885f-b15e5eda30c5";
       fsType = "btrfs";
-      options = "subvol=nixos/@";
+      options = [ "subvol=nixos/@" ];
     };
 
   fileSystems."/boot" =
@@ -31,7 +31,7 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/4051a4bb-ab65-45cc-885f-b15e5eda30c5";
       fsType = "btrfs";
-      options = "subvol=@home";
+      options = [ "subvol=@home" ];
     };
 
   fileSystems."/media/tb" =
@@ -42,43 +42,43 @@
   fileSystems."/home/sjanssen/vmware" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@vmware";
+      options = [ "subvol=@vmware" ];
     };
 
   fileSystems."/home/sjanssen/tv" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@tv";
+      options = [ "subvol=@tv" ];
     };
 
   fileSystems."/home/sjanssen/movies" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@movies";
+      options = [ "subvol=@movies" ];
     };
 
   fileSystems."/home/sjanssen/comics" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@comics";
+      options = [ "subvol=@comics" ];
     };
 
   fileSystems."/home/sjanssen/bulk" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@sjanssen_bulk";
+      options = [ "subvol=@sjanssen_bulk" ];
     };
 
   fileSystems."/home/sjanssen/Music" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@Music";
+      options = [ "subvol=@Music" ];
     };
 
   fileSystems."/home/sjanssen/.x" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
-      options = "subvol=@.x";
+      options = [ "subvol=@.x" ];
     };
 
   fileSystems."/media/vm-images" =
@@ -88,7 +88,7 @@
 
   fileSystems."/media/windows" =
     { device = "/dev/disk/by-uuid/A04653AD46538348";
-      options = "default,noauto";
+      options = ["default" "noauto"];
     };
 
   swapDevices =
