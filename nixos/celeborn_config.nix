@@ -59,12 +59,16 @@ menuentry "Ubuntu boot partition" {
     cdrkit
     spice
     qemu
-    texLive
+    texlive.combined.scheme-basic
     haskellPackages.yesod-bin
     ntfs3g
     linuxPackages.virtualbox
     nixopsUnstable
     awscli
+    nodejs
+    haskellPackages.purescript
+    haskellPackages.psc-ide
+    irssi
 
     # skype needs a bunch of 32 bit libs unfortunately
     skype
