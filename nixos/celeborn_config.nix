@@ -9,7 +9,7 @@
       ./packages.nix
       ./users.nix
       # ./update_daily.nix
-      ./hydra.nix
+      # ./hydra.nix
       ./celeborn_samba.nix
     ];
 
