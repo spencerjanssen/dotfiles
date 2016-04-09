@@ -51,7 +51,7 @@ menuentry "Ubuntu boot partition" {
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "sjanssen" ];
 
-  services.postgresql.enable = true;
+# services.postgresql.enable = true;
 
   # packages that aren't shared with other machines:
   environment.systemPackages = with pkgs; [
