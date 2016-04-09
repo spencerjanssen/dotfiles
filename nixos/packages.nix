@@ -90,7 +90,7 @@
     gnome3.gnome_terminal
     gnome3.nautilus
     pavucontrol
-    weston
+    # weston
     gnumake
     evince
     gnumake
