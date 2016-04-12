@@ -12,6 +12,7 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.gummiboot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
     linux_4_4 = pkgs.linux_4_4.override {
@@ -28,7 +29,6 @@
 
   time.timeZone = "US/Central";
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  users.extraGroups.vboxusers.members = [ "sjanssen" ];
+  services.xserver.videoDrivers = [ "intel" ];
 
 }
