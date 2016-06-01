@@ -127,6 +127,7 @@
     gnome3.gsettings_desktop_schemas
     gdb
     tmux
+    xorg.xbacklight
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
