@@ -8,24 +8,25 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
+  boot.loader.efi.canTouchEfiVariables = false;
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/74afe2bf-1a6a-4861-9a8c-4606bec0e64f";
+    { device = "/dev/disk/by-uuid/6afd67b5-af9c-4418-aabd-fb844f10eeed";
       fsType = "btrfs";
       options = [ "subvol=@nixos" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/74afe2bf-1a6a-4861-9a8c-4606bec0e64f";
+    { device = "/dev/disk/by-uuid/6afd67b5-af9c-4418-aabd-fb844f10eeed";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/media/ssd" =
-    { device = "/dev/disk/by-uuid/74afe2bf-1a6a-4861-9a8c-4606bec0e64f";
+    { device = "/dev/disk/by-uuid/6afd67b5-af9c-4418-aabd-fb844f10eeed";
       fsType = "btrfs";
     };
 
