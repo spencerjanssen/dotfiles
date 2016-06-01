@@ -128,6 +128,7 @@
     gdb
     tmux
     xorg.xbacklight
+    nodejs
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
