@@ -121,6 +121,12 @@
     atom
     firefox
     flashplayer
+    slack
+    gnome3.gnome-tweak-tool
+    gnome3.gnome_settings_daemon
+    gnome3.gsettings_desktop_schemas
+    gdb
+    tmux
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
@@ -128,6 +134,7 @@
         self.taffybar
         self.cabal-install
         self.ghc-mod
+	self.purescript
     ]))
   ];
 }
