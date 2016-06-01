@@ -13,7 +13,6 @@
   # Use the GRUB 2 boot loader.
   boot.loader.gummiboot.enable = true;
   boot.loader.gummiboot.timeout = 5;
-  # boot.loader.efi.canTouchEfiVariables = true;
   boot.resumeDevice = "/dev/nvme0n1p6";
   boot.initrd.kernelModules = [ "nvme" ];
   services.upower.enable = true;
@@ -31,25 +30,15 @@
             in
             [ pkgs.kernelPatches.bridge_stp_helper
             pkgs.kernelPatches.qat_common_Makefile
-             #(p "cam" /home/sjanssen/Downloads/debian/patches/surface-cam.patch)
-             #(p "button" /home/sjanssen/Downloads/debian/patches/surface-button.patch)
-             #(p "button-config" /home/sjanssen/Downloads/debian/patches/surface-button-config.patch)
              (p "cam" ./patches/Microsoft-Surface-Pro-4-Surface-Book-camera-support.patch)
              (p "tc 3" ./patches/Add-multitouch-support-for-Microsoft-Type-Cover-3.patch)
              (p "mt quirk" ./patches/HID-multitouch-Add-MT_QUIRK_NOT_SEEN_MEANS_UP-to-MT_.patch)
              (p "mt ignore" ./patches/HID-multitouch-Ignore-invalid-reports.patch)
-	     # fix and uncomment later
-             #(p "surface-lid" /home/sjanssen/Downloads/debian/patches/surface-lid.patch)
-             # (p "surface-touchpad" /home/sjanssen/Downloads/debian/patches/surface-touchpad.patch)
             ];
     }) self;
     in self;
 
   nix.buildCores = 0;
-  nix.buildMachines =
-    [ {hostName = "192.168.86.200"; maxJobs = 1; sshUser = "sjanssen"; sshKey = "/home/sjanssen/.ssh/id_rsa"; system="x86_64-linux";}]
-    ;
-  nix.distributedBuilds = true;
 
   networking.hostName = "surface"; # Define your hostname.
 
