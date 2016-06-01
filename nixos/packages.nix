@@ -57,6 +57,7 @@
   };
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.default = "none";
+  services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.kdm.enable = true;
 
   fonts = {
@@ -89,6 +90,7 @@
     gnome3.gnome-disk-utility
     gnome3.gnome_terminal
     gnome3.nautilus
+    gnome3.gnome_session
     pavucontrol
     # weston
     gnumake
