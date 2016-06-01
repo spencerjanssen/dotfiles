@@ -1,11 +1,11 @@
 #!/bin/sh
 
+# gnome-session --session xmonad-gnome-nopanel &
 xmodmap .Xmodmap
-xflux -z 68516 &
 taffybar &
 nm-applet &
 dropbox &
-xset -dpms
+xset dpms 300 300 300
 xset s off
 nitrogen --set-tiled wallpaper/wallpaper.jpg
 
