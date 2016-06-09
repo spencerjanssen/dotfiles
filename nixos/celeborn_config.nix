@@ -12,6 +12,7 @@
       # ./hydra.nix
       ./celeborn_samba.nix
       ./btrfs_backup.nix
+      ./ssh_reverse_tunnel.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -71,8 +72,5 @@ menuentry "Ubuntu boot partition" {
     haskellPackages.purescript
     haskellPackages.psc-ide
     irssi
-
-    # skype needs a bunch of 32 bit libs unfortunately
-    skype
   ];
 }
