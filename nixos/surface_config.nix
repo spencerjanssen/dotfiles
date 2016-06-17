@@ -8,6 +8,7 @@
       ./packages.nix
       ./users.nix
       ./btrfs_backup.nix
+      ./ssh_reverse_tunnel.nix
     ];
 
   # Use the GRUB 2 boot loader.
