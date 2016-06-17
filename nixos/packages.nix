@@ -115,7 +115,7 @@
     ncdu
     dropbox
     cabal2nix
-    vimPlugins.ghc-mod-vim
+    # vimPlugins.ghc-mod-vim
     # required for ghc-mod-vim
     vimPlugins.vimproc
     atom
@@ -129,13 +129,14 @@
     tmux
     xorg.xbacklight
     nodejs
+    pidgin
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
         self.xmonad
         self.taffybar
         self.cabal-install
-        self.ghc-mod
+        # self.ghc-mod
 	self.purescript
     ]))
   ];
