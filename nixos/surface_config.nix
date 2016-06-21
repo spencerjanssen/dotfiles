@@ -12,8 +12,8 @@
     ];
 
   # Use the GRUB 2 boot loader.
-  boot.loader.gummiboot.enable = true;
-  boot.loader.gummiboot.timeout = 5;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = 5;
   boot.resumeDevice = "/dev/nvme0n1p6";
   boot.initrd.kernelModules = [ "nvme" ];
   services.upower.enable = true;
