@@ -35,6 +35,8 @@
              (p "tc 3" ./patches/Add-multitouch-support-for-Microsoft-Type-Cover-3.patch)
              (p "mt quirk" ./patches/HID-multitouch-Add-MT_QUIRK_NOT_SEEN_MEANS_UP-to-MT_.patch)
              (p "mt ignore" ./patches/HID-multitouch-Ignore-invalid-reports.patch)
+             # from https://bugzilla.kernel.org/show_bug.cgi?id=109681 comment 43
+             (p "wifi patch" ./patches/wifi.patch)
             ];
     }) self;
     in self;
