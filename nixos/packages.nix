@@ -98,7 +98,6 @@
     gnumake
     evince
     gnumake
-    python27Packages.buttersink
     htop
     zip
     unzip
@@ -109,7 +108,6 @@
     mplayer
     pciutils
     xflux
-    darcs
     binutils
     nix-prefetch-scripts
     pkgconfig
@@ -117,21 +115,15 @@
     ncdu
     dropbox
     cabal2nix
-    # vimPlugins.ghc-mod-vim
-    # required for ghc-mod-vim
-    vimPlugins.vimproc
     atom
     firefox
     flashplayer
-    slack
     gnome3.gnome-tweak-tool
     gnome3.gnome_settings_daemon
     gnome3.gsettings_desktop_schemas
     gdb
     tmux
-    xorg.xbacklight
     nodejs
-    pidgin
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
