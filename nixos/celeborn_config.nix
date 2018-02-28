@@ -6,13 +6,13 @@
     [ # Include the results of the hardware scan.
       ./celeborn-hardware-configuration.nix
       ./flexgetservice.nix
+      ./autosleep.nix
       ./packages.nix
       ./users.nix
       # ./update_daily.nix
       # ./hydra.nix
       ./celeborn_samba.nix
       ./btrfs_backup.nix
-      ./ssh_reverse_tunnel.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -48,16 +48,24 @@ menuentry "Ubuntu boot partition" {
 
   time.timeZone = "US/Central";
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "intel" "nvidia" ];
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "sjanssen" ];
 
+  virtualisation.docker.enable = true;
+
 # services.postgresql.enable = true;
+  services.plex.enable = true;
+
+  services.wakeonlan.interfaces = [ {
+    interface = "enp2s0";
+    method = "magicpacket";
+  } ];
 
   # packages that aren't shared with other machines:
   environment.systemPackages = with pkgs; [
     deluge
-    python27Packages.flexget
+    flexget
     kodi
     cdrkit
     spice
@@ -69,8 +77,8 @@ menuentry "Ubuntu boot partition" {
     nixopsUnstable
     awscli
     nodejs
-    haskellPackages.purescript
-    haskellPackages.psc-ide
+    # haskellPackages.purescript
+    # haskellPackages.psc-ide
     irssi
   ];
 }

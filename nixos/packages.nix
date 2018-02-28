@@ -24,9 +24,9 @@
   nixpkgs.config = {
     allowUnfree = true;
     chromium = {
-      enablePepperFlash = true;
-      enablePepperPDF = true;
-      enableWideVine = true;
+      # enablePepperFlash = true;
+      # enablePepperPDF = true;
+      # enableWideVine = true;
     };
     firefox = {
       enableAdobeFlash = true;
@@ -41,7 +41,7 @@
 
   services.dbus.enable = true;
   services.timesyncd.enable = true;
-  services.dbus.packages = [ pkgs.gnome.GConf pkgs.gnome3.dconf ];
+  services.dbus.packages = [ pkgs.gnome3.gconf pkgs.gnome3.dconf ];
   services.udisks2.enable = true;
   services.printing.enable = true;
 
@@ -58,7 +58,9 @@
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.gnome3.enable = true;
-  services.xserver.displayManager.kdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.autoLogin.enable = true;
+  services.xserver.displayManager.gdm.autoLogin.user = "sjanssen";
 
   fonts = {
     fontconfig.ultimate.enable = true;
@@ -137,7 +139,7 @@
         self.taffybar
         self.cabal-install
         # self.ghc-mod
-	self.purescript
+	#self.purescript
     ]))
   ];
 }

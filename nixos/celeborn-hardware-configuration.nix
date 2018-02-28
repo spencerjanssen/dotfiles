@@ -63,12 +63,6 @@
       options = [ "subvol=@comics" ];
     };
 
-  fileSystems."/home/sjanssen/bulk" =
-    { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
-      fsType = "btrfs";
-      options = [ "subvol=@sjanssen_bulk" ];
-    };
-
   fileSystems."/home/sjanssen/Music" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";

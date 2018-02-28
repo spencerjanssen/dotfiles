@@ -4,11 +4,8 @@
 xmodmap .Xmodmap
 taffybar &
 nm-applet &
-dropbox &
-xset dpms 300 300 300
 xset s off
+xset dpms off
 nitrogen --set-tiled wallpaper/wallpaper.jpg
-pidgin &
-slack &
 
 dbus-launch xmonad
