@@ -18,11 +18,24 @@
 
   time.timeZone = "US/Central";
 
+  # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
+  # https://bugzilla.kernel.org/show_bug.cgi?id=196683
+  nixpkgs.config.packageOverrides = pkgs: {
+    linux_4_14 = pkgs.linux_4_14.override {
+      extraConfig = ''
+        RCU_EXPERT y
+        RCU_NOCB_CPU y
+      '';
+    };
+  };
+  boot.kernelParams = [ "rcu_nocbs=0-15" ];
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.systemPackages = with pkgs; [
     nixopsUnstable
     awscli
     nodejs
+    vscode
   ];
 }
