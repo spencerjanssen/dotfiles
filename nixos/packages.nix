@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  nix.binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
+  nix.binaryCachePublicKeys = [
+    "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+    "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
+  ];
 
   # this prevents nix from garbage collecting build dependencies, especially
   # helpful with texlive which has very large source downloads

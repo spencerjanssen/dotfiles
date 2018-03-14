@@ -14,6 +14,8 @@
 
   nix.buildCores = 0;
 
+  nix.extraOptions = "secret-key-files = /root/ungoliant-1.secret";
+
   networking.hostName = "ungoliant"; # Define your hostname.
 
   time.timeZone = "US/Central";
