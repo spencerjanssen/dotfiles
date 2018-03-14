@@ -34,6 +34,8 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  services.wakeonlan.interfaces = [ { interface = "enp11s0"; method = "magicpacket"; } ];
+
   environment.systemPackages = with pkgs; [
     nixopsUnstable
     awscli
