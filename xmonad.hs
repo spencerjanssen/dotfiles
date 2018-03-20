@@ -20,7 +20,7 @@ import Data.List (isPrefixOf)
 
 import qualified Data.Map as M
 
-main = xmonad . pagerHints . ewmh $ defaultConfig
+main = xmonad . pagerHints . docks . ewmh $ defaultConfig
     { terminal = "gnome-terminal"
     , workspaces = ["irc", "web"] ++ map show [3 .. 8 :: Int] ++ ["tv"]
     , mouseBindings = \(XConfig {modMask = modm}) -> M.fromList $
@@ -30,7 +30,6 @@ main = xmonad . pagerHints . ewmh $ defaultConfig
     , keys = \c -> mykeys c `M.union` keys defaultConfig c
     , layoutHook = modifiers layouts
     , manageHook = manageHook defaultConfig
-                <+> manageDocks
                 <+> manageSpawn
                 <+> (isFullscreen --> doFullFloat)
                 <+> (className =? "Kodi" --> doShift "tv")
