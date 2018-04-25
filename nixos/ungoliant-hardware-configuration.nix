@@ -24,6 +24,11 @@
       options = [ "subvol=@home" ];
     };
 
+  fileSystems."/media/evo" =
+    { device = "/dev/disk/by-uuid/41272ba7-5c07-41c5-915d-e132019770b7";
+      fsType = "btrfs";
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/D06F-0323";
       fsType = "vfat";
