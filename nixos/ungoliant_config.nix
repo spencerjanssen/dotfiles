@@ -74,6 +74,7 @@ cgroup_device_acl = [
     libvirt
     virtmanager
     spice-gtk
+    discord
   ];
 
   security.wrappers.spice-client-glib-usb-acl-helper.source =
