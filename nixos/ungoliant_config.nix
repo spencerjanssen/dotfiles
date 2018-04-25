@@ -23,28 +23,29 @@
   # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
   # https://bugzilla.kernel.org/show_bug.cgi?id=196683
   nixpkgs.config.packageOverrides = pkgs: {
-    linux_4_14 = pkgs.linux_4_14.override {
-      extraConfig = ''
-        RCU_EXPERT y
-        RCU_NOCB_CPU y
-      '';
-    };
     linux_4_15 = pkgs.linux_4_15.override {
       extraConfig = ''
         RCU_EXPERT y
         RCU_NOCB_CPU y
       '';
+      kernelPatches =
+        pkgs.linux_4_15.kernelPatches ++ [{
+          name = "ACS override";
+          patch = pkgs.fetchurl {
+            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.15/acso.patch";
+            sha256 = "0sh6m6ak1vhz3qq767ckdc2fzhzivkiig5irlqf1id9shd0hz22h";
+          };
+        }];
     };
   };
 
-  boot.kernelParams = [ "rcu_nocbs=0-15 amd_iommu=on iommu=pt amdgpu.dc=1" ];
+  boot.kernelParams = [ "rcu_nocbs=0-15 amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
   boot.extraModprobeConfig = ''
     options vfio-pci ids=10de:1401,10de:0fba
   '';
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelModules = [ "vfio-pci" ];
+  boot.kernelModules = [ "vfio_pci" ];
 
-  # might want this for amdgpu display code
   boot.kernelPackages = pkgs.linuxPackages_4_15;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
