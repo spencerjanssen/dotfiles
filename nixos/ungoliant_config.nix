@@ -23,13 +23,18 @@
   # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
   # https://bugzilla.kernel.org/show_bug.cgi?id=196683
   nixpkgs.config.packageOverrides = pkgs: {
-    linux_4_15 = pkgs.linux_4_15.override {
+    pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
+      plugins = [pkgs.pidginsipe];
+    };
+    linux_4_16 = pkgs.linux_4_16.override {
       extraConfig = ''
         RCU_EXPERT y
         RCU_NOCB_CPU y
       '';
       kernelPatches =
-        pkgs.linux_4_15.kernelPatches ++ [{
+        # pkgs.linux_4_16.kernelPatches ++ 
+        [pkgs.kernelPatches.bridge_stp_helper pkgs.kernelPatches.modinst_arg_list_too_long
+        {
           name = "ACS override";
           patch = pkgs.fetchurl {
             url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.15/acso.patch";
@@ -46,7 +51,7 @@
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "vfio_pci" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_4_15;
+  boot.kernelPackages = pkgs.linuxPackages_4_16;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -76,7 +81,15 @@ cgroup_device_acl = [
     virtmanager
     spice-gtk
     discord
+    remmina
+    openconnect
+    pidgin-with-plugins
+    haskellPackages.status-notifier-item
+    stack
+    haskellPackages.ghcid
   ];
+  environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
+
 
   services.redshift.enable = true;
   services.redshift.provider = "geoclue2";
