@@ -21,4 +21,4 @@ ln -s ../dotfiles/xmonad.hs
 mkdir -p $HOME/.config/taffybar
 cd $HOME/.config/taffybar
 ln -s ../../dotfiles/taffybar.hs
-ln -s ../../dotfiles/taffybar.rc
+ln -s ../../dotfiles/taffybar.css
