@@ -52,7 +52,8 @@
 
   services.dbus.enable = true;
   services.timesyncd.enable = true;
-  services.dbus.packages = [ pkgs.gnome3.gconf pkgs.gnome3.dconf ];
+  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  programs.dconf.enable = true;
   services.udisks2.enable = true;
   services.printing.enable = true;
 
