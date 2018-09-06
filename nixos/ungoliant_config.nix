@@ -9,6 +9,8 @@
       ./users.nix
     ];
 
+  system.stateVersion = "18.03";
+
   # Use the GRUB 2 boot loader.
   boot.loader.systemd-boot.enable = true;
 
@@ -26,32 +28,29 @@
     pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
       plugins = [pkgs.pidginsipe];
     };
-    linux_4_16 = pkgs.linux_4_16.override {
-      extraConfig = ''
-        RCU_EXPERT y
-        RCU_NOCB_CPU y
-      '';
+    linux_4_18 = pkgs.linux_4_18.override {
       kernelPatches =
-        # pkgs.linux_4_16.kernelPatches ++ 
-        [pkgs.kernelPatches.bridge_stp_helper pkgs.kernelPatches.modinst_arg_list_too_long
+        pkgs.linux_4_18.kernelPatches ++ 
+        [
+        # https://queuecumber.gitlab.io/linux-acs-override/
         {
           name = "ACS override";
           patch = pkgs.fetchurl {
-            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.15/acso.patch";
-            sha256 = "0sh6m6ak1vhz3qq767ckdc2fzhzivkiig5irlqf1id9shd0hz22h";
+            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.18/acso.patch";
+            sha256 = "14garkj80g7jyi7acvp5zx447328yqwy6ll2qm79j7mm8x2k5r87";
           };
         }];
     };
   };
 
-  boot.kernelParams = [ "rcu_nocbs=0-15 amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
+  boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
   boot.extraModprobeConfig = ''
     options vfio-pci ids=10de:1401,10de:0fba
   '';
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "vfio_pci" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_4_16;
+  boot.kernelPackages = pkgs.linuxPackages_4_18;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
