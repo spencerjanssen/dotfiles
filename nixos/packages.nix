@@ -4,6 +4,7 @@
   nix.binaryCachePublicKeys = [
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
+    "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
   ];
 
   # this prevents nix from garbage collecting build dependencies, especially
@@ -13,7 +14,14 @@
     gc-keep-derivations = true
   '';
 
-  nix.trustedBinaryCaches = [ "http://hydra.nixos.org/" ];
+  nix.binaryCaches = [
+    "https://cache.nixos.org/"
+    "https://nixcache.reflex-frp.org/"
+  ];
+  nix.trustedBinaryCaches = [
+    "http://hydra.nixos.org/"
+    "https://nixcache.reflex-frp.org"
+    ];
 
   boot.cleanTmpDir = true;
 
