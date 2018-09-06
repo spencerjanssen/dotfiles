@@ -87,6 +87,7 @@ cgroup_device_acl = [
     haskellPackages.status-notifier-item
     stack
     haskellPackages.ghcid
+    libreoffice
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
