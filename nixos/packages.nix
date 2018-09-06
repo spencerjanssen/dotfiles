@@ -77,6 +77,10 @@
       inconsolata
       ttf_bitstream_vera
       dejavu_fonts
+      hasklig
+      fira-code
+      fira-mono
+      monoid
     ];
   };
 
