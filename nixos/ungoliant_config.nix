@@ -87,6 +87,7 @@ cgroup_device_acl = [
     stack
     haskellPackages.ghcid
     libreoffice
+    iptables
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
@@ -96,4 +97,6 @@ cgroup_device_acl = [
 
   security.wrappers.spice-client-glib-usb-acl-helper.source =
     "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
+  
+  programs.wireshark.enable = true;
 }
