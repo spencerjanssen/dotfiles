@@ -95,6 +95,10 @@ cgroup_device_acl = [
   services.redshift.enable = true;
   services.redshift.provider = "geoclue2";
 
+  services.btrfs.autoScrub.enable = true;
+  services.btrfs.autoScrub.interval = "daily";
+  services.btrfs.autoScrub.fileSystems = ["/"];
+
   security.wrappers.spice-client-glib-usb-acl-helper.source =
     "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
   
