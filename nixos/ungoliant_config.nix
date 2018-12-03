@@ -89,9 +89,11 @@ cgroup_device_acl = [
     haskellPackages.ghcid
     libreoffice
     iptables
+    flatpak
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
+  services.flatpak.enable = true;
 
   services.redshift.enable = true;
   services.redshift.provider = "geoclue2";
