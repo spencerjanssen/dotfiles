@@ -7,6 +7,7 @@
       ./ungoliant-hardware-configuration.nix
       ./packages.nix
       ./users.nix
+      ./mediaserver.nix
     ];
 
   system.stateVersion = "18.03";
