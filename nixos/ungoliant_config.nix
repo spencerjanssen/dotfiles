@@ -12,8 +12,8 @@
 
   system.stateVersion = "18.03";
 
-  # Use the GRUB 2 boot loader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = null;
 
   nix.buildCores = 0;
 
