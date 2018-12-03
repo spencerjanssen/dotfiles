@@ -102,6 +102,7 @@
     git
     zsh
     chromium
+    google-chrome
     mosh
     networkmanagerapplet
     trayer
