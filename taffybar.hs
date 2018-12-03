@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-deprecations #-}
 
 import Control.Monad.IO.Class (liftIO)
@@ -8,7 +9,7 @@ import System.Taffybar.Widget
 
 import System.Taffybar.Widget.Generic.PollingBar
 import System.Taffybar.Widget.Generic.PollingGraph
-import System.Taffybar.Widget.Systray
+import System.Taffybar.Widget.SNITray
 
 import System.Taffybar.Information.CPU
 import System.Posix.Process (forkProcess)

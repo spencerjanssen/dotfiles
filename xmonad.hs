@@ -1,5 +1,4 @@
 import XMonad hiding (Tall(..))
-import System.Taffybar.Hooks.PagerHints
 import qualified XMonad.StackSet as W
 import XMonad.Actions.CopyWindow
 import XMonad.Layout.Tabbed
@@ -20,7 +19,7 @@ import Data.List (isPrefixOf)
 
 import qualified Data.Map as M
 
-main = xmonad . pagerHints . docks . ewmh $ defaultConfig
+main = xmonad . docks . ewmh $ defaultConfig
     { terminal = "gnome-terminal"
     , workspaces = ["irc", "web"] ++ map show [3 .. 8 :: Int] ++ ["tv"]
     , mouseBindings = \(XConfig {modMask = modm}) -> M.fromList $

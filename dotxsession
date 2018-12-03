@@ -1,11 +1,10 @@
 #!/bin/sh
 
-# gnome-session --session xmonad-gnome-nopanel &
+status-notifier-watcher &
+sleep 1s
 xmodmap .Xmodmap
 taffybar &
-nm-applet &
-xset s off
-xset dpms off
-nitrogen --set-tiled wallpaper/wallpaper.jpg
+nm-applet --indicator &
+xsetroot -gray
 
-dbus-launch xmonad
+xmonad
