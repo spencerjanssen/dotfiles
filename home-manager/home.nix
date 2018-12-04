@@ -72,6 +72,7 @@ in
 
   services.taffybar.enable = true;
   services.status-notifier-watcher.enable = true;
+  services.network-manager-applet.enable = true;
 
   services.redshift.enable = true;
   services.redshift.latitude = "40.741";
