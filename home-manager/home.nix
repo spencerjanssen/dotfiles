@@ -53,4 +53,31 @@ in
       bindkey '^R' history-incremental-search-backward
     '';
   };
+
+  home.keyboard.options = ["caps:escape"];
+
+  xsession = {
+    enable = true;
+    preferStatusNotifierItems = true;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+
+      extraPackages = haskellPackages: [
+        haskellPackages.xmonad-contrib
+        haskellPackages.taffybar
+      ];
+    };
+  };
+
+  services.taffybar.enable = true;
+  services.status-notifier-watcher.enable = true;
+
+  services.redshift.enable = true;
+  services.redshift.latitude = "40.741";
+  services.redshift.longitude = "-96.64";
+
+  home.packages = with pkgs; [
+    taffybar
+  ];
 }
