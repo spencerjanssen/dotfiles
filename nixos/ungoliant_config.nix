@@ -90,6 +90,7 @@ cgroup_device_acl = [
     libreoffice
     iptables
     flatpak
+    snapper
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
@@ -101,6 +102,26 @@ cgroup_device_acl = [
   services.btrfs.autoScrub.enable = true;
   services.btrfs.autoScrub.interval = "daily";
   services.btrfs.autoScrub.fileSystems = ["/"];
+
+  services.snapper.configs = {
+    home = {
+      subvolume = "/media/evo/@home";
+      extraConfig = ''
+        TIMELINE_CREATE="yes"
+        TIMELINE_CLEANUP="yes"
+        TIMELINE_LIMIT_YEARLY="0"
+      '';
+    };
+    nixos = {
+      subvolume = "/media/evo/@nixos";
+      extraConfig = ''
+        TIMELINE_CREATE="yes"
+        TIMELINE_CLEANUP="yes"
+        TIMELINE_LIMIT_MONTHLY="0"
+        TIMELINE_LIMIT_YEARLY="0"
+      '';
+    };
+  };
 
   security.wrappers.spice-client-glib-usb-acl-helper.source =
     "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
