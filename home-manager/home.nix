@@ -78,6 +78,13 @@ in
   services.redshift.latitude = "40.741";
   services.redshift.longitude = "-96.64";
 
+  services.udiskie = {
+    enable = true;
+    notify = true;
+    automount = true;
+    tray = "always";
+  };
+
   home.packages = with pkgs; [
     taffybar
   ];
