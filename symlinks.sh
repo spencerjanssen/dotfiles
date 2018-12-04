@@ -22,3 +22,7 @@ mkdir -p $HOME/.config/taffybar
 cd $HOME/.config/taffybar
 ln -s ../../dotfiles/taffybar.hs
 ln -s ../../dotfiles/taffybar.css
+
+mkdir -p $HOME/.config/nixpkgs
+cd $HOME/.config/nixpkgs
+ln -s ../../dotfiles/home-manager/home.nix
