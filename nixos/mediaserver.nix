@@ -8,7 +8,9 @@
         enable = true;
         user = "flexget";
         homeDir = "/var/lib/flexget";
-        config = builtins.readFile ../flexget/config.yml;
+        config = if config._module.args ? dummyflexget
+                    then config._module.args.dummyflexget
+                    else (builtins.readFile ../flexget/config.yml);
         systemScheduler = false;
     };
 
