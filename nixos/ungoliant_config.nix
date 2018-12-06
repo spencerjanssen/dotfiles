@@ -8,6 +8,7 @@
       ./packages.nix
       ./users.nix
       ./mediaserver.nix
+      ./hydra.nix
     ];
 
   system.stateVersion = "18.03";
