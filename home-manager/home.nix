@@ -6,6 +6,10 @@ let secrets = import ./secrets.nix;
     hie = import <hie> {};
 in
 {
+  # required for hydra
+  home.username = "sjanssen";
+  home.homeDirectory = "/home/sjanssen";
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
