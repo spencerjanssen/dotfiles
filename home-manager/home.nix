@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 let secrets = import ./secrets.nix;
+    # can 'inherit pkgs' here to build against channel's nixpkgs
+    # but using pinned nixpkgs lets us take advantage of cachix
+    hie = import <hie> {};
 in
 {
   # Let Home Manager install and manage itself.
@@ -87,5 +90,6 @@ in
 
   home.packages = with pkgs; [
     taffybar
+    hie.hies
   ];
 }
