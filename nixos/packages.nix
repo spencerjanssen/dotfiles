@@ -101,25 +101,15 @@
     vimHugeX
     git
     zsh
-    chromium
-    google-chrome
     mosh
-    networkmanagerapplet
-    trayer
     rxvt_unicode
     screen
     nox
     psmisc
     xlibs.xmodmap
     file
-    gnome3.gnome-disk-utility
-    gnome3.gnome_terminal
-    gnome3.nautilus
-    gnome3.gnome_session
-    pavucontrol
     # weston
     gnumake
-    evince
     gnumake
     htop
     zip
@@ -128,20 +118,12 @@
     automake
     gettext
     libtool
-    mplayer
     pciutils
-    xflux
     binutils
     nix-prefetch-scripts
     pkgconfig
-    scrot
     ncdu
-    dropbox
     cabal2nix
-    atom
-    firefox
-    flashplayer
-    gnome3.gnome-tweak-tool
     gnome3.gnome_settings_daemon
     gnome3.gsettings_desktop_schemas
     gdb
@@ -153,8 +135,6 @@
         self.xmonad
         self.taffybar
         self.cabal-install
-        # self.ghc-mod
-	#self.purescript
     ]))
   ];
 }

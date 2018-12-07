@@ -10,6 +10,9 @@ in
   home.username = "sjanssen";
   home.homeDirectory = "/home/sjanssen";
 
+  nixpkgs.config = import ./config.nix;
+  xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -95,5 +98,29 @@ in
   home.packages = with pkgs; [
     taffybar
     hie.hies
+    nixopsUnstable
+    awscli
+    nodejs
+    vscode
+    discord
+    remmina
+    haskellPackages.status-notifier-item
+    stack
+    haskellPackages.ghcid
+    chromium
+    google-chrome
+    networkmanagerapplet
+    gnome3.gnome-disk-utility
+    gnome3.gnome_terminal
+    gnome3.nautilus
+    gnome3.gnome_session
+    gnome3.gnome-tweak-tool
+    pavucontrol
+    evince
+    mplayer
+    scrot
+    dropbox
+    firefox
+    flashplayer
   ];
 }

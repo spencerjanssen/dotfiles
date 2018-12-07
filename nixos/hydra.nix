@@ -6,6 +6,7 @@
         port = 9000;
         useSubstitutes = true;
         notificationSender = "spencerjanssen@gmail.com";
+        extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
     };
     # https://github.com/NixOS/hydra/issues/357
     nix.buildMachines = [

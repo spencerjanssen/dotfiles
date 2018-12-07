@@ -73,21 +73,12 @@ cgroup_device_acl = [
   '';
 
   environment.systemPackages = with pkgs; [
-    nixopsUnstable
-    awscli
-    nodejs
-    vscode
     qemu
     libvirt
     virtmanager
     spice-gtk
-    discord
-    remmina
     openconnect
     pidgin-with-plugins
-    haskellPackages.status-notifier-item
-    stack
-    haskellPackages.ghcid
     libreoffice
     iptables
     flatpak
