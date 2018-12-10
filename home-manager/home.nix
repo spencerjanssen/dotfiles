@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
-let secrets = import ./secrets.nix;
+let matchBlocks =
+      if config._module.args ? dummySecrets
+        then {}
+        else import ./ssh-matchblocks.nix;
     # can 'inherit pkgs' here to build against channel's nixpkgs
     # but using pinned nixpkgs lets us take advantage of cachix
     hie = import <hie> {};
@@ -32,7 +35,7 @@ in
 
   programs.ssh = {
     enable = true;
-    matchBlocks = secrets.sshHosts;
+    inherit matchBlocks;
   };
 
   programs.zsh = {
