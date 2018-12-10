@@ -1,2 +1,3 @@
 flexget/config.yml
 home-manager/secrets.nix
+**/result
