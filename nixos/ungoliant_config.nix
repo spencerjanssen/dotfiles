@@ -30,15 +30,15 @@
     pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
       plugins = [pkgs.pidginsipe];
     };
-    linux_4_19 = pkgs.linux_4_19.override {
+    linux_testing = pkgs.linux_testing.override {
       kernelPatches =
-        pkgs.linux_4_19.kernelPatches ++ 
+        pkgs.linux_testing.kernelPatches ++ 
         [
         # https://queuecumber.gitlab.io/linux-acs-override/
         {
           name = "ACS override";
           patch = pkgs.fetchurl {
-            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.19.5/acso.patch";
+            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.20/acso.patch";
             sha256 = "14garkj80g7jyi7acvp5zx447328yqwy6ll2qm79j7mm8x2k5r87";
           };
         }];
@@ -52,7 +52,7 @@
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "vfio_pci" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_4_19;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
