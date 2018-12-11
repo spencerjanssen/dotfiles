@@ -13,8 +13,8 @@
         {
             hostName = "localhost";
             systems = [ "i686-linux" "x86_64-linux" ];
-            maxJobs = 16;
-            supportedFeatures = [ "kvm" "nixos-test" ];
+            maxJobs = 8;
+            supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
         }
     ];
 }
