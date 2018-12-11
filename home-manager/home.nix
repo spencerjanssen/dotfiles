@@ -4,9 +4,9 @@ let matchBlocks =
       if config._module.args ? dummySecrets
         then {}
         else import ./ssh-matchblocks.nix;
-    # remove 'inherit pkgs' here to build against channel's nixpkgs
+    # can 'inherit pkgs' here to build against channel's nixpkgs
     # but using pinned nixpkgs lets us take advantage of cachix
-    hie = import <hie> {inherit pkgs;};
+    hie = import <hie> {};
 in
 {
   # required for hydra
