@@ -81,6 +81,12 @@ in
         haskellPackages.taffybar
       ];
     };
+    pointerCursor = {
+      defaultCursor = "left_ptr";
+      package = pkgs.gnome3.adwaita-icon-theme;
+      name = "Adwaita";
+      size = 24;
+    };
   };
 
   services.taffybar.enable = true;
