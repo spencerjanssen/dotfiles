@@ -41,7 +41,12 @@
             url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.20/acso.patch";
             sha256 = "14garkj80g7jyi7acvp5zx447328yqwy6ll2qm79j7mm8x2k5r87";
           };
-        }];
+        }
+        {
+          name = "REG_WAIT timeout";
+          patch = ./patches/amdgpu.patch;
+        }
+        ];
     };
   };
 
