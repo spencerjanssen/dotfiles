@@ -13,7 +13,11 @@ in
   home.username = "sjanssen";
   home.homeDirectory = "/home/sjanssen";
 
-  nixpkgs.config = import ./config.nix;
+  nixpkgs = {
+    config = import ./config.nix;
+    overlays = [ (import ../nixos/ghc-8.6-fixes.nix) ];
+  };
+
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
 
   # Let Home Manager install and manage itself.
