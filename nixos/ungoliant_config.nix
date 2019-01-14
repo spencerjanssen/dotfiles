@@ -27,9 +27,6 @@
   # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
   # https://bugzilla.kernel.org/show_bug.cgi?id=196683
   nixpkgs.config.packageOverrides = pkgs: {
-    pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
-      plugins = [pkgs.pidginsipe];
-    };
     linux_latest = pkgs.linux_latest.override {
       kernelPatches =
         pkgs.linux_latest.kernelPatches ++ 
@@ -80,8 +77,6 @@ cgroup_device_acl = [
     virtmanager
     spice-gtk
     openconnect
-    pidgin-with-plugins
-    libreoffice
     iptables
     flatpak
     snapper

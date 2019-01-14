@@ -102,40 +102,13 @@
     vimHugeX
     git
     zsh
-    mosh
-    rxvt_unicode
-    screen
-    nox
     psmisc
-    xlibs.xmodmap
     file
-    # weston
-    gnumake
-    gnumake
     htop
-    zip
-    unzip
-    autoconf
-    automake
-    gettext
-    libtool
     pciutils
     binutils
-    nix-prefetch-scripts
-    pkgconfig
-    ncdu
-    cabal2nix
     gnome3.gnome_settings_daemon
     gnome3.gsettings_desktop_schemas
-    gdb
     tmux
-    nodejs
-
-    (pkgs.haskellPackages.ghcWithPackages (self : [
-        self.mtl
-        self.xmonad
-        self.taffybar
-        self.cabal-install
-    ]))
   ];
 }

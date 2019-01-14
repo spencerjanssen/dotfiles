@@ -15,7 +15,14 @@ in
 
   nixpkgs = {
     config = import ./config.nix;
-    overlays = [ (import ../nixos/ghc-8.6-fixes.nix) ];
+    overlays = [
+      (import ../nixos/ghc-8.6-fixes.nix)
+      (_self: super: {
+        pidgin-with-plugins = super.pidgin-with-plugins.override {
+          plugins = [super.pidginsipe];
+        };
+      })
+    ];
   };
 
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
@@ -135,5 +142,21 @@ in
     dropbox
     firefox
     flashplayer
+    pidgin-with-plugins
+    libreoffice
+    nodejs
+    nix-prefetch-scripts
+    xlibs.xmodmap
+    cabal2nix
+    gdb
+    zip
+    unzip
+
+    (pkgs.haskellPackages.ghcWithPackages (self : [
+        self.mtl
+        self.xmonad
+        self.taffybar
+        self.cabal-install
+    ]))
   ];
 }
