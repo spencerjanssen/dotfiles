@@ -11,4 +11,5 @@ let ungoliantConfig =
 in
 {
     ungoliant = ungoliantConfig.config.system.build.toplevel;
+    kernel = ungoliantConfig.config.system.build.kernel;
 } // builtins.listToAttrs (map (p: {name = (builtins.parseDrvName p.name).name; value = p;}) ungoliantConfig.config.environment.systemPackages)
