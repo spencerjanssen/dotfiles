@@ -30,9 +30,9 @@
     pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
       plugins = [pkgs.pidginsipe];
     };
-    linux_testing = pkgs.linux_testing.override {
+    linux_latest = pkgs.linux_latest.override {
       kernelPatches =
-        pkgs.linux_testing.kernelPatches ++ 
+        pkgs.linux_latest.kernelPatches ++ 
         [
         # https://queuecumber.gitlab.io/linux-acs-override/
         {
@@ -54,7 +54,7 @@
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "vfio_pci" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
