@@ -54,7 +54,7 @@
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "vfio_pci" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
