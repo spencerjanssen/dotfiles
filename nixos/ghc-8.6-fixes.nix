@@ -1,7 +1,4 @@
 _self: super: {
-    # doesn't build on 8.6.x, and hydra needs it
-    darcs = super.haskell.packages.ghc844.darcs;
-
     haskellPackages = super.haskellPackages.override {
         overrides = self: hsuper: rec {
             # cribbed from https://github.com/NixOS/nixpkgs/issues/48891
@@ -37,6 +34,10 @@ _self: super: {
 
             darcs = super.haskell.lib.overrideCabal hsuper.darcs {
                 jailbreak = true;
+                patches = [(super.fetchurl {
+                    url = "https://raw.githubusercontent.com/jerith666/nixpkgs/40cf8a482d8e0f85dcd002a721b1dac7c28ae48c/pkgs/development/haskell-modules/patches/darcs-monadfail.patch";
+                    sha256 = "14hqx1225n15qd1q76gl2isc8kimmraa6hpwjmci78z5ksblx19a";
+                })];
             };
         };
     };
