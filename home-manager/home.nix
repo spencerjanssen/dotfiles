@@ -116,7 +116,6 @@ in
   };
 
   home.packages = with pkgs; [
-    taffybar
     hie.hies
     nixopsUnstable
     awscli
