@@ -11,4 +11,4 @@ let ungoliantConfig =
 in
 {
     ungoliant = ungoliantConfig.config.system.build.toplevel;
-} // pkgs.lib.lists.foldr (p: s: s // {"${p.name}" = p;}) {} ungoliantConfig.config.environment.systemPackages
+} // builtins.listToAttrs (map (p: {name = (builtins.parseDrvName p.name).name; value = p;}) ungoliantConfig.config.environment.systemPackages)
