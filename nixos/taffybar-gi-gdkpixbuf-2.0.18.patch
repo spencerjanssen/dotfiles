@@ -1,0 +1,13 @@
+diff --git a/src/System/Taffybar/Information/Chrome.hs b/src/System/Taffybar/Information/Chrome.hs
+index b1231c3..a2ebe5c 100644
+--- a/src/System/Taffybar/Information/Chrome.hs
++++ b/src/System/Taffybar/Information/Chrome.hs
+@@ -63,7 +63,7 @@ listenForChromeFaviconUpdates port = do
+         pixbuf <- Gdk.pixbufLoaderGetPixbuf loader
+         let chromeTabImageData =
+               ChromeTabImageData
+-              { tabImageData = pixbuf
++              { tabImageData = fromJust pixbuf
+               , tabImageDataId = tabID
+               }
+         modifyMVar_ infoVar $ \currentMap -> do

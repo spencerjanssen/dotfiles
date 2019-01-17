@@ -14,6 +14,11 @@ _self: super: {
                 sha256 = "04k26zw61nfv1pkd00iaq89pgsaiym0sf4cbzkmm2k2fj5xa587g";
             };
 
+            # https://github.com/taffybar/taffybar/issues/435
+            taffybar = super.haskell.lib.overrideCabal hsuper.taffybar {
+                patches = [ ./taffybar-gi-gdkpixbuf-2.0.18.patch ];
+            };
+
             darcs = super.haskell.lib.overrideCabal hsuper.darcs {
                 jailbreak = true;
                 patches = [(super.fetchurl {
