@@ -14,12 +14,6 @@ _self: super: {
                 sha256 = "04k26zw61nfv1pkd00iaq89pgsaiym0sf4cbzkmm2k2fj5xa587g";
             };
 
-            # fixed in https://github.com/taffybar/taffybar/commit/ee2cd6b871ea05bc60a050d5cefc9e307475e794
-            # not released yet
-            taffybar = super.haskell.lib.overrideCabal hsuper.taffybar {
-                patches = [ ./taffybar-ghc-8.6.patch ];
-            };
-
             darcs = super.haskell.lib.overrideCabal hsuper.darcs {
                 jailbreak = true;
                 patches = [(super.fetchurl {
