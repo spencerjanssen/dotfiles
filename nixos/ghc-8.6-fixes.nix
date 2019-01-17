@@ -8,18 +8,6 @@ _self: super: {
 
             buildHaskellPackages = hsuper.buildHaskellPackages // { inherit gtk2hs-buildtools; };
 
-            # change is in master but not yet released
-            status-notifier-item = super.haskell.lib.overrideCabal hsuper.status-notifier-item (_: {
-                postPatch = ''${hsuper.hpack}/bin/hpack'';
-                src = super.fetchFromGitHub {
-                    owner = "IvanMalison";
-                    repo = "status-notifier-item";
-                    rev = "1afe7f79cbcb3522dece35f56ee0175c1b903ef9";
-                    sha256 = "1ph5j1052bqh2p8xqyjfm9qsis56kkp7w2fqbl28z8rh9f5vqrw0";
-                };
-
-            });
-
             # this version of graphviz hasn't made it to nixpkgs yet
             graphviz = super.haskell.lib.overrideCabal hsuper.graphviz {
                 version = "2999.20.0.3";
