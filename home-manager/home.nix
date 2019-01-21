@@ -158,4 +158,6 @@ in
         self.cabal-install
     ]))
   ];
+
+  home.file.".haskeline".text = "editMode: Vi";
 }
