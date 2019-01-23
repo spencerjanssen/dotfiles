@@ -18,10 +18,9 @@
       options = [ "subvol=@nixos" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/41272ba7-5c07-41c5-915d-e132019770b7";
-      fsType = "btrfs";
-      options = [ "subvol=@home" ];
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/D06F-0323";
+      fsType = "vfat";
     };
 
   fileSystems."/media/evo" =
@@ -29,14 +28,10 @@
       fsType = "btrfs";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D06F-0323";
-      fsType = "vfat";
-    };
-
-  fileSystems."/media/spinning" =
-    { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/41272ba7-5c07-41c5-915d-e132019770b7";
       fsType = "btrfs";
+      options = [ "subvol=@home" ];
     };
 
   fileSystems."/media/blue" =
@@ -46,8 +41,13 @@
 
   boot.initrd.luks.devices."blue".device = "/dev/disk/by-uuid/bc6e5111-7f57-4b57-9e6d-196b000e40fa";
 
+  fileSystems."/media/spinning" =
+    { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
+      fsType = "btrfs";
+    };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/053e1e02-ca96-4c77-8a73-36076b121c49"; }
+    [ { device = "/dev/disk/by-uuid/078d90c4-e2de-4b34-8e1e-0f14f8bc8dd2"; }
     ];
 
   nix.maxJobs = lib.mkDefault 16;

@@ -59,6 +59,13 @@
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
   };
 
+  boot.initrd.luks.devices."nvmeswap" = {
+    device = "/dev/disk/by-uuid/637cf5c2-af86-471a-b8ed-9bd8efb5f256";
+    allowDiscards = true;
+    keyFileSize = 4096;
+    keyFile = "/dev/disk/by-partuuid/c59a413a-01";
+  };
+
   fileSystems."/media/spinning".options = ["noauto"];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
