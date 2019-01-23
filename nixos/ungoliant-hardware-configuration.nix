@@ -34,10 +34,22 @@
       fsType = "vfat";
     };
 
+  fileSystems."/media/spinning" =
+    { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/media/blue" =
+    { device = "/dev/disk/by-uuid/0edb6fc6-451e-40ce-848a-e70f91aeb3df";
+      fsType = "btrfs";
+    };
+
+  boot.initrd.luks.devices."blue".device = "/dev/disk/by-uuid/bc6e5111-7f57-4b57-9e6d-196b000e40fa";
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/053e1e02-ca96-4c77-8a73-36076b121c49"; }
     ];
 
   nix.maxJobs = lib.mkDefault 16;
-  powerManagement.cpuFreqGovernor = "ondemand";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }

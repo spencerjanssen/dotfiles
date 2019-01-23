@@ -53,6 +53,14 @@
 
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
 
+  boot.initrd.luks.devices."blue" = {
+    allowDiscards = true;
+    keyFileSize = 4096;
+    keyFile = "/dev/disk/by-partuuid/c59a413a-01";
+  };
+
+  fileSystems."/media/spinning".options = ["noauto"];
+
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   services.wakeonlan.interfaces = [ { interface = "enp11s0"; method = "magicpacket"; } ];
@@ -80,6 +88,7 @@ cgroup_device_acl = [
     iptables
     flatpak
     snapper
+    cryptsetup
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
@@ -87,7 +96,7 @@ cgroup_device_acl = [
 
   services.btrfs.autoScrub.enable = true;
   services.btrfs.autoScrub.interval = "daily";
-  services.btrfs.autoScrub.fileSystems = ["/"];
+  services.btrfs.autoScrub.fileSystems = ["/" "/media/blue"];
 
   services.snapper.configs = {
     home = {
