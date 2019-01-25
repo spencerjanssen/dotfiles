@@ -20,6 +20,9 @@
 
   nix.extraOptions = "secret-key-files = /root/ungoliant-1.secret";
 
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+
   networking.hostName = "ungoliant"; # Define your hostname.
 
   time.timeZone = "US/Central";
