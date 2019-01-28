@@ -9,6 +9,7 @@
       ./users.nix
       ./mediaserver.nix
       ./hydra.nix
+      ./btrfs-backup-sync.nix
     ];
 
   system.stateVersion = "18.03";
