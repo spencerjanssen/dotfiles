@@ -106,7 +106,7 @@ cgroup_device_acl = [
   services.flatpak.enable = true;
 
   services.btrfs.autoScrub.enable = true;
-  services.btrfs.autoScrub.interval = "daily";
+  services.btrfs.autoScrub.interval = "weekly";
   services.btrfs.autoScrub.fileSystems = ["/" "/media/blue"];
 
   services.snapper.configs = {
