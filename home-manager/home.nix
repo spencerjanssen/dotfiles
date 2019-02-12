@@ -119,7 +119,6 @@ in
     haskellPackages.status-notifier-item
     stack
     haskellPackages.ghcid
-    chromium
     google-chrome
     networkmanagerapplet
     gnome3.gnome-disk-utility
