@@ -46,7 +46,7 @@
     };
   };
 
-  nixpkgs.overlays = [ (import ../nixos/ghc-8.6-fixes.nix) ];
+  nixpkgs.overlays = import ./overlays.nix;
 
   boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
   boot.extraModprobeConfig = ''

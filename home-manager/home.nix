@@ -15,14 +15,7 @@ in
 
   nixpkgs = {
     config = import ./config.nix;
-    overlays = [
-      (import ../nixos/ghc-8.6-fixes.nix)
-      (_self: super: {
-        pidgin-with-plugins = super.pidgin-with-plugins.override {
-          plugins = [super.pidginsipe];
-        };
-      })
-    ];
+    overlays = import ../nixos/overlays.nix;
   };
 
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
