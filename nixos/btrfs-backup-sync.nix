@@ -14,11 +14,11 @@ in
         script = ''
             echo syncing @nixos
             systemd-inhibit --who=btrfs-backup-sync-nixos --mode=block \
-                btrfs-backup-sync real /media/evo/@nixos/.snapshots /media/blue/backups/ungoliant/@nixos
+                btrfs-backup-sync real /media/evo/@nixos/.snapshots /media/blue/backups/ungoliant/@nixos/.snapshots
             echo done syncing @nixos
             echo syncing @home
             systemd-inhibit --who=btrfs-backup-sync-home --mode=block \
-                btrfs-backup-sync real /media/evo/@home/.snapshots /media/blue/backups/ungoliant/@home
+                btrfs-backup-sync real /media/evo/@home/.snapshots /media/blue/backups/ungoliant/@home/.snapshots
             echo done syncing @home
         '';
         after = ["snapper-timeline.service"];
