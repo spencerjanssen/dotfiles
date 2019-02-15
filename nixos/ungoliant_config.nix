@@ -145,10 +145,10 @@ cgroup_device_acl = [
       extraConfig = ''
         TIMELINE_CLEANUP="yes"
         TIMELINE_LIMIT_HOURLY="72"
-        TIMELINE_LIMIT_DAILY="31"
+        TIMELINE_LIMIT_DAILY="7"
         TIMELINE_LIMIT_WEEKLY="6"
-        TIMELINE_LIMIT_MONTHLY="12"
-        TIMELINE_LIMIT_YEARLY="5"
+        TIMELINE_LIMIT_MONTHLY="0"
+        TIMELINE_LIMIT_YEARLY="0"
       '';
     };
   };
