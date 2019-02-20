@@ -109,6 +109,8 @@ cgroup_device_acl = [
   services.btrfs.autoScrub.interval = "weekly";
   services.btrfs.autoScrub.fileSystems = ["/" "/media/blue"];
 
+  services.fwupd.enable = true;
+
   services.snapper.configs = {
     home = {
       subvolume = "/media/evo/@home";
