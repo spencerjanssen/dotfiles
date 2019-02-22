@@ -4,4 +4,7 @@
             plugins = [super.pidginsipe];
         };
     })
+    (_self: super: {
+        looking-glass-client = super.callPackage ./looking-glass-client.nix { };
+    })
 ]

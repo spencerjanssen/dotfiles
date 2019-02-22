@@ -142,6 +142,7 @@ in
     gdb
     zip
     unzip
+    looking-glass-client
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
