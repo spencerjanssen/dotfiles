@@ -110,7 +110,7 @@ in
 
   home.packages = with pkgs; [
     hie.hies
-    nixopsUnstable
+    nixops
     awscli
     nodejs
     vscode
