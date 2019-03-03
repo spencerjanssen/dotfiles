@@ -111,7 +111,6 @@ in
   home.packages = with pkgs; [
     hie.hies
     nixops
-    awscli
     nodejs
     vscode
     discord
