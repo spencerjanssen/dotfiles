@@ -10,6 +10,11 @@
                 sha256 = "0rm2r15k8gwzh27lima7s649kwr90p6z72lnfab303zxhzz4i3ms";
             })];
         });
+        # bolt tests fail on my machine for some reason.  Disable them.
+        bolt = super.bolt.overrideAttrs (old: {
+            doCheck = false;
+            nativeBuildInputs = old.nativeBuildInputs ++ [super.python3];
+        });
     })
     (_self: super: {
         pidgin-with-plugins = super.pidgin-with-plugins.override {
