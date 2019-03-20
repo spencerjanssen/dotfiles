@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 {
-    services.plex.enable = true;
-    services.deluge.enable = true;
+    services.plex.enable = false;
+    services.deluge.enable = false;
 
     services.flexget = {
-        enable = true;
+        enable = false;
         user = "flexget";
         homeDir = "/var/lib/flexget";
         config = if config._module.args ? dummyflexget
