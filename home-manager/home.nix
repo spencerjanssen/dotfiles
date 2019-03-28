@@ -71,6 +71,11 @@ in
     '';
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   home.keyboard.options = ["caps:escape"];
 
   xsession = {
@@ -142,6 +147,7 @@ in
     zip
     unzip
     looking-glass-client
+    lorri
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
