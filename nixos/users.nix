@@ -5,7 +5,7 @@
 
   users.defaultUserShell = "/run/current-system/sw/bin/zsh";
 
-  users.extraUsers.sjanssen = {
+  users.users.sjanssen = {
     isNormalUser = true;
     uid = 1000;
     group = "sjanssen";
