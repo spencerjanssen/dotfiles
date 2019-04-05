@@ -34,4 +34,13 @@
             };
             in (import lorriSource {src = lorriSource;});
     })
+    (_self: super: {
+        haskellPackages = super.haskellPackages.override {
+            overrides = hsSelf: hsSuper: {
+                taffybar = super.haskell.lib.overrideCabal hsSuper.taffybar (oa: {
+                    broken = false;
+                });
+            };
+        };
+    })
 ]
