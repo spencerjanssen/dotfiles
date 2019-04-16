@@ -36,6 +36,9 @@ stdenv.mkDerivation {
         SDL2
     ];
 
+    # this patch can be removed for future versions
+    patches = [./looking-glass-spice.patch];
+
     installPhase = ''
         mkdir -p $out/bin
         cp ./looking-glass-client $out/bin

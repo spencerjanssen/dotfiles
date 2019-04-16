@@ -1,0 +1,36 @@
+From 2567447b24b28458ba0f09c766a643ad8d753255 Mon Sep 17 00:00:00 2001
+From: Frediano Ziglio <fziglio@redhat.com>
+Date: Mon, 21 Jan 2019 10:43:46 +0000
+Subject: [PATCH] [client] spice: use correct enumeration for SpiceLinkReply
+
+SPICEC_ERROR_CODE_xxx constants are supposed to be used by old
+client (obsoleted years ago).
+SpiceLinkReply error field uses SPICE_LINK_ERR_xxx enumeration
+constants.
+
+Signed-off-by: Frediano Ziglio <fziglio@redhat.com>
+---
+ client/spice/spice.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/spice/spice.c b/spice/spice.c
+index 53e0cd1..a3ca9cb 100644
+--- a/spice/spice.c
++++ b/spice/spice.c
+@@ -36,7 +36,6 @@ Place, Suite 330, Boston, MA 02111-1307 USA
+ #include <arpa/inet.h>
+ 
+ #include <spice/protocol.h>
+-#include <spice/error_codes.h>
+ 
+ #include "messages.h"
+ #include "rsa.h"
+@@ -616,7 +615,7 @@ bool spice_connect_channel(struct SpiceChannel * channel)
+     return false;
+   }
+ 
+-  if (reply.error != SPICEC_ERROR_CODE_SUCCESS)
++  if (reply.error != SPICE_LINK_ERR_OK)
+   {
+     DEBUG_ERROR("server replied with error %u", reply.error);
+     spice_disconnect_channel(channel);
