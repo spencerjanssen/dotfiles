@@ -106,6 +106,9 @@ in
   services.redshift.latitude = "40.741";
   services.redshift.longitude = "-96.64";
 
+  services.screen-locker.enable = true;
+  services.screen-locker.lockCmd = "${pkgs.i3lock}/bin/i3lock -n";
+
   services.udiskie = {
     enable = true;
     notify = true;
