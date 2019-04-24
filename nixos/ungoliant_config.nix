@@ -158,6 +158,9 @@ cgroup_device_acl = [
     };
   };
 
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "gnome-session";
+
   security.wrappers.spice-client-glib-usb-acl-helper.source =
     "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
   
