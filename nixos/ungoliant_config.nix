@@ -7,7 +7,6 @@
       ./ungoliant-hardware-configuration.nix
       ./packages.nix
       ./users.nix
-      ./mediaserver.nix
       ./hydra.nix
       ./btrfs-backup-sync.nix
     ];

@@ -4,7 +4,6 @@ let ungoliantConfig =
             system = builtins.currentSystem;
             modules = [
                 ./ungoliant_config.nix
-                {_module.args.dummyflexget = "don't build";}
             ];
         };
     pkgs = import <nixpkgs> {};
