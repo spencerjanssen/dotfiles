@@ -73,8 +73,6 @@
   services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = false;
-  services.xserver.displayManager.gdm.autoLogin.enable = true;
-  services.xserver.displayManager.gdm.autoLogin.user = "sjanssen";
 
   fonts = {
     fontconfig.ultimate.enable = true;
