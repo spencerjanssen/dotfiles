@@ -41,7 +41,14 @@
             url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/4.20/acso.patch";
             sha256 = "14garkj80g7jyi7acvp5zx447328yqwy6ll2qm79j7mm8x2k5r87";
           };
-        }];
+        }
+        # required due to bugs in AGESA 0.0.7.2
+        # https://www.reddit.com/r/Amd/comments/bh3qqz/agesa_0072_pci_quirk/
+        {
+          name = "VFIO PCI reset workaround";
+          patch = ./vfio-pci-reset.patch;
+        }
+        ];
     };
   };
 
