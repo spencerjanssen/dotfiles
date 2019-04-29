@@ -56,7 +56,7 @@
 
   boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
   boot.extraModprobeConfig = ''
-    options vfio-pci ids=10de:1401,10de:0fba
+    options vfio-pci ids=10de:1401,10de:0fba,10ec:5760
   '';
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "vfio_pci" ];
