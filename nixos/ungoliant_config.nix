@@ -168,6 +168,14 @@ cgroup_device_acl = [
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "gnome-session";
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.extraConfig = "
+    [General]
+    Enable=Source,Sink,Media,Socket
+  ";
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.pulseaudio.extraModules = [pkgs.pulseaudio-modules-bt];
+
   security.wrappers.spice-client-glib-usb-acl-helper.source =
     "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
   
