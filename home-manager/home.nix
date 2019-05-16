@@ -6,7 +6,7 @@ let matchBlocks =
         else import ./ssh-matchblocks.nix;
     # can 'inherit pkgs' here to build against channel's nixpkgs
     # but using pinned nixpkgs lets us take advantage of cachix
-    hie = import <hie> {};
+    all-hies = import <all-hies> {};
 in
 {
   # required for hydra
@@ -117,7 +117,7 @@ in
   };
 
   home.packages = with pkgs; [
-    hie.hies
+    (all-hies.selection {selector = p: {inherit (p) ghc822 ghc864;};})
     nixops
     nodejs
     vscode
@@ -151,6 +151,11 @@ in
     unzip
     looking-glass-client
     lorri
+    entr
+    ddcutil
+    hicolor-icon-theme
+    gnome3.adwaita-icon-theme
+    gnome3.defaultIconTheme
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl

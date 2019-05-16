@@ -5,7 +5,6 @@
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
     "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
-    "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
   ];
 
   # this prevents nix from garbage collecting build dependencies, especially
@@ -18,12 +17,10 @@
   nix.binaryCaches = [
     "https://cache.nixos.org/"
     "https://nixcache.reflex-frp.org/"
-    "https://hie-nix.cachix.org"
   ];
   nix.trustedBinaryCaches = [
     "http://hydra.nixos.org/"
     "https://nixcache.reflex-frp.org"
-    "https://hie-nix.cachix.org"
     ];
 
   boot.cleanTmpDir = true;

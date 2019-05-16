@@ -9,6 +9,7 @@
       ./users.nix
       ./hydra.nix
       ./btrfs-backup-sync.nix
+      ./cachix.nix
     ];
 
   system.stateVersion = "18.03";
