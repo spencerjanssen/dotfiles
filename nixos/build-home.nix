@@ -2,7 +2,7 @@
 let pkgs = import <nixpkgs> {config.allowUnfree = true;};
     hm = import <home-manager/modules/default.nix> {
         inherit pkgs;
-        configuration = ./build-home-no-secrets-wrapper.nix;
+        configuration = ../home-manager/home.nix;
     };
 in {
     homebuilder = hm.activationPackage;

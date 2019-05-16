@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 let matchBlocks =
-      if config._module.args ? dummySecrets
-        then {}
-        else import ./ssh-matchblocks.nix;
+      if builtins.pathExists ./ssh-matchblocks.nix
+        then import ./ssh-matchblocks.nix
+        else {};
     # can 'inherit pkgs' here to build against channel's nixpkgs
     # but using pinned nixpkgs lets us take advantage of cachix
     all-hies = import <all-hies> {};
