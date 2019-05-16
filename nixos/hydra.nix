@@ -7,6 +7,15 @@
         useSubstitutes = true;
         notificationSender = "spencerjanssen@gmail.com";
         extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
+        package = pkgs.hydra.overrideAttrs (_oldAttrs: {
+            patches = [
+                # see https://github.com/NixOS/nix/issues/1888
+                # all-hies fetches nixpkgs which gives an error about restricted mode
+                ./hydra-no-restrict-eval.patch
+            ];
+            # tests require postgres and therefore fail
+            doCheck = false;
+        });
     };
     # https://github.com/NixOS/hydra/issues/357
     nix.buildMachines = [
