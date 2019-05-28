@@ -180,4 +180,9 @@ cgroup_device_acl = [
     "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
   
   programs.wireshark.enable = true;
+
+  networking.extraHosts = 
+    if builtins.pathExists ./extra-hosts.txt
+      then builtins.readFile ./extra-hosts.txt
+      else "";
 }

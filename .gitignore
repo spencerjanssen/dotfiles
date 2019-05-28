@@ -1,3 +1,4 @@
 flexget/config.yml
 home-manager/ssh-matchblocks.nix
 **/result
+nixos/extra-hosts.txt
