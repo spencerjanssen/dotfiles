@@ -10,7 +10,6 @@ ln -s dotfiles/dotvimrc.bundles.local .vimrc.bundles.local
 ln -s dotfiles/dotzshrc .zshrc
 ln -s dotfiles/dotzshenv .zshenv
 ln -s dotfiles/dotxsession .xsession
-ln -s dotfiles/dotinputrc .inputrc
 
 mkdir $HOME/.xmonad
 cd $HOME/.xmonad
