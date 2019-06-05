@@ -48,7 +48,8 @@ main = xmonad . docks . ewmh $ defaultConfig
         ,((modm .|. shiftMask, xK_0     ), windows $ copyToAll)
         ,((modm,               xK_z     ), layoutScreens 2 $ TwoPane 0.5 0.5)
         ,((modm .|. shiftMask, xK_z     ), rescreen)
-        , ((modm             , xK_b     ), sendMessage ToggleStruts)
+        ,((modm,               xK_b     ), sendMessage ToggleStruts)
+        ,((modm .|. shiftMask, xK_l     ), spawn "systemctl suspend")
         ]
 
     myFont = "xft:Bitstream Vera Sans Mono:pixelsize=10"
