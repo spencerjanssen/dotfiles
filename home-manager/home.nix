@@ -76,6 +76,12 @@ in
     enableZshIntegration = true;
   };
 
+  programs.tmux = {
+    enable = true;
+    shortcut = "a";
+    baseIndex = 1;
+  };
+
   home.keyboard.options = ["caps:escape"];
 
   xsession = {

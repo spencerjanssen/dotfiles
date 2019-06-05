@@ -12,7 +12,6 @@ ln -s dotfiles/dotzshenv .zshenv
 ln -s dotfiles/dotxsession .xsession
 ln -s dotfiles/dotgitconfig .gitconfig
 ln -s dotfiles/dotinputrc .inputrc
-ln -s dotfiles/dottmux.conf .tmux.conf
 
 mkdir $HOME/.xmonad
 cd $HOME/.xmonad
