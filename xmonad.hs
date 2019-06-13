@@ -16,10 +16,11 @@ import XMonad.Layout.LayoutScreens
 import XMonad.Layout.TwoPane
 
 import Data.List (isPrefixOf)
+import System.Taffybar.Support.PagerHints
 
 import qualified Data.Map as M
 
-main = xmonad . docks . ewmh $ defaultConfig
+main = xmonad . docks . ewmh . pagerHints $ defaultConfig
     { terminal = "gnome-terminal"
     , workspaces = ["irc", "web"] ++ map show [3 .. 8 :: Int] ++ ["tv"]
     , mouseBindings = \(XConfig {modMask = modm}) -> M.fromList $

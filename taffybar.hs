@@ -25,13 +25,17 @@ main = do
                                                       ]
                                   , graphLabel = Just "cpu"
                                   }
-        clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
+        clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 15
         note = notifyAreaNew defaultNotificationConfig
         wea = liftIO $ weatherNew (defaultWeatherConfig "KLNK") 10
-        cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
+        cpu = pollingGraphNew cpuCfg 1 cpuCallback
+        workspaces = workspacesNew $ defaultWorkspacesConfig
+                      { showWorkspaceFn = hideEmpty
+                      }
+        windowsW = windowsNew defaultWindowsConfig
         conf = defaultSimpleTaffyConfig
-                    { startWidgets = [ workspacesNew defaultWorkspacesConfig, note ]
+                    { startWidgets = [ workspaces, windowsW >>= buildContentsBox, note ]
                     , endWidgets = [ sniTrayNew, wea, clock, cpu]
-                    , barHeight = 20
+                    , barHeight = 31
                     , monitorsAction = useAllMonitors }
     dyreTaffybar $ toTaffyConfig conf
