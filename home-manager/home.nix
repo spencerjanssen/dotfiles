@@ -123,7 +123,7 @@ in
   };
 
   home.packages = with pkgs; [
-    (all-hies.selection {selector = p: {inherit (p) ghc822 ghc864;};})
+    (all-hies.selection {selector = p: {inherit (p) ghc822 ghc865;};})
     nixops
     nodejs
     vscode
