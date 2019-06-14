@@ -46,8 +46,8 @@
         # required due to bugs in AGESA 0.0.7.2
         # https://www.reddit.com/r/Amd/comments/bh3qqz/agesa_0072_pci_quirk/
         {
-          name = "VFIO PCI reset workaround";
-          patch = ./vfio-pci-reset.patch;
+          name = "VFIO PCI reset workaround without PCI IDs";
+          patch = ./vfio-pci-reset-nonspecific.patch;
         }
         ];
     };
