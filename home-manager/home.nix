@@ -63,7 +63,7 @@ in
     # COMPLETION_WAITING_DOTS is for oh-my-zsh and doesn't really belong here
     sessionVariables = {
       EDITOR = "vim";
-      LIBVIRT_DEFAULT_URI = "qemu://system";
+      LIBVIRT_DEFAULT_URI = "qemu:///system";
       COMPLETION_WAITING_DOTS = "true";
     };
     initExtra = ''
