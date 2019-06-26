@@ -60,10 +60,6 @@
     default = "xmonad";
     xmonad.enable = true;
     xmonad.enableContribAndExtras = true;
-    xmonad.extraPackages = haskellPackages: [
-      haskellPackages.xmonad-contrib
-      haskellPackages.taffybar
-    ];
   };
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.default = "none";
