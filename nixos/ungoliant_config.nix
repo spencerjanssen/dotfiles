@@ -60,7 +60,10 @@
     options vfio-pci ids=10de:1401,10de:0fba,10ec:5760
   '';
   boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.kernelModules = [ "vfio_pci" ];
+  boot.kernelModules = [
+    "vfio_pci"
+    "nct6775" # for motherboard fan control
+  ];
 
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
 
