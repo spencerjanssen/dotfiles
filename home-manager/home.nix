@@ -52,7 +52,6 @@ in
         "history-substring-search"
         "cabal"
         "screen"
-        "zsh-syntax-highlighting"
       ];
       theme = "robbyrussell";
     };
