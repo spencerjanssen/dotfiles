@@ -188,4 +188,17 @@ cgroup_device_acl = [
     if builtins.pathExists ./extra-hosts.txt
       then builtins.readFile ./extra-hosts.txt
       else "";
+  
+  services.samba = {
+    enable = true;
+    shares = {
+      blue = {
+        browseable = "yes";
+        comment = "Bulk storage";
+        "guest ok" = "no";
+        path = "/media/blue/smbshare";
+        "read only" = false;
+      };
+    };
+  };
 }
