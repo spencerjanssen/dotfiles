@@ -31,6 +31,9 @@
                 taffybar = pkgs.haskell.lib.overrideCabal super.taffybar (_: {
                     broken = false;
                 });
+                gtk-strut = pkgs.haskell.lib.overrideCabal super.gtk-strut (_: {
+                    broken = false;
+                });
                 gtk-sni-tray = pkgs.haskell.lib.overrideCabal super.gtk-sni-tray (_: {
                     broken = false;
                 });
