@@ -39,7 +39,7 @@
         {
           name = "ACS override";
           patch = pkgs.fetchurl {
-            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/5.0/acso.patch";
+            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/5.1/acso.patch";
             sha256 = "14garkj80g7jyi7acvp5zx447328yqwy6ll2qm79j7mm8x2k5r87";
           };
         }
