@@ -199,6 +199,12 @@ cgroup_device_acl = [
         path = "/media/blue/smbshare";
         "read only" = false;
       };
+      homes = {
+        browseable = "no";
+        comment = "Home directories";
+        writable = "yes";
+        "valid users" = "%S";
+      };
     };
   };
 }
