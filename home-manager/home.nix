@@ -161,6 +161,9 @@ in
     hicolor-icon-theme
     gnome3.adwaita-icon-theme
     gnome3.defaultIconTheme
+    win10-nvme-up
+    win10-nvme-sleep
+    win10-nvme-down
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl

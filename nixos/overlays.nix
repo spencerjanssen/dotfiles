@@ -17,6 +17,13 @@
             };
             in (import lorriSource {src = lorriSource;});
     })
+    (import ./vm-scripts.nix {
+        vmname = "win10-nvme";
+        monitorSerial = "PVJVW5CA113L";
+        inputFeatureCode = "0x60";
+        hostInput = "0x0f";
+        vmInput = "0x12";
+    })
     # https://github.com/NixOS/nixpkgs/issues/63500
     # https://github.com/taffybar/taffybar/blob/b3ca25b0f6656f2da97c8701247519f9300a28c3/environment.nix#L17
     (_self: pkgs:

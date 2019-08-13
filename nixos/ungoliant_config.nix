@@ -63,6 +63,7 @@
   boot.kernelModules = [
     "vfio_pci"
     "nct6775" # for motherboard fan control
+    "i2c-dev" # for ddcutil
   ];
 
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
