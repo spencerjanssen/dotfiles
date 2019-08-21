@@ -2,9 +2,9 @@
 let btrfs-backup-sync = (import (pkgs.fetchFromGitHub {
             owner = "spencerjanssen";
             repo = "btrfs-backup-sync";
-            rev = "b25b0d60a4774dc1543d82676307857819dfecb1";
-            sha256 = "18invszz12wmcj3qadhppi1l1l3zgjzb3b3j2fc77i687bgzzcvj";
-        }) {nixpkgs = pkgs;}).btrfs-backup-sync;
+            rev = "4c151c8bf90b92fc52a519f576dbcd20799f2aa2";
+            sha256 = "0c7hm020qhqgwa4l754b682g05bjmhdwf9364rz4qch1cdbc9dvc";
+        }) {inherit pkgs;}).btrfs-backup-sync;
 in
 {
     systemd.services.btrfs-backup-sync = {
