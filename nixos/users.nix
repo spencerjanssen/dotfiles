@@ -3,6 +3,8 @@
 {
   programs.zsh.enable = true;
 
+  users.mutableUsers = false;
+
   users.defaultUserShell = "/run/current-system/sw/bin/zsh";
 
   users.users.sjanssen = {
@@ -17,6 +19,7 @@
     "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEA7snAYXjjRr+qtOL+qOikwQXszkgeUh4wKiM+SxTXCq1RSj/R4OibkRLiYZqmmmI/c6Tzjj3lXHpp/99P0ezXbhERAwxlwdwhsF5yARef09TpAQ0Q7unhxpTkGrKKHQUQe4clHBYT2kWjfckRS9kBGMKK5UtPS4bicfjgF+IvNEs= celeborn-windows7-rsa-key-20120512"
     "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAuCBbl/YeKhHUVJTfDDYoTGAuO9ZvPX5Mma8psCg8YzY3lR8ZBVVLdJYPDzT0/Z3Bo4mynrZ9UVRllFVIGlxBE9ofogkAiF0bem/3MTKgdH+eoh/xt/1UQ5NwZ74mqJw+H4ZWPlj51mDqbYB0FzbkErcFLtmIwTxVLaQUEfrrzlX11sj82E90LfezaXJxNjcsAJSzNe2zR9bBGr47K3dmwv7swQtJxZFRTTHF1lQgf36up7n6s9Qx+eq0fyNGNqXgXa6+KUrl0rlovjxrqu1SY/5BqUkmHfiT3Z0tyJk2cP7MMYJcnXjYnYG3iSZk0RR41Hf8XjW9rPZPZdSCxUxzaw== windows surface rsa-key-20160415"
     ];
+    hashedPassword = "$6$6hapFbL0$lRTt32JToge8LSdY.58HRW97txwIMDcujCtPjmCEHD7zURrHd5uazRqJWzV4xuAV6vWohD46nHTyjSIxJDfLE0";
   };
   users.extraGroups.sjanssen = {
     gid = 1000;
