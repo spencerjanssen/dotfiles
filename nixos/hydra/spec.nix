@@ -1,6 +1,6 @@
-{ nixpkgs, declInput }: let pkgs = import nixpkgs {};
-in {
-    jobsets = builtins.toJSON {
+{ nixpkgs, declInput }:
+let pkgs = import nixpkgs {};
+    js = {
         ungoliant = {
             enabled = 1;
             hidden = false;
@@ -26,5 +26,10 @@ in {
             };
         };
     };
-
+    json = writeTextFile {
+        name = "spec.json";
+        text = builtins.toJSON js;
+    };
+in {
+    jobsets = json;
 }
