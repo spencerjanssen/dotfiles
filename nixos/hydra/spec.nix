@@ -38,6 +38,11 @@ let pkgs = import nixpkgs {};
                     value = "git://github.com/Infinisil/all-hies.git";
                     emailresponsible = false;
                 };
+                home-manager = {
+                    type = "git";
+                    value = "git://github.com/rycee/home-manager.git";
+                    emailresponsible = false;
+                };
             };
         };
     };
