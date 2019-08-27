@@ -6,6 +6,7 @@
     ../common/users.nix
     ../common/packages.nix
     ../cachix
+    <home-manager/nixos>
   ];
 
   # Tell the host system that it can, and should, build for aarch64.
@@ -48,6 +49,13 @@
         enable = true;
         version = 4;
       };
+    };
+  };
+
+  home-manager = {
+    useUserPackages = true;
+    users = {
+      sjanssen = import ../home-manager/lightweight.nix { inherit pkgs; };
     };
   };
 }

@@ -10,6 +10,11 @@ let pkgs = import nixpkgs {};
         emailoverride = "spencerjanssen@gmail.com";
         keepnr = 3;
     };
+    home-manager = {
+        type = "git";
+        value = "git://github.com/rycee/home-manager.git";
+        emailresponsible = false;
+    };
     commonInputs = {
         dotfiles = {
             type = "git";
@@ -33,14 +38,10 @@ let pkgs = import nixpkgs {};
             nixexprpath = "nixos/home-manager/default.nix";
             description = "home-manager configuration";
             inputs = commonInputs // {
+                inherit home-manager;
                 all-hies = {
                     type = "git";
                     value = "git://github.com/Infinisil/all-hies.git";
-                    emailresponsible = false;
-                };
-                home-manager = {
-                    type = "git";
-                    value = "git://github.com/rycee/home-manager.git";
                     emailresponsible = false;
                 };
             };
@@ -49,6 +50,7 @@ let pkgs = import nixpkgs {};
             nixexprpath = "nixos/imladris/default.nix";
             description = "Imladris system configuration";
             inputs = commonInputs // {
+                inherit home-manager;
                 nixpkgs = {
                     type = "git";
                     value = "git://github.com/spencerjanssen/nixpkgs tkerber-rpi4-66834";
