@@ -4,7 +4,7 @@ let pkgs = import nixpkgs {};
         enabled = 1;
         hidden = false;
         nixexprinput = "dotfiles";
-        checkinterval = 300;
+        checkinterval = 600;
         schedulingshares = 100;
         enableemail = false;
         emailoverride = "spencerjanssen@gmail.com";
@@ -13,7 +13,7 @@ let pkgs = import nixpkgs {};
     commonInputs = {
         dotfiles = {
             type = "git";
-            value = "git://github.com/spencerjanssen/dotfiles.git decltest";
+            value = "git://github.com/spencerjanssen/dotfiles.git";
             emailresponsible = false;
         };
         nixpkgs = {
