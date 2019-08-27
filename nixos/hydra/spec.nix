@@ -9,28 +9,36 @@ let pkgs = import nixpkgs {};
         enableemail = false;
         emailoverride = "spencerjanssen@gmail.com";
         keepnr = 3;
-        inputs = {
-            dotfiles = {
-                type = "git";
-                value = "git://github.com/spencerjanssen/dotfiles.git decltest";
-                emailresponsible = false;
-            };
-            nixpkgs = {
-                type = "git";
-                value = "git://github.com/NixOS/nixpkgs-channels nixos-unstable";
-                emailresponsible = false;
-            };
-        };
     };
+    commonInputs = {
+        dotfiles = {
+            type = "git";
+            value = "git://github.com/spencerjanssen/dotfiles.git decltest";
+            emailresponsible = false;
+        };
+        nixpkgs = {
+            type = "git";
+            value = "git://github.com/NixOS/nixpkgs-channels nixos-unstable";
+            emailresponsible = false;
+        };
+    }
 
     jobs = {
         ungoliant = common // {
             nixexprpath = "nixos/build-system.nix";
             description = "Ungoliant system configuration";
+            inputs = commonInputs;
         };
         home = common // {
             nixexprpath = "nixos/build-home.nix";
             description = "home-manager configuration";
+            inputs = commonInputs // {
+                all-hies = {
+                    type = "git";
+                    value = "git://github.com/Infinisil/all-hies.git";
+                    emailresponsible = false;
+                };
+            };
         };
     };
     json = pkgs.writeTextFile {
