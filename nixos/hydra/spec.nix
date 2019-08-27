@@ -6,7 +6,7 @@ in {
         EOF
         cat > $out <<EOF
         {
-            "master": {
+            "ungoliant": {
                 "enabled": 1,
                 "hidden": false,
                 "description": "js",
