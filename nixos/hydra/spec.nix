@@ -26,7 +26,7 @@ let pkgs = import nixpkgs {};
             };
         };
     };
-    json = writeTextFile {
+    json = pkgs.writeTextFile {
         name = "spec.json";
         text = builtins.toJSON js;
     };
