@@ -3,6 +3,7 @@
     "hidden": false,
     "description": "Jobsets",
     "nixexprinput": "src",
+    "nixexprpath": "default.nix",
     "checkinterval": 300,
     "schedulingshares": 100,
     "enableemail": false,
