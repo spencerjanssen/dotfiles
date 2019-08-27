@@ -6,6 +6,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common/packages.nix
+      ../common/desktop.nix
       ../common/users.nix
       ./hydra.nix
       ./btrfs-backup-sync.nix
