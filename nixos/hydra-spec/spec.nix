@@ -45,6 +45,17 @@ let pkgs = import nixpkgs {};
                 };
             };
         };
+        imladris = common // {
+            nixexprpath = "nixos/imladris/default.nix";
+            description = "Imladris system configuration";
+            inputs = commonInputs // {
+                nixpkgs = {
+                    type = "git";
+                    value = "git://github.com/spencerjanssen/nixpkgs tkerber-rpi4-66834";
+                    emailresponsible = false;
+                };
+            };
+        };
     };
     json = pkgs.writeTextFile {
         name = "spec.json";
