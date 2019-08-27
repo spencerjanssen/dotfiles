@@ -21,7 +21,7 @@ let pkgs = import nixpkgs {};
             value = "git://github.com/NixOS/nixpkgs-channels nixos-unstable";
             emailresponsible = false;
         };
-    }
+    };
 
     jobs = {
         ungoliant = common // {
