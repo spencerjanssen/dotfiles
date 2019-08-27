@@ -16,15 +16,15 @@ in {
                 dotfiles = {
                     type = "git";
                     value = "git://github.com/spencerjanssen/dotfiles.git decltest";
-                    emailresponsible = false
+                    emailresponsible = false;
                 };
                 nixpkgs = {
                     type = "git";
                     value = "git://github.com/NixOS/nixpkgs-channels nixos-unstable";
-                    emailresponsible = false
+                    emailresponsible = false;
                 };
             };
-        }
+        };
     };
 
 }
