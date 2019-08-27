@@ -3,7 +3,7 @@ let ungoliantConfig =
         import <nixpkgs/nixos/lib/eval-config.nix> {
             system = builtins.currentSystem;
             modules = [
-                ./ungoliant_config.nix
+                ./config.nix
             ];
         };
     pkgs = import <nixpkgs> {};

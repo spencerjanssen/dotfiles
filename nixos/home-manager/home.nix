@@ -15,7 +15,7 @@ in
 
   nixpkgs = {
     config = import ./config.nix;
-    overlays = import ../nixos/overlays.nix;
+    overlays = import ../common/overlays.nix;
   };
 
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;

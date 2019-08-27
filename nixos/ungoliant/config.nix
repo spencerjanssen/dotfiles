@@ -4,12 +4,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./ungoliant-hardware-configuration.nix
-      ./packages.nix
-      ./users.nix
+      ./hardware-configuration.nix
+      ../common/packages.nix
+      ../common/users.nix
       ./hydra.nix
       ./btrfs-backup-sync.nix
-      ./cachix.nix
+      ../cachix
       ./arm-crosscompile.nix
     ];
 
@@ -48,13 +48,13 @@
         # https://www.reddit.com/r/Amd/comments/bh3qqz/agesa_0072_pci_quirk/
         {
           name = "VFIO PCI reset workaround without PCI IDs";
-          patch = ./vfio-pci-reset-nonspecific.patch;
+          patch = ../patches/vfio-pci-reset-nonspecific.patch;
         }
         ];
     };
   };
 
-  nixpkgs.overlays = import ./overlays.nix;
+  nixpkgs.overlays = import ../common/overlays.nix;
 
   boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
   boot.extraModprobeConfig = ''

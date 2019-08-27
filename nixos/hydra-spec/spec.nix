@@ -25,12 +25,12 @@ let pkgs = import nixpkgs {};
 
     jobs = {
         ungoliant = common // {
-            nixexprpath = "nixos/build-system.nix";
+            nixexprpath = "nixos/ungoliant/default.nix";
             description = "Ungoliant system configuration";
             inputs = commonInputs;
         };
         home = common // {
-            nixexprpath = "nixos/build-home.nix";
+            nixexprpath = "nixos/home-manager/default.nix";
             description = "home-manager configuration";
             inputs = commonInputs // {
                 all-hies = {

@@ -5,7 +5,7 @@
         };
     })
     (_self: super: {
-        looking-glass-client = super.callPackage ./looking-glass-client.nix { };
+        looking-glass-client = super.callPackage ../looking-glass-client { };
     })
     (_self: super: {
         lorri =
