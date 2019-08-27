@@ -2,15 +2,15 @@
     "enabled": 1,
     "hidden": false,
     "description": "Jobsets",
-    "nixexprinput": "src",
-    "nixexprpath": "default.nix",
+    "nixexprinput": "dotfiles",
+    "nixexprpath": "nixos/hydra/spec.nix",
     "checkinterval": 300,
     "schedulingshares": 100,
     "enableemail": false,
     "emailoverride": "spencerjanssen@gmail.com",
     "keepnr": 3,
     "inputs": {
-        "src": {
+        "dotfiles": {
             "type": "git",
             "value": "git://github.com/spencerjanssen/dotfiles.git decltest",
             "emailresponsible": false
