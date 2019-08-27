@@ -10,6 +10,7 @@
       ./hydra.nix
       ./btrfs-backup-sync.nix
       ./cachix.nix
+      ./arm-crosscompile.nix
     ];
 
   system.stateVersion = "18.03";
