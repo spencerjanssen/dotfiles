@@ -1,0 +1,23 @@
+{
+    "enabled": 1,
+    "hidden": false,
+    "description": "Jobsets",
+    "nixexprinput": "src",
+    "checkinterval": 300,
+    "schedulingshares": 100,
+    "enableemail": false,
+    "emailoverride": "spencerjanssen@gmail.com",
+    "keepnr": 3,
+    "inputs": {
+        "src": {
+            "type": "git",
+            "value": "git://github.com/spencerjanssen/dotfiles.git decltest",
+            "emailresponsible": false
+        },
+        "nixpkgs": {
+            "type": "git",
+            "value": "git://github.com/NixOS/nixpkgs-channels nixos-unstable",
+            "emailresponsible": false
+        }
+    }
+}
