@@ -19,11 +19,11 @@
   fileSystems = {
     "/" = {
       fsType = "ext4";
-      device = "/dev/disk/by-uuid/UNKNOWN";
+      device = "/dev/disk/by-uuid/f79bcc26-b8d1-4c2b-817d-a8c9271f036f";
     };
     "/boot" = {
       fsType = "vfat";
-      device = "/dev/disk/by-uuid/UNKNOWN";
+      device = "/dev/disk/by-uuid/B0CA-6E9C";
     };
   };
 
@@ -40,7 +40,7 @@
   hardware.enableRedistributableFirmware = true;
 
   # For the ugly hack to run the activation script in the chroot'd host below. Remove after sd card is set up.
-  environment.etc."binfmt.d/nixos.conf".text = ":aarch64:M::\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\xb7\\x00:\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xfe\\xff\\xff\\xff:/run/binfmt/aarch64:";
+  # environment.etc."binfmt.d/nixos.conf".text = ":aarch64:M::\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\xb7\\x00:\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xfe\\xff\\xff\\xff:/run/binfmt/aarch64:";
   boot= {
     kernelPackages = pkgs.linuxPackages_rpi4;
     loader = {
