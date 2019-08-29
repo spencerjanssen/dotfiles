@@ -50,4 +50,8 @@
       sjanssen = import ../home-manager/lightweight.nix { inherit pkgs; };
     };
   };
+
+  services.home-assistant = {
+    enable = true;
+  };
 }
