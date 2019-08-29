@@ -29,14 +29,6 @@
 
   networking.hostName = "imladris";
 
-  services.xserver = {
-    enable = true;
-    displayManager.slim.enable = true;
-    desktopManager.xterm.enable = false;
-    windowManager.i3.enable = true;
-    videoDrivers = [ "fbdev" ];
-  };
-
   hardware.enableRedistributableFirmware = true;
 
   # For the ugly hack to run the activation script in the chroot'd host below. Remove after sd card is set up.
