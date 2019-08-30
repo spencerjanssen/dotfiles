@@ -17,12 +17,11 @@
 
   nix.binaryCaches = [
     "https://cache.nixos.org/"
-    "https://nixcache.reflex-frp.org/"
     "http://ungoliant.lan:5000/"
   ];
   nix.trustedBinaryCaches = [
     "http://hydra.nixos.org/"
-    "https://nixcache.reflex-frp.org"
+    "https://nixcache.reflex-frp.org/"
     ];
 
   boot.cleanTmpDir = true;
