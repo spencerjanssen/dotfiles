@@ -5,6 +5,7 @@
   imports = [
     ../common/users.nix
     ../common/packages.nix
+    ../common/nix-serve.nix
     ../cachix
     <home-manager/nixos>
   ];

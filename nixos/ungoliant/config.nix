@@ -8,6 +8,7 @@
       ../common/packages.nix
       ../common/desktop.nix
       ../common/users.nix
+      ../common/nix-serve.nix
       ./hydra.nix
       ./btrfs-backup-sync.nix
       ../cachix

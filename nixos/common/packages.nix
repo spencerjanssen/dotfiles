@@ -6,6 +6,7 @@
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
     "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
     "nix-serve.ungoliant-1:nuNHK1FmW3xn0RkeJWHVcgFthS0RvyXC+yDAI22q0Hc="
+    "nix-serve.imladris-1:6aBusOdd/hnxucLm1l2whlpf8gjvqtM604uCCG1CZ54="
   ];
 
   # this prevents nix from garbage collecting build dependencies, especially
@@ -18,6 +19,7 @@
   nix.binaryCaches = [
     "https://cache.nixos.org/"
     "http://ungoliant.lan:5000/"
+    "http://imladris.lan:5000/"
   ];
   nix.trustedBinaryCaches = [
     "http://hydra.nixos.org/"
