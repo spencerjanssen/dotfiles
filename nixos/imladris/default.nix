@@ -3,6 +3,12 @@ let config =
         import <nixpkgs/nixos/lib/eval-config.nix> {
             system = builtins.currentSystem;
             modules = [
+                {
+                    nixpkgs = rec {
+                        crossSystem = pkgs.pkgsCross.aarch64-multiplatform.stdenv.targetPlatform;
+                        localSystem = crossSystem;
+                    };
+                }
                 ./configuration.nix
             ];
         };
