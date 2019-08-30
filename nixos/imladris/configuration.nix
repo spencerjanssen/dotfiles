@@ -10,6 +10,7 @@
     <home-manager/nixos>
   ];
 
+  nix.maxJobs = 3;
   nixpkgs.overlays = import ../common/overlays.nix;
 
   fileSystems = {
@@ -48,4 +49,14 @@
   services.home-assistant = {
     enable = true;
   };
+
+  users.users.remote-builder = {
+    isNormalUser = false;
+    isSystemUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVFrEhOYB5C9WPjaWed55dbQk7g+JCBLjmOsXrOJLfg root@ungoliant"
+    ];
+    shell = pkgs.bashInteractive;
+  };
+  nix.trustedUsers = ["remote-builder"];
 }

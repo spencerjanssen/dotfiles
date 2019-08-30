@@ -21,9 +21,16 @@
     nix.buildMachines = [
         {
             hostName = "localhost";
-            systems = [ "i686-linux" "x86_64-linux" "aarch64-linux" ];
+            systems = [ "i686-linux" "x86_64-linux" ];
             maxJobs = 8;
             supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
+        }
+        {
+            hostName = "imladris";
+            sshKey = "/var/lib/hydra/queue-runner/remote-build";
+            sshUser = "remote-builder";
+            systems = [ "aarch64-linux" ];
+            maxJobs = 2;
         }
     ];
 }
