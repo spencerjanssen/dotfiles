@@ -3,7 +3,6 @@
 status-notifier-watcher &
 sleep 1s
 xmodmap .Xmodmap
-taffybar &
 nm-applet --indicator &
 xsetroot -gray
 

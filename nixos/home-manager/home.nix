@@ -28,7 +28,6 @@ in
 
       extraPackages = haskellPackages: [
         haskellPackages.xmonad-contrib
-        haskellPackages.taffybar
       ];
     };
     pointerCursor = {
@@ -39,8 +38,6 @@ in
     };
   };
 
-  services.taffybar.enable = true;
-  services.status-notifier-watcher.enable = true;
   services.network-manager-applet.enable = true;
 
   services.redshift.enable = true;
@@ -101,7 +98,6 @@ in
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
         self.xmonad
-        self.taffybar
         self.cabal-install
     ]))
   ];
