@@ -10,6 +10,7 @@
     <home-manager/nixos>
   ];
 
+  time.timeZone = "US/Central";
   nix.maxJobs = 3;
   nixpkgs.overlays = import ../common/overlays.nix;
 
@@ -47,7 +48,22 @@
   };
 
   services.home-assistant = {
-    enable = true;
+    enable = false;
+    applyDefaultConfig = true;
+    config = {
+      automation = {};
+      config = {};
+      frontend = {};
+      history = {};
+      logbook = {};
+      map = {};
+      mobile_app = {};
+      person = {};
+      script = {};
+      sun = {};
+      system_health = {};
+      updater = {};
+    };
   };
 
   users.users.remote-builder = {
@@ -59,4 +75,11 @@
     shell = pkgs.bashInteractive;
   };
   nix.trustedUsers = ["remote-builder"];
+
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
+
+  services.avahi.enable = true;
 }
