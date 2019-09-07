@@ -57,7 +57,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = ewmh
 modules-center = xwindow
-modules-right = xbacklight alsa memory cpu eth date
+modules-right = alsa memory cpu eth date
 
 tray-position = ${env:TRAY_POSITION:left}
 tray-padding = 2
@@ -136,46 +136,9 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 ; Separator in between workspaces
 ; label-separator = |
 
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage-sum:2%%
@@ -183,7 +146,6 @@ label = %percentage-sum:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -194,7 +156,6 @@ interface = enp30s0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = D: %downspeed% U: %upspeed%
 
@@ -212,7 +173,6 @@ date = " %a %b %d, %Y"
 
 time = %I:%M %p
 
-format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
