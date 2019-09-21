@@ -35,7 +35,7 @@
     };
 
   fileSystems."/media/blue" =
-    { device = "/dev/disk/by-uuid/0edb6fc6-451e-40ce-848a-e70f91aeb3df";
+    { device = "/dev/disk/by-uuid/48c3704f-cf72-43da-ac61-6feed87267ef";
       fsType = "btrfs";
     };
 
