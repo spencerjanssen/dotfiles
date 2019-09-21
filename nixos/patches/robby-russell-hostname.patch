@@ -1,16 +1,12 @@
 diff --git a/themes/robbyrussell.zsh-theme b/themes/robbyrussell.zsh-theme
-index f9eca6a8..25e0e75d 100644
+index 2fd5f2cd..39dd4ea7 100644
 --- a/themes/robbyrussell.zsh-theme
 +++ b/themes/robbyrussell.zsh-theme
-@@ -1,5 +1,10 @@
- local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
--PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-+local foreign_host=""
+@@ -1,4 +1,7 @@
+ PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 +if [[ -n "$SSH_CLIENT" ]]; then
-+    foreign_host="%{$fg[black]%}%n@%m "
++    PROMPT+=" %{$fg[black]%}%n@%m"
 +fi
-+
-+PROMPT='${ret_status} ${foreign_host}%{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+ PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
  
  ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
- ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
