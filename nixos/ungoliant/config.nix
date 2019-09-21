@@ -86,6 +86,13 @@
     fallbackToPassword = true;
   };
 
+  boot.initrd.luks.devices."pro" = {
+    allowDiscards = true;
+    keyFileSize = 4096;
+    keyFile = "/dev/disk/by-partuuid/c59a413a-01";
+    fallbackToPassword = true;
+  };
+
   fileSystems."/media/spinning".options = ["noauto"];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
