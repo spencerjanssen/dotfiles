@@ -5,9 +5,6 @@
         };
     })
     (_self: super: {
-        looking-glass-client = super.callPackage ../looking-glass-client { };
-    })
-    (_self: super: {
         lorri =
             let lorriSource = super.fetchFromGitHub {
                 owner = "target";
