@@ -193,7 +193,7 @@ cgroup_device_acl = [
   services.xrdp.defaultWindowManager = "gnome-session";
 
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.extraConfig = "
+  hardware.bluetooth.config = "
     [General]
     Enable=Source,Sink,Media,Socket
   ";
