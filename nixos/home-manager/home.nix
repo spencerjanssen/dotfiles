@@ -109,8 +109,10 @@ in
     tray = "always";
   };
 
+  services.lorri.enable = true;
+
   home.packages = with pkgs; [
-    (all-hies.selection {selector = p: {inherit (p) ghc822 ghc865;};})
+    (all-hies.selection {selector = p: {inherit (p) ghc865;};})
     nixops
     nodejs
     vscode
