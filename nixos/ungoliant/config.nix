@@ -46,12 +46,6 @@
             sha256 = "14garkj80g7jyi7acvp5zx447328yqwy6ll2qm79j7mm8x2k5r87";
           };
         }
-        # required due to bugs in AGESA 0.0.7.2
-        # https://www.reddit.com/r/Amd/comments/bh3qqz/agesa_0072_pci_quirk/
-        {
-          name = "VFIO PCI reset workaround without PCI IDs";
-          patch = ../patches/vfio-pci-reset-nonspecific.patch;
-        }
         ];
     };
   };
