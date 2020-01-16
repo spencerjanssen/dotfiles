@@ -19,6 +19,8 @@ in
     };
   };
 
+  programs.broot.enable = true;
+
   xsession = {
     enable = true;
     preferStatusNotifierItems = true;
@@ -151,6 +153,7 @@ in
     win10-nvme-down
     lorri
     entr
+    teams
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
