@@ -101,7 +101,7 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  services.wakeonlan.interfaces = [ { interface = "enp42s0"; method = "magicpacket"; } ];
+  services.wakeonlan.interfaces = [ { interface = "enp10s0"; method = "magicpacket"; } ];
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemuVerbatimConfig = ''
