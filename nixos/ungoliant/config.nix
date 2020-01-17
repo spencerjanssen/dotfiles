@@ -52,7 +52,7 @@
 
   nixpkgs.overlays = import ../common/overlays.nix;
 
-  boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 pcie_acs_override=downstream,multifunction" ];
+  boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 pcie_acs_override=downstream,multifunction" ];
   boot.extraModprobeConfig = ''
     options vfio-pci ids=10de:1401,10de:0fba,10ec:5760
   '';
