@@ -113,7 +113,7 @@ cgroup_device_acl = [
     "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
     "/dev/rtc","/dev/hpet",
     "/dev/input/by-id/usb-Microsoft_Microsoft®_2.4GHz_Transceiver_v9.0-if01-event-mouse",
-    "/dev/input/by-path/pci-0000:03:00.0-usb-0:3:1.0-event-kbd"
+    "/dev/input/by-id/usb-Microsoft_Microsoft®_2.4GHz_Transceiver_v9.0-event-kbd"
 ]
   '';
 
