@@ -160,5 +160,7 @@ in
         self.xmonad
         self.cabal-install
     ]))
+
+    (pkgs.callPackage (../azuredatastudio) {})
   ];
 }
