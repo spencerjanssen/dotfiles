@@ -1,26 +1,7 @@
 { stdenv
 , fetchurl
 , autoPatchelfHook
-, libXrandr
-, libXdamage
-, libXfixes
-, libXi
-, libXScrnSaver
-, libXcursor
-, alsaLib
-, cups
-, at_spi2_core
-, at_spi2_atk
-, glib
-, nss
-, gdk_pixbuf
-, expat
-, libXtst
-, libXcomposite
-, cairo
-, gtk3
 , libsecret
-, xorg
 , krb5
 , lttng-ust
 , curl
@@ -29,6 +10,9 @@
 , openssl
 , fontconfig
 , systemd
+, atomEnv
+, wrapGAppsHook
+, at-spi2-core
 }:
 stdenv.mkDerivation rec {
     name = "azuredatastudio-${version}";
@@ -41,33 +25,16 @@ stdenv.mkDerivation rec {
     nativeBuildInputs = [
         autoPatchelfHook
     ];
-    buildInputs = [
-        libXrandr
-        libXdamage
-        libXfixes
-        libXi
-        libXScrnSaver
-        libXcursor
-        alsaLib
-        cups
-        at_spi2_core
-        at_spi2_atk
-        glib
-        nss
-        gdk_pixbuf
-        expat
-        libXtst
-        libXcomposite
-        cairo
-        gtk3
+    buildInputs = atomEnv.packages ++ [
+        at-spi2-core
         libsecret
-        xorg.libxkbfile
         krb5
         lttng-ust
         curl
         icu
         makeWrapper
         openssl
+        wrapGAppsHook
     ];
 
     installPhase = ''
