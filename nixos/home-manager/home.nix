@@ -136,7 +136,6 @@ in
     dropbox
     firefox
     flashplayer
-    pidgin-with-plugins
     libreoffice
     nodejs
     xlibs.xmodmap

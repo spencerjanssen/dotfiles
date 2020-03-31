@@ -1,9 +1,4 @@
 [
-    (_self: super: {
-        pidgin-with-plugins = super.pidgin-with-plugins.override {
-            plugins = [super.pidginsipe];
-        };
-    })
     (import ./vm-scripts.nix {
         vmname = "win10-nvme";
         monitorSerial = "PVJVW5CA113L";
