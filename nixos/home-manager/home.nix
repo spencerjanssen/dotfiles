@@ -120,7 +120,6 @@ in
     vscode
     discord
     remmina
-    haskellPackages.status-notifier-item
     stack
     haskellPackages.ghcid
     google-chrome
