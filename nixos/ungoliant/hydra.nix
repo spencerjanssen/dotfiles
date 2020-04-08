@@ -7,7 +7,7 @@
         useSubstitutes = true;
         notificationSender = "spencerjanssen@gmail.com";
         extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
-        package = pkgs.hydra-migration.overrideAttrs (_oldAttrs: {
+        package = pkgs.hydra-flakes.overrideAttrs (_oldAttrs: {
             patches = [
                 # see https://github.com/NixOS/nix/issues/1888
                 # all-hies fetches nixpkgs which gives an error about restricted mode
