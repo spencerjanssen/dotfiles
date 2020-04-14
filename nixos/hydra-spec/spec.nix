@@ -51,11 +51,6 @@ let pkgs = import nixpkgs {};
             description = "Imladris system configuration";
             inputs = commonInputs // {
                 inherit home-manager;
-                nixpkgs = {
-                    type = "git";
-                    value = "git://github.com/spencerjanssen/nixpkgs tkerber-rpi4-66834";
-                    emailresponsible = false;
-                };
             };
         };
     };
