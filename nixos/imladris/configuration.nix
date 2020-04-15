@@ -8,6 +8,7 @@
     ../common/nix-serve.nix
     ../cachix
     <home-manager/nixos>
+    ../home-assistant-supervisor/module.nix
   ];
 
   time.timeZone = "US/Central";
@@ -47,23 +48,11 @@
     };
   };
 
-  services.home-assistant = {
-    enable = false;
-    applyDefaultConfig = true;
-    config = {
-      automation = {};
-      config = {};
-      frontend = {};
-      history = {};
-      logbook = {};
-      map = {};
-      mobile_app = {};
-      person = {};
-      script = {};
-      sun = {};
-      system_health = {};
-      updater = {};
-    };
+  services.home-assistant-supervisor = {
+    enable = true;
+    architecture = "aarch64";
+    machine = "raspberrypi4-64";
+    supervisorVersion = "217";
   };
 
   users.users.remote-builder = {
