@@ -35,16 +35,16 @@
   # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
   # https://bugzilla.kernel.org/show_bug.cgi?id=196683
   nixpkgs.config.packageOverrides = pkgs: {
-    linux_5_4 = pkgs.linux_5_4.override {
+    linux_5_6 = pkgs.linux_5_6.override {
       kernelPatches =
-        pkgs.linux_5_4.kernelPatches ++
+        pkgs.linux_5_6.kernelPatches ++
         [
         # https://queuecumber.gitlab.io/linux-acs-override/
         {
           name = "ACS override";
           patch = pkgs.fetchurl {
-            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/5.4/acso.patch";
-            sha256 = "0svpmxj5n3hc8vci9j40akl1n1dqc51fjijic7dhfjrldd6h231c";
+            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/5.6.12/acso.patch";
+            sha256 = "13jdfpvc0k98hr82g1nxkzfgs37xq4gp1mpmflqk43z3nyqvszql";
           };
         }
         ];
@@ -64,7 +64,7 @@
     "i2c-dev" # for ddcutil
   ];
 
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_4;
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_6;
 
   boot.initrd.luks.devices."blue" = {
     allowDiscards = true;
