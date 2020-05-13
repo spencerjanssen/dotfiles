@@ -154,7 +154,8 @@ cgroup_device_acl = [
       extraConfig = ''
         TIMELINE_CREATE="yes"
         TIMELINE_CLEANUP="yes"
-        TIMELINE_LIMIT_DAILY="5"
+        TIMELINE_LIMIT_HOURLY="4"
+        TIMELINE_LIMIT_DAILY="0"
         TIMELINE_LIMIT_MONTHLY="0"
         TIMELINE_LIMIT_YEARLY="0"
       '';
@@ -176,9 +177,9 @@ cgroup_device_acl = [
       subvolume = "/media/blue/backups/ungoliant/@nixos";
       extraConfig = ''
         TIMELINE_CLEANUP="yes"
-        TIMELINE_LIMIT_HOURLY="72"
+        TIMELINE_LIMIT_HOURLY="24"
         TIMELINE_LIMIT_DAILY="7"
-        TIMELINE_LIMIT_WEEKLY="6"
+        TIMELINE_LIMIT_WEEKLY="2"
         TIMELINE_LIMIT_MONTHLY="0"
         TIMELINE_LIMIT_YEARLY="0"
       '';
