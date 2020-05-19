@@ -16,10 +16,10 @@
 }:
 stdenv.mkDerivation rec {
     name = "azuredatastudio-${version}";
-    version = "1.14.1";
+    version = "1.17.1";
     src = fetchurl {
-        url = "https://azuredatastudiobuilds.blob.core.windows.net/releases/1.14.1/azuredatastudio-linux-${version}.tar.gz";
-        sha256 = "1f1idffji0785i2psbqalji3c1v9bwir8fqj5pw2w1w460yakb5j";
+        url = "https://azuredatastudiobuilds.blob.core.windows.net/releases/${version}/azuredatastudio-linux-${version}.tar.gz";
+        sha256 = "0px9n9vyjvyddca4x7d0zindd0dim7350vkjg5dd0506fm8dc38k";
     };
 
     nativeBuildInputs = [
