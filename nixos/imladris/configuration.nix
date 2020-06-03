@@ -12,7 +12,15 @@
   ];
 
   time.timeZone = "US/Central";
+
   nix.maxJobs = 3;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   nixpkgs.overlays = import ../common/overlays.nix;
 
   fileSystems = {
