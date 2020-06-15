@@ -163,6 +163,8 @@ in
     ]))
 
     (pkgs.callPackage (../azuredatastudio) {})
+
+    (pkgs.callPackage ../netextender {})
   ];
 
   fonts.fontconfig.enable = true;
