@@ -29,6 +29,7 @@
   nix.gc.dates = "weekly";
 
   networking.hostName = "ungoliant"; # Define your hostname.
+  networking.hostId = "9fd4ccb9";
 
   time.timeZone = "US/Central";
 
