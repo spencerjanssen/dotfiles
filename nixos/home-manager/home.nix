@@ -154,6 +154,7 @@ in
     lorri
     entr
     teams
+    cascadia-code
 
     (pkgs.haskellPackages.ghcWithPackages (self : [
         self.mtl
@@ -163,4 +164,6 @@ in
 
     (pkgs.callPackage (../azuredatastudio) {})
   ];
+
+  fonts.fontconfig.enable = true;
 }
