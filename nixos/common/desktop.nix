@@ -34,7 +34,6 @@
       hasklig
       fira-code
       fira-mono
-      monoid
     ];
   };
 
