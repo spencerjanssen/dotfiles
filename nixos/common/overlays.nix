@@ -13,11 +13,4 @@
             super.haskell.lib.doJailbreak super.haskell.packages.ghc865.darcs
         );
     })
-    # work around https://github.com/NixOS/nixpkgs/issues/90475
-    # can remove this the next time unstable updates
-    (_self: super: {
-        discord = super.discord.overrideAttrs (drv: {
-            nativeBuildInputs = [super.libuuid] ++ drv.nativeBuildInputs;
-        });
-    })
 ]
