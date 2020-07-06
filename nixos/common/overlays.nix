@@ -6,11 +6,4 @@
         hostInput = "0x0f";
         vmInput = "0x12";
     })
-    # darcs is broken and is a dependency of Hydra
-    # https://github.com/NixOS/nixpkgs/issues/83718
-    (_self: super: {
-       darcs = super.haskell.lib.markUnbroken (
-            super.haskell.lib.doJailbreak super.haskell.packages.ghc865.darcs
-        );
-    })
 ]
