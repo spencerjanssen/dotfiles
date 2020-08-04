@@ -1,7 +1,5 @@
 { pkgs, ... }:
 
-let all-hies = import <all-hies> {};
-in
 {
   imports = [ ./lightweight.nix ];
   # required for hydra
@@ -116,7 +114,6 @@ in
   services.lorri.enable = true;
 
   home.packages = with pkgs; [
-    (all-hies.selection {selector = p: {inherit (p) ghc865;};})
     nixops
     nodejs
     vscode
