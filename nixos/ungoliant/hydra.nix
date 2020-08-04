@@ -35,4 +35,5 @@
             maxJobs = 2;
         }
     ];
+    nix.distributedBuilds = true;
 }
