@@ -62,5 +62,9 @@
     pciutils
     binutils
     tmux
+    rsync
+    strace
+    pv
+    cifs-utils
   ];
 }
