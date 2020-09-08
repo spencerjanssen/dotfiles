@@ -230,4 +230,6 @@ cgroup_device_acl = [
 
   services.hercules-ci-agent.enable = true;
   services.hercules-ci-agent.concurrentTasks = 4;
+  # todo remove when nix 2.4 is available
+  services.hercules-ci-agent.patchNix = true;
 }
