@@ -23,7 +23,7 @@ let pkgs = import nixpkgs {};
         };
         nixpkgs = {
             type = "git";
-            value = "git://github.com/NixOS/nixpkgs-channels nixos-unstable";
+            value = "git://github.com/NixOS/nixpkgs nixos-unstable";
             emailresponsible = false;
         };
     };
