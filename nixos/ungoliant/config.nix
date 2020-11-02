@@ -36,9 +36,9 @@
   # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
   # https://bugzilla.kernel.org/show_bug.cgi?id=196683
   nixpkgs.config.packageOverrides = pkgs: {
-    linux_5_7 = pkgs.linux_5_7.override {
+    linux_5_8 = pkgs.linux_5_8.override {
       kernelPatches =
-        pkgs.linux_5_7.kernelPatches ++
+        pkgs.linux_5_8.kernelPatches ++
         [
         # https://queuecumber.gitlab.io/linux-acs-override/
         {
@@ -65,7 +65,7 @@
     "i2c-dev" # for ddcutil
   ];
 
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_7;
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_8;
 
   boot.initrd.luks.devices."blue" = {
     allowDiscards = true;
