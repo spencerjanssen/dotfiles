@@ -1,16 +1,4 @@
 {
-    "btrfs-backup-sync": {
-        "branch": "master",
-        "description": null,
-        "homepage": null,
-        "owner": "spencerjanssen",
-        "repo": "btrfs-backup-sync",
-        "rev": "bad35b093927dbee14e379d184b39ffe4d9d1b00",
-        "sha256": "1s6jsnp5vzxzgshfqdfp1a6hy7kmalc4l4ipzb1x23rj8xnqg9y6",
-        "type": "tarball",
-        "url": "https://github.com/spencerjanssen/btrfs-backup-sync/archive/bad35b093927dbee14e379d184b39ffe4d9d1b00.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

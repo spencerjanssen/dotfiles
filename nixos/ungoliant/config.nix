@@ -10,7 +10,6 @@
       ../common/users.nix
       ../common/nix-serve.nix
       ./hydra.nix
-      ./btrfs-backup-sync.nix
       ../cachix
       ./arm-crosscompile.nix
     ];
