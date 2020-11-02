@@ -11,18 +11,6 @@
         "url": "https://github.com/spencerjanssen/btrfs-backup-sync/archive/bad35b093927dbee14e379d184b39ffe4d9d1b00.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "hercules-ci-agent": {
-        "branch": "stable",
-        "description": "https://hercules-ci.com build agent",
-        "homepage": "",
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-agent",
-        "rev": "7127bc84d96b8c8ffc85443b3709ecc16a1e9ca9",
-        "sha256": "0mb1k0n3la33y7z5q4w0wxrbg18mqaxf128vsf3r07271cjx9yv3",
-        "type": "tarball",
-        "url": "https://github.com/hercules-ci/hercules-ci-agent/archive/7127bc84d96b8c8ffc85443b3709ecc16a1e9ca9.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

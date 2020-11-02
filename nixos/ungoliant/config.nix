@@ -13,7 +13,6 @@
       ./btrfs-backup-sync.nix
       ../cachix
       ./arm-crosscompile.nix
-      ((import ../nix/sources.nix {}).hercules-ci-agent + "/module.nix")
     ];
 
   system.stateVersion = "18.03";
@@ -227,9 +226,4 @@ cgroup_device_acl = [
       };
     };
   };
-
-  services.hercules-ci-agent.enable = true;
-  services.hercules-ci-agent.concurrentTasks = 4;
-  # todo remove when nix 2.4 is available
-  services.hercules-ci-agent.patchNix = true;
 }
