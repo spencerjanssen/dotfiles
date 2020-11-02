@@ -21,10 +21,14 @@
 
   nix.buildCores = 0;
 
-  nix.extraOptions = "secret-key-files = /root/ungoliant-1.secret";
+  nix.extraOptions = ''
+    secret-key-files = /root/ungoliant-1.secret
+    experimental-features = nix-command flakes
+  '';
 
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
+  nix.package = pkgs.nixUnstable;
 
   networking.hostName = "ungoliant"; # Define your hostname.
   networking.hostId = "9fd4ccb9";
