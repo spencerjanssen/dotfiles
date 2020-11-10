@@ -1,5 +1,5 @@
 # just symlink this file to /etc/nixos/configuration.nix
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -17,7 +17,14 @@
   system.stateVersion = "18.03";
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.timeout = null;
+  boot.loader.timeout = 30;
+
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    initrd = {
+      supportedFilesystems = [ "zfs" "vfat" ];
+    };
+  };
 
   nix.buildCores = 0;
 
@@ -84,11 +91,27 @@
     fallbackToPassword = true;
   };
 
-  boot.initrd.luks.devices."pro" = {
+  boot.initrd.preLVMCommands = ''
+    echo importing tank
+    zpool import tank
+    echo tank imported
+  '';
+  boot.initrd.luks.devices."tank-keys" = {
+    device = "/dev/disk/by-uuid/4762fb6d-bf46-44fd-bd00-e607e7f77606";
     allowDiscards = true;
     keyFileSize = 4096;
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
     fallbackToPassword = true;
+    preLVM = false;
+    postOpenCommands = ''
+      echo creating /media/tank-keys
+      mkdir -p /media/tank-keys || echo failed to mkdir
+      mount /dev/disk/by-id/dm-name-tank-keys /media/tank-keys || ( echo dm-name-tank-keys mount failed ; sleep 5s; mount /dev/disk/by-id/dm-name-tank-keys /media/tank-keys || echo failed again)
+      echo mounted tank-keys
+      echo loading keys
+      zfs load-key -a
+      echo loaded keys
+    '';
   };
 
   boot.kernel.sysctl = {
@@ -132,6 +155,7 @@ cgroup_device_acl = [
     flatpak
     snapper
     cryptsetup
+    zfs
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
@@ -139,13 +163,13 @@ cgroup_device_acl = [
 
   services.btrfs.autoScrub.enable = true;
   services.btrfs.autoScrub.interval = "weekly";
-  services.btrfs.autoScrub.fileSystems = ["/" "/media/blue"];
+  services.btrfs.autoScrub.fileSystems = ["/media/blue"];
 
   services.fwupd.enable = true;
 
   services.snapper.configs = {
     home = {
-      subvolume = "/media/evo/@home";
+      subvolume = "/media/blue/@home";
       extraConfig = ''
         TIMELINE_CREATE="yes"
         TIMELINE_CLEANUP="yes"
@@ -153,36 +177,12 @@ cgroup_device_acl = [
       '';
     };
     nixos = {
-      subvolume = "/media/evo/@nixos";
+      subvolume = "/media/blue/@nixos";
       extraConfig = ''
         TIMELINE_CREATE="yes"
         TIMELINE_CLEANUP="yes"
         TIMELINE_LIMIT_HOURLY="4"
         TIMELINE_LIMIT_DAILY="0"
-        TIMELINE_LIMIT_MONTHLY="0"
-        TIMELINE_LIMIT_YEARLY="0"
-      '';
-    };
-
-    home-blue = {
-      subvolume = "/media/blue/backups/ungoliant/@home";
-      extraConfig = ''
-        TIMELINE_CLEANUP="yes"
-        TIMELINE_LIMIT_HOURLY="72"
-        TIMELINE_LIMIT_DAILY="31"
-        TIMELINE_LIMIT_WEEKLY="6"
-        TIMELINE_LIMIT_MONTHLY="12"
-        TIMELINE_LIMIT_YEARLY="5"
-      '';
-    };
-
-    nixos-blue = {
-      subvolume = "/media/blue/backups/ungoliant/@nixos";
-      extraConfig = ''
-        TIMELINE_CLEANUP="yes"
-        TIMELINE_LIMIT_HOURLY="24"
-        TIMELINE_LIMIT_DAILY="7"
-        TIMELINE_LIMIT_WEEKLY="2"
         TIMELINE_LIMIT_MONTHLY="0"
         TIMELINE_LIMIT_YEARLY="0"
       '';

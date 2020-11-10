@@ -13,25 +13,28 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/73e3dae7-8ca1-44cf-be89-5487ac9e9641";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos" ];
+    { device = "tank/system/root";
+      fsType = "zfs";
     };
+  
+  fileSystems."/var" = {
+    device = "tank/system/var";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "tank/local/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home/sjanssen" = {
+    device = "tank/users/sjanssen";
+    fsType = "zfs";
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/D06F-0323";
       fsType = "vfat";
-    };
-
-  fileSystems."/media/evo" =
-    { device = "/dev/disk/by-uuid/73e3dae7-8ca1-44cf-be89-5487ac9e9641";
-      fsType = "btrfs";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/73e3dae7-8ca1-44cf-be89-5487ac9e9641";
-      fsType = "btrfs";
-      options = [ "subvol=@home" ];
     };
 
   fileSystems."/media/blue" =
@@ -40,7 +43,6 @@
     };
 
   boot.initrd.luks.devices."blue".device = "/dev/disk/by-uuid/bc6e5111-7f57-4b57-9e6d-196b000e40fa";
-  boot.initrd.luks.devices."pro".device = "/dev/disk/by-uuid/51021341-d380-418a-bba6-7209ab33be62";
 
   fileSystems."/media/spinning" =
     { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
