@@ -12,6 +12,7 @@
       ./hydra.nix
       ../cachix
       ./arm-crosscompile.nix
+      ../zrepl/module.nix
     ];
 
   system.stateVersion = "18.03";
@@ -156,10 +157,145 @@ cgroup_device_acl = [
     snapper
     cryptsetup
     zfs
+    zrepl
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
 
   services.flatpak.enable = true;
+
+  services.zrepl =
+  let
+    imladrisConnect = {
+      type = "tls";
+      address = "imladris.lan:9341";
+      ca = "/root/zrepl/imladris.crt";
+      cert = "/root/zrepl/ungoliant.crt";
+      key = "/root/zrepl/ungoliant.key";
+      server_cn = "imladris";
+    };
+    snapshotPrefix = "zrepl_";
+    prefixRegex = "^${snapshotPrefix}.*";
+    keepNotReplicated = {
+      type = "not_replicated";
+    };
+    keepNotZrepl = {
+      type = "regex";
+      negate = true;
+      regex = "^${snapshotPrefix}.*";
+    };
+  in
+  {
+    enable = true;
+    settings = {
+      jobs = [
+        {
+          name = "system-to-imladris";
+          type = "push";
+          connect = imladrisConnect;
+          filesystems = {
+            "tank/system<" = true;
+          };
+          send = {
+            encrypted = true;
+          };
+          snapshotting = {
+            type = "periodic";
+            prefix = snapshotPrefix;
+            interval = "10m";
+          };
+          pruning = {
+            keep_sender = [
+              keepNotReplicated
+              keepNotZrepl
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 23x1h | 7x1d";
+                regex = prefixRegex;
+              }
+            ];
+            keep_receiver = [
+              keepNotZrepl
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 24x1h | 30x1d | 144x30d";
+                regex = prefixRegex;
+              }
+            ];
+          };
+        }
+        {
+          name = "sjanssen-to-imladris";
+          type = "push";
+          connect = imladrisConnect;
+          filesystems = {
+            "tank/users/sjanssen<" = true;
+          };
+          send = {
+            encrypted = true;
+          };
+          snapshotting = {
+            type = "periodic";
+            prefix = snapshotPrefix;
+            interval = "5m";
+          };
+          pruning = {
+            keep_sender = [
+              keepNotReplicated
+              keepNotZrepl
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                regex = prefixRegex;
+              }
+            ];
+            keep_receiver = [
+              keepNotZrepl
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                regex = prefixRegex;
+              }
+            ];
+          };
+        }
+        {
+          name = "from-blue-to-imladris";
+          type = "push";
+          connect = imladrisConnect;
+          filesystems = {
+            "tank/from-blue<" = true;
+          };
+          send = {
+            encrypted = true;
+          };
+          snapshotting = {
+            type = "periodic";
+            prefix = snapshotPrefix;
+            interval = "1h";
+          };
+          pruning = {
+            keep_sender = [
+              keepNotReplicated
+              keepNotZrepl
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                regex = prefixRegex;
+              }
+            ];
+            keep_receiver = [
+              keepNotZrepl
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                regex = prefixRegex;
+              }
+            ];
+          };
+        }
+      ];
+    };
+  };
 
   services.btrfs.autoScrub.enable = true;
   services.btrfs.autoScrub.interval = "weekly";
