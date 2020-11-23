@@ -301,6 +301,12 @@ cgroup_device_acl = [
   services.btrfs.autoScrub.interval = "weekly";
   services.btrfs.autoScrub.fileSystems = ["/media/blue"];
 
+  services.zfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+    pools = ["tank"];
+  };
+
   services.fwupd.enable = true;
 
   services.snapper.configs = {
