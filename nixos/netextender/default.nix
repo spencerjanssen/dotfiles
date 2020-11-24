@@ -1,5 +1,4 @@
-{}:
-let pkgs = import <nixpkgs> {};
-    patchedPkgs = pkgs.callPackage ./patched-nixpkgs.nix {};
-    fhe = pkgs.callPackage patchedPkgs {};
-in pkgs.callPackage ./netextender-chroot.nix {buildFHSUserEnv = fhe;}
+{callPackage}:
+let patchedPkgs = callPackage ./patched-nixpkgs.nix {};
+    fhe = callPackage patchedPkgs {};
+in callPackage ./netextender-chroot.nix {buildFHSUserEnv = fhe;}
