@@ -1,0 +1,4 @@
+# export gnome terminal settings
+gconftool-2 --dump '/apps/gnome-terminal' > gnome-terminal-conf.xml
+# import gnome terminal settings
+gconftool-2 --load gnome-terminal-conf.xml

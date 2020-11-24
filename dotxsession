@@ -1,9 +1,0 @@
-#!/bin/sh
-
-status-notifier-watcher &
-sleep 1s
-xmodmap .Xmodmap
-nm-applet --indicator &
-xsetroot -gray
-
-xmonad

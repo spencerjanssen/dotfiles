@@ -6,8 +6,6 @@
   home.username = "sjanssen";
   home.homeDirectory = "/home/sjanssen";
 
-  xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -25,6 +23,8 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
+
+      config = pkgs.writeText "xmonad.hs" (builtins.readFile ./../../xmonad.hs);
 
       extraPackages = haskellPackages: [
         haskellPackages.xmonad-contrib
