@@ -114,7 +114,6 @@
   services.lorri.enable = true;
 
   home.packages = with pkgs; [
-    nixops
     nodejs
     vscode
     discord
