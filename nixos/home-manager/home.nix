@@ -133,7 +133,6 @@
     scrot
     dropbox
     firefox
-    flashplayer
     libreoffice
     nodejs
     xlibs.xmodmap

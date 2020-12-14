@@ -37,9 +37,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    firefox = {
-      enableAdobeFlash = true;
-    };
   };
 
   services.openssh = {
