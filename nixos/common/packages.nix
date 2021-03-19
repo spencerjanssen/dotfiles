@@ -58,6 +58,7 @@
     htop
     pciutils
     binutils
+    usbutils
     tmux
     rsync
     strace
