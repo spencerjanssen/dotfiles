@@ -9,6 +9,7 @@
       ../common/desktop.nix
       ../common/users.nix
       ../common/nix-serve.nix
+      ../common/moonlander.nix
       ./hydra.nix
       ../cachix
       ./arm-crosscompile.nix
