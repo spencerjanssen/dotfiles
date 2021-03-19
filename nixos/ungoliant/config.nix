@@ -12,7 +12,6 @@
       ./hydra.nix
       ../cachix
       ./arm-crosscompile.nix
-      ../zrepl/module.nix
     ];
 
   system.stateVersion = "18.03";

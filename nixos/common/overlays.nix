@@ -6,7 +6,4 @@
         hostInput = "0x0f";
         vmInput = "0x12";
     })
-    (self: super: {
-        zrepl = super.callPackage ../zrepl {};
-    })
 ]
