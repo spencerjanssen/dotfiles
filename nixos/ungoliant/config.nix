@@ -131,6 +131,13 @@
 
   services.wakeonlan.interfaces = [ { interface = "enp10s0"; method = "magicpacket"; } ];
 
+  virtualisation.docker = {
+    autoPrune.enable = true;
+    enable = true;
+    storageDriver = "zfs";
+  };
+  users.users.sjanssen.extraGroups = ["docker"];
+
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemuVerbatimConfig = ''
 namespaces = []
