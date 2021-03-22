@@ -12,7 +12,6 @@
       ../common/moonlander.nix
       ./hydra.nix
       ../cachix
-      ./arm-crosscompile.nix
     ];
 
   system.stateVersion = "18.03";
