@@ -84,6 +84,7 @@ in
       createHome = true;
       group = "home-assistant-supervisor";
       extraGroups = ["dialout" "docker"];
+      isSystemUser = true;
     };
 
     users.groups.home-assistant-supervisor = {};
