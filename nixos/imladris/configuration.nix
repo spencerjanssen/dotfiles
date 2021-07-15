@@ -51,6 +51,7 @@
 
   home-manager = {
     useUserPackages = true;
+    useGlobalPkgs = true;
     users = {
       sjanssen = import ../home-manager/lightweight.nix { inherit pkgs; };
     };

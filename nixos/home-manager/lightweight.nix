@@ -8,11 +8,6 @@ let matchBlocks =
     # but using pinned nixpkgs lets us take advantage of cachix
 in
 {
-  nixpkgs = {
-    config = import ./config.nix;
-    overlays = import ../common/overlays.nix;
-  };
-
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
 
   programs.git = {
