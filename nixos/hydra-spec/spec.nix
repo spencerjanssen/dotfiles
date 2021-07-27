@@ -16,6 +16,7 @@ let pkgs = import nixpkgs {};
         emailresponsible = false;
     };
     commonInputs = {
+        inherit home-manager;
         dotfiles = {
             type = "git";
             value = "git://github.com/spencerjanssen/dotfiles.git";
@@ -37,16 +38,12 @@ let pkgs = import nixpkgs {};
         home = common // {
             nixexprpath = "nixos/home-manager/default.nix";
             description = "home-manager configuration";
-            inputs = commonInputs // {
-                inherit home-manager;
-            };
+            inputs = commonInputs;
         };
         imladris = common // {
             nixexprpath = "nixos/imladris/default.nix";
             description = "Imladris system configuration";
-            inputs = commonInputs // {
-                inherit home-manager;
-            };
+            inputs = commonInputs;
         };
     };
     json = pkgs.writeTextFile {

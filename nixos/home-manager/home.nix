@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./lightweight.nix ./nixpkgs-options.nix];
+  imports = [ ./lightweight.nix ];
   # required for hydra
   home.username = "sjanssen";
   home.homeDirectory = "/home/sjanssen";

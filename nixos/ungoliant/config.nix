@@ -12,6 +12,7 @@
       ../common/moonlander.nix
       ./hydra.nix
       ../cachix
+      <home-manager/nixos>
     ];
 
   system.stateVersion = "18.03";
@@ -370,6 +371,18 @@ cgroup_device_acl = [
         comment = "Home directories";
         writable = "yes";
         "valid users" = "%S";
+      };
+    };
+  };
+
+  home-manager = {
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    users = {
+      sjanssen = {
+        imports = [
+          ../home-manager/home.nix
+        ];
       };
     };
   };
