@@ -39,11 +39,6 @@ let pkgs = import nixpkgs {};
             description = "home-manager configuration";
             inputs = commonInputs // {
                 inherit home-manager;
-                all-hies = {
-                    type = "git";
-                    value = "git://github.com/Infinisil/all-hies.git";
-                    emailresponsible = false;
-                };
             };
         };
         imladris = common // {
