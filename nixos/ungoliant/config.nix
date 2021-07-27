@@ -341,11 +341,7 @@ cgroup_device_acl = [
   services.xrdp.defaultWindowManager = "gnome-session";
 
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.config = {
-    General = {
-      Enable = "Source,Sink,Headset,Media,Socket";
-    };
-  };
+
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.pulseaudio.extraModules = [pkgs.pulseaudio-modules-bt];
 
