@@ -351,10 +351,7 @@ cgroup_device_acl = [
   
   programs.wireshark.enable = true;
 
-  networking.extraHosts = 
-    if builtins.pathExists ./extra-hosts.txt
-      then builtins.readFile ./extra-hosts.txt
-      else "";
+  services.resolved.enable = true;
   
   services.samba = {
     enable = true;
