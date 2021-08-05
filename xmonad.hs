@@ -18,6 +18,7 @@ import XMonad.Layout.TwoPane
 import Data.List (isPrefixOf)
 
 import qualified Data.Map as M
+import Graphics.X11.ExtraTypes.XF86 (xF86XK_AudioLowerVolume, xF86XK_AudioRaiseVolume, xF86XK_AudioMute)
 
 main = xmonad . docks . ewmh $ defaultConfig
     { terminal = "gnome-terminal"
@@ -50,6 +51,9 @@ main = xmonad . docks . ewmh $ defaultConfig
         ,((modm .|. shiftMask, xK_z     ), rescreen)
         ,((modm,               xK_b     ), sendMessage ToggleStruts)
         ,((modm .|. shiftMask, xK_l     ), spawn "systemctl suspend")
+        ,((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume PulseEffects_apps -5%")
+        ,((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume PulseEffects_apps +5%")
+        ,((0, xF86XK_AudioMute), spawn "pactl set-sink-mute PulseEffects_apps toggle")
         ]
 
     myFont = "xft:Bitstream Vera Sans Mono:pixelsize=10"
