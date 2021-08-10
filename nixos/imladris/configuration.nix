@@ -7,7 +7,6 @@
     ../common/packages.nix
     ../common/nix-serve.nix
     ../cachix
-    <home-manager/nixos>
     ../home-assistant-supervisor/module.nix
   ];
 

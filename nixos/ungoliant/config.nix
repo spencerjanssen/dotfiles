@@ -12,7 +12,6 @@
       ../common/moonlander.nix
       ./hydra.nix
       ../cachix
-      <home-manager/nixos>
     ];
 
   system.stateVersion = "18.03";
