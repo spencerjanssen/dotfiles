@@ -9,11 +9,11 @@
       ../common/desktop.nix
       ../common/users.nix
       ../common/nix-serve.nix
-      ../common/moonlander.nix
       ./hydra.nix
       ../cachix
       ../../hardware/acs.nix
       ../../hardware/magic-sysrq.nix
+      ../../hardware/moonlander.nix
     ];
 
   system.stateVersion = "18.03";
