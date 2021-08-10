@@ -30,8 +30,15 @@
       };
     };
     hydraJobs = {
-      ungoliant = self.nixosConfigurations.ungoliant.config.system.build.toplevel;
-      ungoliantx.linux-x86_64 = self.nixosConfigurations.ungoliant.config.system.build.toplevel;
+      imladris = self.lib.hydraJobsFromSystem self.nixosConfigurations.imladris;
+      ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
+    };
+    lib = {
+      allSystemPackages = system: builtins.listToAttrs (map (p: {name = (builtins.parseDrvName p.name).name; value = p;}) system.config.environment.systemPackages);
+      hydraJobsFromSystem = system: {
+        toplevel = system.config.system.build.toplevel;
+        kernel = system.config.system.build.kernel;
+      } // self.lib.allSystemPackages system;
     };
   };
 }
