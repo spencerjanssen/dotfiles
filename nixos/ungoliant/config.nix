@@ -12,6 +12,7 @@
       ../common/moonlander.nix
       ./hydra.nix
       ../cachix
+      ../../hardware/acs.nix
     ];
 
   system.stateVersion = "18.03";
@@ -42,25 +43,6 @@
 
   time.timeZone = "US/Central";
 
-  # https://bugs.launchpad.net/linux/+bug/1690085/comments/69
-  # https://bugzilla.kernel.org/show_bug.cgi?id=196683
-  nixpkgs.config.packageOverrides = pkgs: {
-    linux_5_10 = pkgs.linux_5_10.override {
-      kernelPatches =
-        pkgs.linux_5_10.kernelPatches ++
-        [
-        # https://queuecumber.gitlab.io/linux-acs-override/
-        {
-          name = "ACS override";
-          patch = pkgs.fetchurl {
-            url = "https://gitlab.com/Queuecumber/linux-acs-override/raw/master/workspaces/5.6.12/acso.patch";
-            sha256 = "13jdfpvc0k98hr82g1nxkzfgs37xq4gp1mpmflqk43z3nyqvszql";
-          };
-        }
-        ];
-    };
-  };
-
   nixpkgs.overlays = import ../common/overlays.nix;
 
   boot.kernelParams = [ "amd_iommu=on iommu=pt amdgpu.dc=1 kvm.ignore_msrs=1 kvm.report_ignored_msrs=0 pcie_acs_override=downstream,multifunction" ];
@@ -73,8 +55,6 @@
     "nct6775" # for motherboard fan control
     "i2c-dev" # for ddcutil
   ];
-
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_10;
 
   boot.initrd.luks.devices."blue" = {
     allowDiscards = true;
