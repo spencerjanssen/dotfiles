@@ -7,15 +7,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ...}: {
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ...}: {
     legacyPackages.linux-x86_64.hello = nixpkgs.hello;
     nixosConfigurations = {
       ungoliant = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           home-manager.nixosModules.home-manager
+          agenix.nixosModules.age
+          ./me/secret-ssh-config.nix
           ./nixos/ungoliant/config.nix
         ];
         specialArgs = { inherit inputs; };

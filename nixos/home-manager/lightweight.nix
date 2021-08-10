@@ -1,12 +1,5 @@
 { pkgs, ... }:
 
-let matchBlocks =
-      if builtins.pathExists ./ssh-matchblocks.nix
-        then import ./ssh-matchblocks.nix
-        else {};
-    # can 'inherit pkgs' here to build against channel's nixpkgs
-    # but using pinned nixpkgs lets us take advantage of cachix
-in
 {
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
 
@@ -26,7 +19,6 @@ in
 
   programs.ssh = {
     enable = true;
-    inherit matchBlocks;
   };
 
   programs.zsh = {
