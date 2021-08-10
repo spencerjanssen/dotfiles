@@ -11,8 +11,8 @@
       ../common/nix-serve.nix
       ./hydra.nix
       ../cachix
+      ../../system/magic-sysrq.nix
       ../../hardware/acs.nix
-      ../../hardware/magic-sysrq.nix
       ../../hardware/moonlander.nix
     ];
 
