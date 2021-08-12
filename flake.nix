@@ -14,13 +14,36 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, ...}: {
-    legacyPackages.linux-x86_64.hello = nixpkgs.hello;
+    nixosModules = {
+      channelAndRegistry = {...}:
+      {
+        nix = {
+          nixPath = ["nixpkgs=${nixpkgs}"];
+          registry = {
+            built-nixpkgs = {
+              flake = nixpkgs;
+            };
+            built-dotfiles = {
+              flake = self;
+            };
+            dotfiles = {
+              to = {
+                owner = "spencerjanssen";
+                repo = "dotfiles";
+                type = "github";
+              };
+            };
+          };
+        };
+      };
+    };
     nixosConfigurations = {
       ungoliant = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           home-manager.nixosModules.home-manager
           agenix.nixosModules.age
+          self.nixosModules.channelAndRegistry
           ./me/secret-ssh-config.nix
           ./nixos/ungoliant/config.nix
         ];
@@ -30,6 +53,7 @@
         system = "aarch64-linux";
         modules = [
           home-manager.nixosModules.home-manager
+          self.nixosModules.channelAndRegistry
           ./nixos/imladris/configuration.nix
         ];
         specialArgs = { inherit inputs; };
