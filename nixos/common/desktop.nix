@@ -12,16 +12,11 @@
 
   services.xserver.enable = true;
   services.xserver.layout = "us";
-  services.xserver.windowManager = {
-    default = "xmonad";
-    xmonad.enable = true;
-    xmonad.enableContribAndExtras = true;
-  };
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.windowManager.i3.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = false;
+  services.xserver.displayManager.defaultSession = "gnome";
 
   fonts = {
     enableFontDir = true;
