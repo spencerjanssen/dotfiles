@@ -222,7 +222,7 @@ cgroup_device_acl = [
               keepNotZrepl
               {
                 type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                grid = "1x1h(keep=all) | 24x1h | 10x1d | 5x1w | 3x30d";
                 regex = prefixRegex;
               }
             ];
@@ -257,7 +257,7 @@ cgroup_device_acl = [
               keepNotZrepl
               {
                 type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                grid = "1x1h(keep=all) | 24x1h | 10x1d | 5x1w | 3x30d";
                 regex = prefixRegex;
               }
             ];
