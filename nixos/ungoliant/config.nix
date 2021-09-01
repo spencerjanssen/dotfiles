@@ -285,6 +285,10 @@ cgroup_device_acl = [
     pools = ["tank"];
   };
 
+  services.zfs.zed.settings = {
+    ZED_SYSLOG_SUBCLASS_EXCLUDE="statechange|config_*|history_event";
+  };
+
   services.fwupd.enable = true;
 
   services.snapper.configs = {
