@@ -70,7 +70,9 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVFrEhOYB5C9WPjaWed55dbQk7g+JCBLjmOsXrOJLfg root@ungoliant"
     ];
     shell = pkgs.bashInteractive;
+    group = "remote-builder";
   };
+  users.groups.remote-builder = {};
   nix.trustedUsers = ["remote-builder"];
 
   virtualisation.docker = {
