@@ -75,6 +75,9 @@
               ./nixos/home-manager/general-shell.nix
               ./nixos/home-manager/zsh.nix
             ];
+            home.file.".ssh/config".text = ''
+              Include /home/sjanssen/.ssh/extra-config
+            '';
           };
           system = "x86_64-linux";
           homeDirectory = "/home/sjanssen";
