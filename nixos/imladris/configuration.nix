@@ -52,7 +52,14 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users = {
-      sjanssen = import ../home-manager/lightweight.nix { inherit pkgs; };
+      sjanssen = {
+        imports = [
+          ../home-manager/allow-unfree.nix
+          ../home-manager/general-shell.nix
+          ../home-manager/git-username.nix
+          ../home-manager/zsh.nix
+        ];
+      };
     };
   };
 

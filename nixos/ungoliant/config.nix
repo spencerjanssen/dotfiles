@@ -353,7 +353,12 @@ cgroup_device_acl = [
     users = {
       sjanssen = {
         imports = [
-          ../home-manager/home.nix
+          ../home-manager/ungoliant.nix
+          ../home-manager/allow-unfree.nix
+          ../home-manager/general-shell.nix
+          ../home-manager/git-username.nix
+          ../home-manager/xsession.nix
+          ../home-manager/zsh.nix
         ];
       };
     };
