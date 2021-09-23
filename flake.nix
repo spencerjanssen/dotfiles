@@ -70,7 +70,12 @@
     packages = {
       x86_64-linux = {
         work-hm = (home-manager.lib.homeManagerConfiguration {
-          configuration = ./nixos/home-manager/general-shell.nix;
+          configuration = {
+            imports = [
+              ./nixos/home-manager/general-shell.nix
+              ./nixos/home-manager/zsh.nix
+            ];
+          };
           system = "x86_64-linux";
           homeDirectory = "/home/sjanssen";
           username = "sjanssen";
