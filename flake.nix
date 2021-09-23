@@ -11,6 +11,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, ...}: {
@@ -62,6 +66,17 @@
     hydraJobs = {
       imladris = self.lib.hydraJobsFromSystem self.nixosConfigurations.imladris;
       ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
+    };
+    packages = {
+      x86_64-linux = {
+        work-hm = (home-manager.lib.homeManagerConfiguration {
+          configuration = ./nixos/home-manager/general-shell.nix;
+          system = "x86_64-linux";
+          homeDirectory = "/home/sjanssen";
+          username = "sjanssen";
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        }).activationPackage;
+      };
     };
     lib = {
       allSystemPackages = system: builtins.listToAttrs (map (p: {name = (builtins.parseDrvName p.name).name; value = p;}) system.config.environment.systemPackages);
