@@ -78,6 +78,11 @@
             home.file.".ssh/config".text = ''
               Include /home/sjanssen/.ssh/extra-config
             '';
+            programs.zsh.profileExtra = ''
+              if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+                . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+              fi
+            '';
           };
           system = "x86_64-linux";
           homeDirectory = "/home/sjanssen";
