@@ -22,8 +22,5 @@
       EDITOR = "vim";
       COMPLETION_WAITING_DOTS = "true";
     };
-    initExtra = ''
-      bindkey '^R' history-incremental-search-backward
-    '';
   };
 }
