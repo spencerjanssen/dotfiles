@@ -100,7 +100,7 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  services.wakeonlan.interfaces = [ { interface = "enp10s0"; method = "magicpacket"; } ];
+  networking.interfaces.enp10s0.wakeOnLan.enable = true;
 
   virtualisation.docker = {
     autoPrune.enable = true;
