@@ -321,9 +321,6 @@ cgroup_device_acl = [
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.pulseaudio.extraModules = [pkgs.pulseaudio-modules-bt];
 
-  security.wrappers.spice-client-glib-usb-acl-helper.source =
-    "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper.real";
-  
   programs.wireshark.enable = true;
 
   services.resolved.enable = true;
