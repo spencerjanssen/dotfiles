@@ -76,6 +76,7 @@
               ./nixos/home-manager/general-shell.nix
               ./nixos/home-manager/zsh.nix
             ];
+            home.sessionPath = ["/home/sjanssen/.local/bin"];
             home.file.".ssh/config".text = ''
               Include /home/sjanssen/.ssh/extra-config
             '';
