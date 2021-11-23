@@ -11,6 +11,9 @@
       push = {
         default = "simple";
       };
+      merge = {
+        conflictStyle = "diff3";
+      };
     };
   };
 }
