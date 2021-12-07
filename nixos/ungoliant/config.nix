@@ -118,7 +118,7 @@
   users.users.sjanssen.extraGroups = ["docker"];
 
   virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemuVerbatimConfig = ''
+  virtualisation.libvirtd.qemu.verbatimConfig = ''
 namespaces = []
 cgroup_controllers = [ "cpu", "devices", "memory", "blkio", "cpuset", "cpuacct" ]
 cgroup_device_acl = [
