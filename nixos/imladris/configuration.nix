@@ -8,6 +8,7 @@
     ../common/nix-serve.nix
     ../cachix
     ../home-assistant-supervisor/module.nix
+    ../../system/enable-flakes.nix
   ];
 
   time.timeZone = "US/Central";

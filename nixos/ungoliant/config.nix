@@ -12,6 +12,7 @@
       ./hydra.nix
       ../cachix
       ../../system/magic-sysrq.nix
+      ../../system/enable-flakes.nix
       ../../hardware/acs.nix
       ../../hardware/moonlander.nix
     ];
