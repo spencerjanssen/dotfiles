@@ -115,6 +115,7 @@
     autoPrune.enable = true;
     enable = true;
     storageDriver = "zfs";
+    extraOptions = "--storage-opt zfs.fsname=tank/local/docker";
   };
   users.users.sjanssen.extraGroups = ["docker"];
 
