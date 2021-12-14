@@ -17,7 +17,7 @@
       ../../hardware/moonlander.nix
     ];
 
-  system.stateVersion = "18.03";
+  system.stateVersion = "21.11";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 30;
