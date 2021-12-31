@@ -66,6 +66,8 @@
     "i2c-dev" # for ddcutil
   ];
 
+  security.tpm2.enable = true;
+
   boot.initrd.luks.devices."blue" = {
     allowDiscards = true;
     keyFileSize = 4096;
