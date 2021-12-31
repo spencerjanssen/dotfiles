@@ -101,6 +101,8 @@
       echo loading keys
       zfs load-key -a
       echo loaded keys
+      umount /media/tank-keys
+      rmdir /media-tank-keys
     '';
   };
 
