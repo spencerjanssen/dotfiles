@@ -15,9 +15,39 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ...}: {
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, ...}:
+    let forSystem = system: {
+          packages = {
+              work-hm = (home-manager.lib.homeManagerConfiguration {
+                inherit system;
+                configuration = {
+                  imports = [
+                    ./nixos/home-manager/general-shell.nix
+                    ./nixos/home-manager/zsh.nix
+                  ];
+                  home.sessionPath = ["/home/sjanssen/.local/bin"];
+                  home.file.".ssh/config".text = ''
+                    Include /home/sjanssen/.ssh/extra-config
+                  '';
+                  programs.zsh.profileExtra = ''
+                    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+                      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+                    fi
+                  '';
+                };
+                homeDirectory = "/home/sjanssen";
+                username = "sjanssen";
+                pkgs = nixpkgs.legacyPackages.${system};
+              }).activationPackage;
+          };
+    };
+    in
+    (flake-utils.lib.eachDefaultSystem forSystem)
+    //
+    {
     nixosModules = {
       channelAndRegistry = {...}:
       {
@@ -67,31 +97,6 @@
       imladris = self.lib.hydraJobsFromSystem self.nixosConfigurations.imladris;
       ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
       work-hm = self.packages.x86_64-linux.work-hm;
-    };
-    packages = {
-      x86_64-linux = {
-        work-hm = (home-manager.lib.homeManagerConfiguration {
-          configuration = {
-            imports = [
-              ./nixos/home-manager/general-shell.nix
-              ./nixos/home-manager/zsh.nix
-            ];
-            home.sessionPath = ["/home/sjanssen/.local/bin"];
-            home.file.".ssh/config".text = ''
-              Include /home/sjanssen/.ssh/extra-config
-            '';
-            programs.zsh.profileExtra = ''
-              if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-                . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-              fi
-            '';
-          };
-          system = "x86_64-linux";
-          homeDirectory = "/home/sjanssen";
-          username = "sjanssen";
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        }).activationPackage;
-      };
     };
     lib = {
       allSystemPackages = system: builtins.listToAttrs (map (p: {name = (builtins.parseDrvName p.name).name; value = p;}) system.config.environment.systemPackages);
