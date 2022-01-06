@@ -370,6 +370,7 @@ cgroup_device_acl = [
           ../home-manager/git-username.nix
           ../home-manager/xsession.nix
           ../home-manager/zsh.nix
+          ../home-manager/sign-commits.nix
         ];
       };
     };

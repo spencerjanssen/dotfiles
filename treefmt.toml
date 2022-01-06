@@ -1,3 +1,6 @@
 [formatter.nixpkgs-fmt]
 command = "nixpkgs-fmt"
-includes = ["flake.nix"]
+includes = [
+    "flake.nix",
+    "nixos/home-manager/sign-commits.nix"
+]
