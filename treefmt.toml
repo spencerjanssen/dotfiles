@@ -2,5 +2,5 @@
 command = "nixpkgs-fmt"
 includes = [
     "flake.nix",
-    "nixos/home-manager/sign-commits.nix"
+    "nixos/home-manager/*.nix"
 ]

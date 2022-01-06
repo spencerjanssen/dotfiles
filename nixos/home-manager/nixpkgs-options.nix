@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   nixpkgs = {
     config = import ./config.nix;

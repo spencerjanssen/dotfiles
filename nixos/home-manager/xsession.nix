@@ -1,7 +1,7 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
-  home.keyboard.options = ["caps:escape"];
+  home.keyboard.options = [ "caps:escape" ];
 
   xsession = {
     enable = true;

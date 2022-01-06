@@ -93,13 +93,13 @@
     cascadia-code
     azuredatastudio
 
-    (pkgs.haskellPackages.ghcWithPackages (self : [
-        self.mtl
-        self.xmonad
-        self.cabal-install
+    (pkgs.haskellPackages.ghcWithPackages (self: [
+      self.mtl
+      self.xmonad
+      self.cabal-install
     ]))
 
-    (pkgs.callPackage ../netextender {})
+    (pkgs.callPackage ../netextender { })
   ];
 
 }
