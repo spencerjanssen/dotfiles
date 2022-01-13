@@ -92,6 +92,7 @@
     teams
     cascadia-code
     azuredatastudio
+    gnomeExtensions.material-shell
 
     (pkgs.haskellPackages.ghcWithPackages (self: [
       self.mtl
