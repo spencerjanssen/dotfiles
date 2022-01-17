@@ -61,6 +61,13 @@
     (flake-utils.lib.eachDefaultSystem forSystem)
     //
     {
+      overlays = {
+        bump-zrepl = (_final: prev:
+          {
+            zrepl = nixpkgs-zrepl-bump.legacyPackages.${prev.system}.zrepl;
+          }
+        );
+      };
       nixosModules = {
         channelAndRegistry = { ... }:
           {
@@ -83,6 +90,10 @@
               };
             };
           };
+        personalOverlays = { ... }:
+          {
+            nixpkgs.overlays = nixpkgs.lib.attrValues self.outputs.overlays;
+          };
       };
       nixosConfigurations = {
         ungoliant = nixpkgs.lib.nixosSystem {
@@ -91,20 +102,9 @@
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
             self.nixosModules.channelAndRegistry
+            self.nixosModules.personalOverlays
             ./me/secret-ssh-config.nix
             ./nixos/ungoliant/config.nix
-            (
-              { ... }:
-              {
-                nixpkgs.overlays = [
-                  (_self: _pkgs:
-                    {
-                      zrepl = nixpkgs-zrepl-bump.legacyPackages.x86_64-linux.zrepl;
-                    }
-                  )
-                ];
-              }
-            )
           ];
           specialArgs = { inherit inputs; };
         };
@@ -113,19 +113,9 @@
           modules = [
             home-manager.nixosModules.home-manager
             self.nixosModules.channelAndRegistry
+            self.nixosModules.personalOverlays
             ./nixos/imladris/configuration.nix
-            (
-              { ... }:
-              {
-                nixpkgs.overlays = [
-                  (_self: _pkgs:
-                    {
-                      zrepl = nixpkgs-zrepl-bump.legacyPackages.aarch64-linux.zrepl;
-                    }
-                  )
-                ];
-              }
-            )
+
           ];
           specialArgs = { inherit inputs; };
         };
