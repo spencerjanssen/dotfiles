@@ -47,10 +47,14 @@
       };
       devShell =
         nixpkgs.legacyPackages.${system}.mkShell {
-          buildInputs = [
-            treefmt.defaultPackage.${system}
-            nixpkgs.legacyPackages.${system}.nixpkgs-fmt
-          ];
+          buildInputs =
+            [ nixpkgs.legacyPackages.${system}.nixpkgs-fmt ]
+            ++
+            (if system == "x86_64-linux"
+            then [ treefmt.defaultPackage.${system} ]
+            else [ ]
+            )
+          ;
         };
     };
     in
