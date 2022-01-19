@@ -3,7 +3,7 @@
 
 {
   services.dbus.enable = true;
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  services.dbus.packages = [ pkgs.dconf ];
   programs.dconf.enable = true;
   services.udisks2.enable = true;
   services.printing.enable = true;
@@ -33,7 +33,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome3.gnome-settings-daemon
-    gnome3.gsettings-desktop-schemas
+    gnome.gnome-settings-daemon
+    gsettings-desktop-schemas
   ];
 }

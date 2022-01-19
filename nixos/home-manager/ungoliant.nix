@@ -63,11 +63,11 @@
     haskellPackages.ghcid
     google-chrome
     networkmanagerapplet
-    gnome3.gnome-disk-utility
-    gnome3.gnome-terminal
-    gnome3.nautilus
-    gnome3.gnome-session
-    gnome3.gnome-tweak-tool
+    gnome.gnome-disk-utility
+    gnome.gnome-terminal
+    gnome.nautilus
+    gnome.gnome-session
+    gnome.gnome-tweaks
     pavucontrol
     evince
     mplayer
@@ -82,8 +82,7 @@
     looking-glass-client
     ddcutil
     hicolor-icon-theme
-    gnome3.adwaita-icon-theme
-    gnome3.defaultIconTheme
+    gnome.adwaita-icon-theme
     win10-nvme-up
     win10-nvme-sleep
     win10-nvme-down
