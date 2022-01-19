@@ -64,9 +64,9 @@
     google-chrome
     networkmanagerapplet
     gnome3.gnome-disk-utility
-    gnome3.gnome_terminal
+    gnome3.gnome-terminal
     gnome3.nautilus
-    gnome3.gnome_session
+    gnome3.gnome-session
     gnome3.gnome-tweak-tool
     pavucontrol
     evince

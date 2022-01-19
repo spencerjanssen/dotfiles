@@ -33,7 +33,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome3.gnome_settings_daemon
-    gnome3.gsettings_desktop_schemas
+    gnome3.gnome-settings-daemon
+    gnome3.gsettings-desktop-schemas
   ];
 }
