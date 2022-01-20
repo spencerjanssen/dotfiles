@@ -102,22 +102,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-zrepl-bump": {
-      "locked": {
-        "lastModified": 1642113829,
-        "narHash": "sha256-FvK4oveGUT3didzCVd+tYtZ9bdyg93v3WceV7YDlfzA=",
-        "owner": "spencerjanssen",
-        "repo": "nixpkgs",
-        "rev": "00348f38179a64bb380b5a23e00a032882a9f2df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "spencerjanssen",
-        "ref": "zrepl-0.5.0-master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1636470166,
@@ -141,7 +125,6 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-zrepl-bump": "nixpkgs-zrepl-bump",
         "treefmt": "treefmt"
       }
     },

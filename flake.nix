@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-zrepl-bump.url = "github:spencerjanssen/nixpkgs/zrepl-0.5.0-master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +19,7 @@
     treefmt.url = "github:numtide/treefmt";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, treefmt, nixpkgs-zrepl-bump, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, treefmt, ... }:
     let forSystem = system: {
       packages = {
         work-hm = (home-manager.lib.homeManagerConfiguration {
@@ -62,11 +61,6 @@
     //
     {
       overlays = {
-        bump-zrepl = (_final: prev:
-          {
-            zrepl = nixpkgs-zrepl-bump.legacyPackages.${prev.system}.zrepl;
-          }
-        );
       };
       nixosModules = {
         channelAndRegistry = { ... }:
