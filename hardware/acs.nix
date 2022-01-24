@@ -1,5 +1,5 @@
 {pkgs, ...}:
-let kernel = "linux_5_10";
+let kernel = "linux_5_15";
 in
 {
   boot.kernelModules = [
@@ -7,7 +7,7 @@ in
   ];
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.${kernel};
   nixpkgs.config.packageOverrides = pkgs: {
-    ${kernel} = pkgs.linux_5_10.override {
+    ${kernel} = pkgs.${kernel}.override {
       kernelPatches =
         pkgs.${kernel}.kernelPatches ++
         [
