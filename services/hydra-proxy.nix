@@ -9,7 +9,7 @@
     virtualHosts."hydra.spencerjanssen.org" = {
       forceSSL = true;
       enableACME = true;
-      locations."/api-push-github" = {
+      locations."/api/push-github" = {
         proxyPass = "http://ungoliant.lan:9000";
       };
     };
