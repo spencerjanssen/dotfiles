@@ -2,5 +2,6 @@
 command = "nixpkgs-fmt"
 includes = [
     "flake.nix",
-    "nixos/home-manager/*.nix"
+    "nixos/home-manager/*.nix",
+    "services/hydra-proxy.nix"
 ]
