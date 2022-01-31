@@ -108,6 +108,7 @@
             self.nixosModules.channelAndRegistry
             self.nixosModules.personalOverlays
             ./nixos/imladris/configuration.nix
+            ./services/hydra-proxy.nix
 
           ];
           specialArgs = { inherit inputs; };
