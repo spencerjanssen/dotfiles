@@ -16,9 +16,13 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
+    hydra = {
+      url = "github:NixOS/hydra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, hydra, ... }:
     let forSystem = system: {
       packages = {
         work-hm = (home-manager.lib.homeManagerConfiguration {
@@ -56,7 +60,11 @@
     (flake-utils.lib.eachDefaultSystem forSystem)
     //
     {
-      overlays = { };
+      overlays = {
+        hydra-master  = (final: super: {
+          hydra-master = hydra.defaultPackage.${final.stdenv.system};
+        });
+      };
       nixosModules = {
         channelAndRegistry = { ... }:
           {
