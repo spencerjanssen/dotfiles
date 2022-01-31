@@ -16,10 +16,9 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
-    treefmt.url = "github:numtide/treefmt";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, treefmt, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, ... }:
     let forSystem = system: {
       packages = {
         work-hm = (home-manager.lib.homeManagerConfiguration {
@@ -47,13 +46,10 @@
       devShell =
         nixpkgs.legacyPackages.${system}.mkShell {
           buildInputs =
-            [ nixpkgs.legacyPackages.${system}.nixpkgs-fmt ]
-            ++
-            (if system == "x86_64-linux"
-            then [ treefmt.defaultPackage.${system} ]
-            else [ ]
-            )
-          ;
+            [
+              nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+              nixpkgs.legacyPackages.${system}.treefmt
+            ];
         };
     };
     in
