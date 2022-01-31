@@ -60,8 +60,7 @@
     (flake-utils.lib.eachDefaultSystem forSystem)
     //
     {
-      overlays = {
-      };
+      overlays = { };
       nixosModules = {
         channelAndRegistry = { ... }:
           {
