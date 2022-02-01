@@ -12,7 +12,7 @@
     "inputs": {
         "generator_config": {
             "type": "git",
-            "value": "git+ssh://git@github.com/spencerjanssen/dotfiles.git?ref=main",
+            "value": "git+ssh://git@github.com/spencerjanssen/dotfiles.git",
             "emailresponsible": false
         },
         "generator": {
