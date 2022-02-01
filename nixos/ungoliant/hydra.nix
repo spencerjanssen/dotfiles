@@ -7,7 +7,7 @@
         useSubstitutes = true;
         notificationSender = "spencerjanssen@gmail.com";
         extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
-        package = pkgs.hydra-unstable;
+        package = pkgs.hydra-master;
     };
     # https://github.com/NixOS/hydra/issues/357
     nix.buildMachines = [
