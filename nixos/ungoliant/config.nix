@@ -10,7 +10,6 @@
       ../common/users.nix
       ../common/nix-serve.nix
       ./hydra.nix
-      ../cachix
       ../../system/magic-sysrq.nix
       ../../system/enable-flakes.nix
       ../../hardware/acs.nix

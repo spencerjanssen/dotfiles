@@ -6,7 +6,6 @@
     ../common/users.nix
     ../common/packages.nix
     ../common/nix-serve.nix
-    ../cachix
     ../home-assistant-supervisor/module.nix
     ../../system/enable-flakes.nix
   ];

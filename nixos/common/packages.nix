@@ -4,7 +4,6 @@
   nix.settings.binary-cache-public-keys = [
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
-    "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
     "nix-serve.ungoliant-1:nuNHK1FmW3xn0RkeJWHVcgFthS0RvyXC+yDAI22q0Hc="
     "nix-serve.imladris-1:6aBusOdd/hnxucLm1l2whlpf8gjvqtM604uCCG1CZ54="
   ];
@@ -21,7 +20,6 @@
   ];
   nix.settings.trusted-binary-caches = [
     "http://hydra.nixos.org/"
-    "https://nixcache.reflex-frp.org/"
     "http://ungoliant.lan:5000/"
     "http://imladris.lan:5000/"
     ];
