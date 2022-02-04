@@ -31,4 +31,7 @@
     keyScheme = "vim";
     enableLightTheme = true;
   };
+
+  # see https://github.com/nix-community/home-manager/issues/1262
+  manual.manpages.enable = false;
 }
