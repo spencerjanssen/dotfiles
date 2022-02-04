@@ -18,7 +18,6 @@
     flake-utils.url = "github:numtide/flake-utils";
     hydra = {
       url = "github:NixOS/hydra";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
