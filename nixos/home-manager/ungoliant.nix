@@ -36,12 +36,11 @@
             mode = "1920x1200";
             position = "1920x0";
             rate = "59.95";
-            rotate = "right";
           };
           DisplayPort-0 = {
             enable = true;
             mode = "1920x1200";
-            position = "0x720";
+            position = "0x0";
             primary = true;
             rate = "59.95";
           };
