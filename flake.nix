@@ -61,7 +61,7 @@
     //
     {
       overlays = {
-        hydra-master = (final: super: {
+        hydra-master = (final: prev: {
           hydra-master = hydra.defaultPackage.${final.stdenv.system};
         });
       };
