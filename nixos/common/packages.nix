@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  nix.binaryCachePublicKeys = [
+  nix.settings.binary-cache-public-keys = [
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
     "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
@@ -16,10 +16,10 @@
     gc-keep-derivations = true
   '';
 
-  nix.binaryCaches = [
+  nix.settings.binary-caches = [
     "https://cache.nixos.org/"
   ];
-  nix.trustedBinaryCaches = [
+  nix.settings.trusted-binary-caches = [
     "http://hydra.nixos.org/"
     "https://nixcache.reflex-frp.org/"
     "http://ungoliant.lan:5000/"

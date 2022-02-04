@@ -29,7 +29,7 @@
     };
   };
 
-  nix.buildCores = 0;
+  nix.settings.cores = 0;
 
   nix.extraOptions = ''
     secret-key-files = /root/ungoliant-1.secret

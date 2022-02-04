@@ -13,7 +13,7 @@
 
   time.timeZone = "US/Central";
 
-  nix.maxJobs = 3;
+  nix.settings.max-jobs = 3;
 
   nix.gc = {
     automatic = true;
@@ -81,7 +81,7 @@
     group = "remote-builder";
   };
   users.groups.remote-builder = {};
-  nix.trustedUsers = ["remote-builder"];
+  nix.settings.trusted-users = ["remote-builder"];
 
   virtualisation.docker = {
     enable = true;
