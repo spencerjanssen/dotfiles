@@ -91,6 +91,7 @@
     cascadia-code
     azuredatastudio
     gnomeExtensions.material-shell
+    jq
 
     (pkgs.haskellPackages.ghcWithPackages (self: [
       self.mtl
