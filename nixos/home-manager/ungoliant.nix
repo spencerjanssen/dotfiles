@@ -75,7 +75,7 @@
     firefox
     libreoffice
     nodejs
-    xlibs.xmodmap
+    xorg.xmodmap
     cabal2nix
     gdb
     looking-glass-client
