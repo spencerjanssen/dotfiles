@@ -3,14 +3,14 @@
 , rpm
 , cpio
 }:
-let version = "1.0";
+let version = "10.2.835-1";
 in
 stdenv.mkDerivation {
     name = "netextender-${version}";
     src = fetchurl {
         name = "netextender.rpm";
-        url = "https://api.mysonicwall.com/api/downloads/download-software?username=ANONYMOUS&swID=16390&swGrpID=11755&isRNotes=0&sessionID=ANONYMOUS&appName=MSW&oemCode=SNWL";
-        sha256 = "136c0a15qcb1179rn4vqkwnclgvhjyhx6pmgd02q6b1gdizgsr92";
+        url = "https://software.sonicwall.com/NetExtender/NetExtender.Linux-${version}.x86.64.rpm";
+        sha256 = "09w67racskg13y0zf6jwc1g9rq6drkcqhbx5f50kxgr74w31j11h";
     };
 
     nativeBuildInputs = [
