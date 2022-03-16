@@ -24,6 +24,17 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.gnome_themes_standard;
+      name = "Adwaita-dark";
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
   services.network-manager-applet.enable = true;
 
   xsession.initExtra = ''

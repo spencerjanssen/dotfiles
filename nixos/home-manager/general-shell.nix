@@ -29,7 +29,6 @@
     enable = true;
     enableZshIntegration = true;
     keyScheme = "vim";
-    enableLightTheme = true;
   };
 
   # see https://github.com/nix-community/home-manager/issues/1262
