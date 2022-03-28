@@ -27,7 +27,7 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.gnome_themes_standard;
+      package = pkgs.gnome-themes-extra;
       name = "Adwaita-dark";
     };
     gtk4.extraConfig = {
