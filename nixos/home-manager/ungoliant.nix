@@ -88,6 +88,7 @@
     lorri
     entr
     teams
+    zoom-us
     cascadia-code
     azuredatastudio
     gnomeExtensions.material-shell
