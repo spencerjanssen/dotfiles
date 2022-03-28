@@ -20,7 +20,7 @@ in buildFHSUserEnv {
         ppp
         iproute
         kmod
-        wireguard
+        wireguard-tools
     ];
     extraBuildCommands = ''
     '';
