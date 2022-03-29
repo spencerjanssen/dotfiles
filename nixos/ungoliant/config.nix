@@ -356,6 +356,10 @@ cgroup_device_acl = [
     };
   };
 
+  services.tailscale = {
+    enable = true;
+  };
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;

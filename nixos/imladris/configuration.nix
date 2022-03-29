@@ -72,6 +72,8 @@
     };
   };
 
+  services.tailscale.enable = true;
+
   hardware.enableRedistributableFirmware = true;
 
   boot= {
