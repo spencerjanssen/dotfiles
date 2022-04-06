@@ -57,8 +57,8 @@ main = xmonad . docks . ewmh $ defaultConfig
         ]
 
     myFont = "xft:Bitstream Vera Sans Mono:pixelsize=10"
-    myTheme = defaultTheme { fontName = myFont }
-    myPromptConfig = defaultXPConfig
+    myTheme = def { fontName = myFont }
+    myPromptConfig = def
                         { position = Top
                         , font = myFont
                         , showCompletionOnTab = True
