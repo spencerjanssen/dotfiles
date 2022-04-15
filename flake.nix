@@ -18,7 +18,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     hydra = {
       # hydra isn't compatible with current nixos-unstable
-      url = "github:NixOS/hydra/refs/pull/1175/head";
+      url = "github:NixOS/hydra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
