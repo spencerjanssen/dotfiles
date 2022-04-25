@@ -331,7 +331,6 @@ cgroup_device_acl = [
   hardware.bluetooth.enable = true;
 
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.pulseaudio.extraModules = [pkgs.pulseaudio-modules-bt];
 
   programs.wireshark.enable = true;
 
