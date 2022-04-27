@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  nix.settings.binary-cache-public-keys = [
+  nix.settings.trusted-public-keys = [
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
     "nix-serve.ungoliant-1:nuNHK1FmW3xn0RkeJWHVcgFthS0RvyXC+yDAI22q0Hc="
     "nix-serve.imladris-1:6aBusOdd/hnxucLm1l2whlpf8gjvqtM604uCCG1CZ54="
+    "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
   ];
 
   # this prevents nix from garbage collecting build dependencies, especially
@@ -15,10 +16,11 @@
     gc-keep-derivations = true
   '';
 
-  nix.settings.binary-caches = [
+  nix.settings.substituters = [
     "https://cache.nixos.org/"
+    "https://hydra.iohk.io"
   ];
-  nix.settings.trusted-binary-caches = [
+  nix.settings.trusted-substituters = [
     "http://hydra.nixos.org/"
     "http://ungoliant.lan:5000/"
     "http://imladris.lan:5000/"
