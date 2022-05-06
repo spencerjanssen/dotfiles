@@ -16,12 +16,16 @@
         haskellPackages.xmonad-contrib
       ];
     };
-    pointerCursor = {
+  };
+
+  home.pointerCursor = {
+    x11 = {
+      enable = true;
       defaultCursor = "left_ptr";
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-      size = 24;
     };
+    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
   };
 
   gtk = {
