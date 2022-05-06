@@ -156,12 +156,10 @@ cgroup_device_acl = [
   services.zrepl =
   let
     imladrisConnect = {
-      type = "tls";
-      address = "imladris.lan:9341";
-      ca = "/root/zrepl/imladris.crt";
-      cert = "/root/zrepl/ungoliant.crt";
-      key = "/root/zrepl/ungoliant.key";
-      server_cn = "imladris";
+      type = "local";
+      listener_name = "local-usb-listener";
+      client_identity = "ungoliant";
+      dial_timeout = "2s";
     };
     snapshotPrefix = "zrepl_";
     prefixRegex = "^${snapshotPrefix}.*";
@@ -178,6 +176,15 @@ cgroup_device_acl = [
     enable = true;
     settings = {
       jobs = [
+        {
+          name = "usb-sink";
+          type = "sink";
+          root_fs = "iml-tank/backups";
+          serve = {
+            type = "local";
+            listener_name = "local-usb-listener";
+          };
+        }
         {
           name = "system-to-imladris";
           type = "push";
