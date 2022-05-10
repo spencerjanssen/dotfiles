@@ -12,12 +12,12 @@
     "inputs": {
         "generator_config": {
             "type": "git",
-            "value": "git+ssh://git@github.com/spencerjanssen/dotfiles.git main",
+            "value": "https://github.com/spencerjanssen/dotfiles.git test-jobsets-generator",
             "emailresponsible": false
         },
         "generator": {
             "type": "git",
-            "value": "https://github.com/DeterminateSystems/hydra-github-jobsets-generator.git make-flake-definition-fixup-flake-uri",
+            "value": "https://github.com/DeterminateSystems/hydra-github-jobsets-generator.git main",
             "emailresponsible": false
         },
         "nixpkgs": {
