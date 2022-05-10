@@ -120,7 +120,6 @@
         };
       };
       hydraJobs = {
-        imladris = self.lib.hydraJobsFromSystem self.nixosConfigurations.imladris;
         ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
         work-hm = self.packages.x86_64-linux.work-hm;
       };
