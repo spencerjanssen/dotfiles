@@ -3,7 +3,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common/packages.nix
       ../common/desktop.nix
@@ -107,7 +108,7 @@
   };
 
 
-  fileSystems."/media/spinning".options = ["noauto"];
+  fileSystems."/media/spinning".options = [ "noauto" ];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -119,21 +120,21 @@
     storageDriver = "zfs";
     extraOptions = "--storage-opt zfs.fsname=tank/local/docker";
   };
-  users.users.sjanssen.extraGroups = ["docker"];
+  users.users.sjanssen.extraGroups = [ "docker" ];
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.verbatimConfig = ''
-namespaces = []
-cgroup_controllers = [ "cpu", "devices", "memory", "blkio", "cpuset", "cpuacct" ]
-cgroup_device_acl = [
-    "/dev/null", "/dev/full", "/dev/zero",
-    "/dev/random", "/dev/urandom",
-    "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
-    "/dev/rtc","/dev/hpet",
-    "/dev/input/by-id/usb-Microsoft_Microsoft®_2.4GHz_Transceiver_v9.0-if01-event-mouse",
-    "/dev/input/by-id/usb-Microsoft_Microsoft®_2.4GHz_Transceiver_v9.0-event-kbd",
-    "/dev/input/by-id/usb-MOSART_Semi._2.4G_Wireless_Mouse-event-mouse"
-]
+    namespaces = []
+    cgroup_controllers = [ "cpu", "devices", "memory", "blkio", "cpuset", "cpuacct" ]
+    cgroup_device_acl = [
+        "/dev/null", "/dev/full", "/dev/zero",
+        "/dev/random", "/dev/urandom",
+        "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
+        "/dev/rtc","/dev/hpet",
+        "/dev/input/by-id/usb-Microsoft_Microsoft®_2.4GHz_Transceiver_v9.0-if01-event-mouse",
+        "/dev/input/by-id/usb-Microsoft_Microsoft®_2.4GHz_Transceiver_v9.0-event-kbd",
+        "/dev/input/by-id/usb-MOSART_Semi._2.4G_Wireless_Mouse-event-mouse"
+    ]
   '';
 
   environment.systemPackages = with pkgs; [
@@ -149,163 +150,163 @@ cgroup_device_acl = [
     zfs
     zrepl
   ];
-  environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17];
+  environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17 ];
 
   services.flatpak.enable = true;
 
   services.zrepl =
-  let
-    imladrisConnect = {
-      type = "local";
-      listener_name = "local-usb-listener";
-      client_identity = "ungoliant";
-      dial_timeout = "2s";
+    let
+      imladrisConnect = {
+        type = "local";
+        listener_name = "local-usb-listener";
+        client_identity = "ungoliant";
+        dial_timeout = "2s";
+      };
+      snapshotPrefix = "zrepl_";
+      prefixRegex = "^${snapshotPrefix}.*";
+      keepNotReplicated = {
+        type = "not_replicated";
+      };
+      keepNotZrepl = {
+        type = "regex";
+        negate = true;
+        regex = "^${snapshotPrefix}.*";
+      };
+    in
+    {
+      enable = true;
+      settings = {
+        jobs = [
+          {
+            name = "usb-sink";
+            type = "sink";
+            root_fs = "iml-tank/backups";
+            serve = {
+              type = "local";
+              listener_name = "local-usb-listener";
+            };
+          }
+          {
+            name = "system-to-imladris";
+            type = "push";
+            connect = imladrisConnect;
+            filesystems = {
+              "tank/system<" = true;
+            };
+            send = {
+              encrypted = true;
+            };
+            snapshotting = {
+              type = "periodic";
+              prefix = snapshotPrefix;
+              interval = "10m";
+            };
+            pruning = {
+              keep_sender = [
+                keepNotReplicated
+                keepNotZrepl
+                {
+                  type = "grid";
+                  grid = "1x1h(keep=all) | 23x1h | 7x1d";
+                  regex = prefixRegex;
+                }
+              ];
+              keep_receiver = [
+                keepNotZrepl
+                {
+                  type = "grid";
+                  grid = "1x1h(keep=all) | 24x1h | 30x1d | 144x30d";
+                  regex = prefixRegex;
+                }
+              ];
+            };
+          }
+          {
+            name = "sjanssen-to-imladris";
+            type = "push";
+            connect = imladrisConnect;
+            filesystems = {
+              "tank/users/sjanssen<" = true;
+            };
+            send = {
+              encrypted = true;
+            };
+            snapshotting = {
+              type = "periodic";
+              prefix = snapshotPrefix;
+              interval = "5m";
+            };
+            pruning = {
+              keep_sender = [
+                keepNotReplicated
+                keepNotZrepl
+                {
+                  type = "grid";
+                  grid = "1x1h(keep=all) | 24x1h | 10x1d | 5x1w | 3x30d";
+                  regex = prefixRegex;
+                }
+              ];
+              keep_receiver = [
+                keepNotZrepl
+                {
+                  type = "grid";
+                  grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                  regex = prefixRegex;
+                }
+              ];
+            };
+          }
+          {
+            name = "from-blue-to-imladris";
+            type = "push";
+            connect = imladrisConnect;
+            filesystems = {
+              "tank/from-blue<" = true;
+            };
+            send = {
+              encrypted = true;
+            };
+            snapshotting = {
+              type = "periodic";
+              prefix = snapshotPrefix;
+              interval = "1h";
+            };
+            pruning = {
+              keep_sender = [
+                keepNotReplicated
+                keepNotZrepl
+                {
+                  type = "grid";
+                  grid = "1x1h(keep=all) | 24x1h | 10x1d | 5x1w | 3x30d";
+                  regex = prefixRegex;
+                }
+              ];
+              keep_receiver = [
+                keepNotZrepl
+                {
+                  type = "grid";
+                  grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
+                  regex = prefixRegex;
+                }
+              ];
+            };
+          }
+        ];
+      };
     };
-    snapshotPrefix = "zrepl_";
-    prefixRegex = "^${snapshotPrefix}.*";
-    keepNotReplicated = {
-      type = "not_replicated";
-    };
-    keepNotZrepl = {
-      type = "regex";
-      negate = true;
-      regex = "^${snapshotPrefix}.*";
-    };
-  in
-  {
-    enable = true;
-    settings = {
-      jobs = [
-        {
-          name = "usb-sink";
-          type = "sink";
-          root_fs = "iml-tank/backups";
-          serve = {
-            type = "local";
-            listener_name = "local-usb-listener";
-          };
-        }
-        {
-          name = "system-to-imladris";
-          type = "push";
-          connect = imladrisConnect;
-          filesystems = {
-            "tank/system<" = true;
-          };
-          send = {
-            encrypted = true;
-          };
-          snapshotting = {
-            type = "periodic";
-            prefix = snapshotPrefix;
-            interval = "10m";
-          };
-          pruning = {
-            keep_sender = [
-              keepNotReplicated
-              keepNotZrepl
-              {
-                type = "grid";
-                grid = "1x1h(keep=all) | 23x1h | 7x1d";
-                regex = prefixRegex;
-              }
-            ];
-            keep_receiver = [
-              keepNotZrepl
-              {
-                type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 30x1d | 144x30d";
-                regex = prefixRegex;
-              }
-            ];
-          };
-        }
-        {
-          name = "sjanssen-to-imladris";
-          type = "push";
-          connect = imladrisConnect;
-          filesystems = {
-            "tank/users/sjanssen<" = true;
-          };
-          send = {
-            encrypted = true;
-          };
-          snapshotting = {
-            type = "periodic";
-            prefix = snapshotPrefix;
-            interval = "5m";
-          };
-          pruning = {
-            keep_sender = [
-              keepNotReplicated
-              keepNotZrepl
-              {
-                type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 10x1d | 5x1w | 3x30d";
-                regex = prefixRegex;
-              }
-            ];
-            keep_receiver = [
-              keepNotZrepl
-              {
-                type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
-                regex = prefixRegex;
-              }
-            ];
-          };
-        }
-        {
-          name = "from-blue-to-imladris";
-          type = "push";
-          connect = imladrisConnect;
-          filesystems = {
-            "tank/from-blue<" = true;
-          };
-          send = {
-            encrypted = true;
-          };
-          snapshotting = {
-            type = "periodic";
-            prefix = snapshotPrefix;
-            interval = "1h";
-          };
-          pruning = {
-            keep_sender = [
-              keepNotReplicated
-              keepNotZrepl
-              {
-                type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 10x1d | 5x1w | 3x30d";
-                regex = prefixRegex;
-              }
-            ];
-            keep_receiver = [
-              keepNotZrepl
-              {
-                type = "grid";
-                grid = "1x1h(keep=all) | 24x1h | 30x1d | 52x1w | 144x30d";
-                regex = prefixRegex;
-              }
-            ];
-          };
-        }
-      ];
-    };
-  };
 
   services.btrfs.autoScrub.enable = true;
   services.btrfs.autoScrub.interval = "weekly";
-  services.btrfs.autoScrub.fileSystems = ["/media/blue"];
+  services.btrfs.autoScrub.fileSystems = [ "/media/blue" ];
 
   services.zfs.autoScrub = {
     enable = true;
     interval = "weekly";
-    pools = ["tank"];
+    pools = [ "tank" ];
   };
 
   services.zfs.zed.settings = {
-    ZED_SYSLOG_SUBCLASS_EXCLUDE="statechange|config_*|history_event";
+    ZED_SYSLOG_SUBCLASS_EXCLUDE = "statechange|config_*|history_event";
   };
 
   services.fwupd.enable = true;
@@ -342,7 +343,7 @@ cgroup_device_acl = [
   programs.wireshark.enable = true;
 
   services.resolved.enable = true;
-  
+
   services.samba = {
     enable = true;
     shares = {
