@@ -10,10 +10,11 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "tank/system/root";
+    {
+      device = "tank/system/root";
       fsType = "zfs";
     };
-  
+
   fileSystems."/var" = {
     device = "tank/system/var";
     fsType = "zfs";
@@ -30,25 +31,27 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D06F-0323";
+    {
+      device = "/dev/disk/by-uuid/D06F-0323";
       fsType = "vfat";
     };
 
   fileSystems."/media/blue" =
-    { device = "/dev/disk/by-uuid/48c3704f-cf72-43da-ac61-6feed87267ef";
+    {
+      device = "/dev/disk/by-uuid/48c3704f-cf72-43da-ac61-6feed87267ef";
       fsType = "btrfs";
     };
 
   boot.initrd.luks.devices."blue".device = "/dev/disk/by-uuid/bc6e5111-7f57-4b57-9e6d-196b000e40fa";
 
   fileSystems."/media/spinning" =
-    { device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
+    {
+      device = "/dev/disk/by-uuid/cc3eacc2-cd59-4f4d-8c0e-4354781d9fb2";
       fsType = "btrfs";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/078d90c4-e2de-4b34-8e1e-0f14f8bc8dd2"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/078d90c4-e2de-4b34-8e1e-0f14f8bc8dd2"; }];
 
   nix.settings.max-jobs = lib.mkDefault 16;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";

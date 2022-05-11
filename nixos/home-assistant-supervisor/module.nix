@@ -1,43 +1,44 @@
-{config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 
-let cfg = config.services.home-assistant-supervisor;
+let
+  cfg = config.services.home-assistant-supervisor;
 
-    supervisorImage = "homeassistant/${cfg.architecture}-hassio-supervisor";
+  supervisorImage = "homeassistant/${cfg.architecture}-hassio-supervisor";
 
-    configFile = pkgs.writeText "hassio.json" (builtins.toJSON {
-      supervisor = supervisorImage;
-      homeassistant = "homeassistant/${cfg.machine}-homeassistant";
-      data = cfg.dataDir;
-    });
+  configFile = pkgs.writeText "hassio.json" (builtins.toJSON {
+    supervisor = supervisorImage;
+    homeassistant = "homeassistant/${cfg.machine}-homeassistant";
+    data = cfg.dataDir;
+  });
 
-    systemDocker = config.virtualisation.docker.package;
+  systemDocker = config.virtualisation.docker.package;
 
-    fetchImage = pkgs.writeScript "fetch-hassio-supervisor-image" ''
-      #!${pkgs.bash}/bin/bash
-      docker image inspect ${supervisorImage} 2>/dev/null || ( docker pull ${supervisorImage}:${cfg.supervisorVersion} && docker tag ${supervisorImage}:${cfg.supervisorVersion} ${supervisorImage}:latest)
+  fetchImage = pkgs.writeScript "fetch-hassio-supervisor-image" ''
+    #!${pkgs.bash}/bin/bash
+    docker image inspect ${supervisorImage} 2>/dev/null || ( docker pull ${supervisorImage}:${cfg.supervisorVersion} && docker tag ${supervisorImage}:${cfg.supervisorVersion} ${supervisorImage}:latest)
+  '';
+
+  haTools = pkgs.stdenv.mkDerivation {
+    name = "home-assistant-supervised-installer";
+
+    src = cfg.src;
+
+    nativeBuildInputs = [
+      pkgs.makeWrapper
+    ];
+
+    installPhase = ''
+      mkdir -p $out/bin
+      cp $src/files/hassio-supervisor $src/files/ha $out/bin
+      chmod +x $out/bin/*
+
+      substituteInPlace $out/bin/hassio-supervisor --replace "%%HASSIO_CONFIG%%" ${configFile}
+
+      wrapProgram $out/bin/ha --prefix PATH : "${makeBinPath [systemDocker]}"
+      wrapProgram $out/bin/hassio-supervisor --prefix PATH : "${makeBinPath [pkgs.jq]}"
     '';
-
-    haTools = pkgs.stdenv.mkDerivation {
-      name = "home-assistant-supervised-installer";
-
-      src = cfg.src;
-
-      nativeBuildInputs = [
-        pkgs.makeWrapper
-      ];
-
-      installPhase = ''
-        mkdir -p $out/bin
-        cp $src/files/hassio-supervisor $src/files/ha $out/bin
-        chmod +x $out/bin/*
-
-        substituteInPlace $out/bin/hassio-supervisor --replace "%%HASSIO_CONFIG%%" ${configFile}
-
-        wrapProgram $out/bin/ha --prefix PATH : "${makeBinPath [systemDocker]}"
-        wrapProgram $out/bin/hassio-supervisor --prefix PATH : "${makeBinPath [pkgs.jq]}"
-      '';
-    };
+  };
 in
 {
   options.services.home-assistant-supervisor = {
@@ -83,30 +84,30 @@ in
       home = cfg.dataDir;
       createHome = true;
       group = "home-assistant-supervisor";
-      extraGroups = ["dialout" "docker"];
+      extraGroups = [ "dialout" "docker" ];
       isSystemUser = true;
     };
 
-    users.groups.home-assistant-supervisor = {};
+    users.groups.home-assistant-supervisor = { };
 
     systemd.services.home-assistant-supervisor = {
       description = "Hass.io Supervisor";
-      requires = ["docker.service"];
-      after = ["docker.service" "dbus.socket"];
+      requires = [ "docker.service" ];
+      after = [ "docker.service" "dbus.socket" ];
       script = "${haTools}/bin/hassio-supervisor";
-      path = [systemDocker];
-      wantedBy = ["multi-user.target"];
+      path = [ systemDocker ];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "simple";
         RestartSec = 5;
         Restart = "always";
-        ExecStartPre = ["-${fetchImage}" "-docker stop hassio_supervisor"];
+        ExecStartPre = [ "-${fetchImage}" "-docker stop hassio_supervisor" ];
         ExecStop = "-docker stop hassio_supervisor";
         User = "home-assistant-supervisor";
         Group = "home-assistant-supervisor";
       };
     };
 
-    environment.systemPackages = [haTools];
+    environment.systemPackages = [ haTools ];
   };
 }

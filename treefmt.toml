@@ -1,7 +1,8 @@
 [formatter.nixpkgs-fmt]
 command = "nixpkgs-fmt"
 includes = [
-    "flake.nix",
-    "nixos/home-manager/*.nix",
-    "services/hydra-proxy.nix"
+    "*.nix"
+]
+excludes = [
+    "nixos/imladris/*.nix"
 ]
