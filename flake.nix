@@ -54,6 +54,7 @@
             [
               nixpkgs.legacyPackages.${system}.nixpkgs-fmt
               nixpkgs.legacyPackages.${system}.treefmt
+              agenix.defaultPackage.${system}
             ];
         };
     };
