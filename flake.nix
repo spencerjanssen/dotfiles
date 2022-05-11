@@ -48,7 +48,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
         }).activationPackage;
       };
-      devShell =
+      devShells.default =
         nixpkgs.legacyPackages.${system}.mkShell {
           buildInputs =
             [
