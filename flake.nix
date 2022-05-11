@@ -55,6 +55,18 @@
               nixpkgs.legacyPackages.${system}.nixpkgs-fmt
               nixpkgs.legacyPackages.${system}.treefmt
               agenix.defaultPackage.${system}
+              (nixpkgs.legacyPackages.${system}.writeShellApplication {
+                name = "watch-check";
+                runtimeInputs = [
+                  nixpkgs.legacyPackages.${system}.entr
+                ];
+                text = ''
+                  while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
+                      echo file added or removed, restarting
+                      sleep 0.1s
+                  done
+                '';
+              })
             ];
         };
     };
