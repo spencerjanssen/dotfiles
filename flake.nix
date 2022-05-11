@@ -123,6 +123,7 @@
       hydraJobs = {
         ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
         work-hm = self.packages.x86_64-linux.work-hm;
+        devShell = self.devShells.x86_64-linux.default;
       };
       lib = {
         allSystemPackages = system: builtins.listToAttrs (map (p: { name = (builtins.parseDrvName p.name).name; value = p; }) system.config.environment.systemPackages);
