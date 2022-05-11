@@ -8,6 +8,13 @@
         notificationSender = "spencerjanssen@gmail.com";
         extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
         package = pkgs.hydra-master;
+        extraConfig = ''
+            Include ${config.age.secrets.hydra-github-token.path}
+            <githubstatus>
+                jobs = dotfiles-prs:.*
+                inputs = declInput
+            </githubstatus>
+        '';
     };
     # https://github.com/NixOS/hydra/issues/357
     nix.buildMachines = [
@@ -26,4 +33,16 @@
         }
     ];
     nix.distributedBuilds = true;
+
+    users.groups.hydra-secrets.members = [
+        "hydra-queue-runner"
+        "hydra-www"
+        "hydra"
+    ];
+
+    age.secrets.hydra-github-token = {
+        file = ../../secrets/hydra-github-token.age;
+        group = "hydra-secrets";
+        mode = "0440";
+    };
 }

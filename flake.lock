@@ -80,15 +80,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1651520112,
-        "narHash": "sha256-LqBLIXYssvDoSp2Hf2+vDDB9O8VSF48HAGwL8pI2WZY=",
-        "owner": "NixOS",
+        "lastModified": 1652282399,
+        "narHash": "sha256-2/liqK4EmhTSjcYMmqudYbpClSyxld+ZokNODBc5Bck=",
+        "owner": "spencerjanssen",
         "repo": "hydra",
-        "rev": "7c133a98f8e689cdc13f8a1adaaa9cd75d039a35",
+        "rev": "8616617316b3c7e61f388561f9f187817e43cee6",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "spencerjanssen",
+        "ref": "github-status-more-logging",
         "repo": "hydra",
         "type": "github"
       }
