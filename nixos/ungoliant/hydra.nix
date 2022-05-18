@@ -11,7 +11,7 @@
     extraConfig = ''
       Include ${config.age.secrets.hydra-github-token.path}
       <githubstatus>
-          jobs = dotfiles-prs:.*
+          jobs = dotfiles-prs:pr-\d+:(ungoliant\.toplevel|devShell|work-hm)
           inputs = declInput
       </githubstatus>
     '';
