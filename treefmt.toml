@@ -6,3 +6,11 @@ includes = [
 excludes = [
     "nixos/imladris/*.nix"
 ]
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = [
+    "*.yml",
+    "*.yaml"
+]
