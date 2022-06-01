@@ -145,7 +145,6 @@
     openconnect
     iptables
     flatpak
-    snapper
     cryptsetup
     zfs
     zrepl
@@ -310,28 +309,6 @@
   };
 
   services.fwupd.enable = true;
-
-  services.snapper.configs = {
-    home = {
-      subvolume = "/media/blue/@home";
-      extraConfig = ''
-        TIMELINE_CREATE="yes"
-        TIMELINE_CLEANUP="yes"
-        TIMELINE_LIMIT_YEARLY="0"
-      '';
-    };
-    nixos = {
-      subvolume = "/media/blue/@nixos";
-      extraConfig = ''
-        TIMELINE_CREATE="yes"
-        TIMELINE_CLEANUP="yes"
-        TIMELINE_LIMIT_HOURLY="4"
-        TIMELINE_LIMIT_DAILY="0"
-        TIMELINE_LIMIT_MONTHLY="0"
-        TIMELINE_LIMIT_YEARLY="0"
-      '';
-    };
-  };
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "gnome-session";
