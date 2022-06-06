@@ -120,6 +120,18 @@
           ];
           specialArgs = { inherit inputs; };
         };
+        mithlond = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            home-manager.nixosModules.home-manager
+            agenix.nixosModules.age
+            self.nixosModules.channelAndRegistry
+            self.nixosModules.personalOverlays
+            ./me/secret-ssh-config.nix
+            ./machines/mithlond
+          ];
+          specialArgs = { inherit inputs; };
+        };
         imladris = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
