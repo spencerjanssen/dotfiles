@@ -147,6 +147,7 @@
       };
       hydraJobs = {
         ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
+        mithlond = self.lib.hydraJobsFromSystem self.nixosConfigurations.mithlond;
         work-hm = self.packages.x86_64-linux.work-hm;
         devShell = self.devShells.x86_64-linux.default;
       };
