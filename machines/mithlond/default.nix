@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./zrepl.nix
       ../../system/enable-flakes.nix
       ../../nixos/common/packages.nix
       ../../nixos/common/users.nix
