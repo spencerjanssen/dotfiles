@@ -6,4 +6,8 @@ in
 {
   "sjanssen-ssh-config.age".publicKeys = [ sjanssen ungoliant mithlond ];
   "hydra-github-token.age".publicKeys = [ sjanssen ungoliant ];
+  "zrepl-ungoliant.crt.age".publicKeys = [ sjanssen ungoliant mithlond ];
+  "zrepl-ungoliant.key.age".publicKeys = [ sjanssen ungoliant ];
+  "zrepl-mithlond.crt.age".publicKeys = [ sjanssen ungoliant mithlond ];
+  "zrepl-mithlond.key.age".publicKeys = [ sjanssen mithlond ];
 }

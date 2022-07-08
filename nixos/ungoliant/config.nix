@@ -154,13 +154,20 @@
 
   services.flatpak.enable = true;
 
+  age.secrets = {
+    zrepl-mithlond-crt.file = ../../secrets/zrepl-mithlond.crt.age;
+    zrepl-ungoliant-crt.file = ../../secrets/zrepl-ungoliant.crt.age;
+    zrepl-ungoliant-key.file = ../../secrets/zrepl-ungoliant.key.age;
+  };
   services.zrepl =
     let
       imladrisConnect = {
-        type = "local";
-        listener_name = "local-usb-listener";
-        client_identity = "ungoliant";
-        dial_timeout = "2s";
+        type = "tls";
+        address = "mithlond.lan:9341";
+        ca = config.age.secrets.zrepl-mithlond-crt.path;
+        cert = config.age.secrets.zrepl-ungoliant-crt.path;
+        key = config.age.secrets.zrepl-ungoliant-key.path;
+        server_cn = "mithlond";
       };
       snapshotPrefix = "zrepl_";
       prefixRegex = "^${snapshotPrefix}.*";
@@ -177,15 +184,6 @@
       enable = true;
       settings = {
         jobs = [
-          {
-            name = "usb-sink";
-            type = "sink";
-            root_fs = "iml-tank/backups";
-            serve = {
-              type = "local";
-              listener_name = "local-usb-listener";
-            };
-          }
           {
             name = "system-to-imladris";
             type = "push";
