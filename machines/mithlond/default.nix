@@ -27,7 +27,7 @@
     systemd.enable = true;
     systemd.emergencyAccess = true;
   };
-  i18n.defaultLocale = "en_US.utf8";
+  i18n.defaultLocale = "en_US.UTF-8";
   nix.settings.trusted-users = [ "@wheel" ];
   services.dbus.enable = true;
   services.timesyncd.enable = true;

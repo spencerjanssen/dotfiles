@@ -24,55 +24,57 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, hydra, ... }:
-    let forSystem = system: {
-      packages = {
-        work-hm = (home-manager.lib.homeManagerConfiguration {
-          inherit system;
-          configuration = {
-            imports = [
+    let
+      forSystem = system: {
+        packages = {
+          work-hm = (home-manager.lib.homeManagerConfiguration {
+            modules = [
               ./nixos/home-manager/general-shell.nix
               ./nixos/home-manager/zsh.nix
-            ];
-            home.sessionPath = [ "/home/sjanssen/.local/bin" ];
-            home.file.".ssh/config".text = ''
-              Include /home/sjanssen/.ssh/extra-config
-            '';
-            programs.zsh.profileExtra = ''
-              if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-                . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-              fi
-            '';
-          };
-          homeDirectory = "/home/sjanssen";
-          username = "sjanssen";
-          pkgs = nixpkgs.legacyPackages.${system};
-        }).activationPackage;
-      };
-      devShells.default =
-        nixpkgs.legacyPackages.${system}.mkShell {
-          buildInputs =
-            [
-              nixpkgs.legacyPackages.${system}.nixpkgs-fmt
-              nixpkgs.legacyPackages.${system}.treefmt
-              nixpkgs.legacyPackages.${system}.nodePackages.prettier
-              agenix.defaultPackage.${system}
-              (nixpkgs.legacyPackages.${system}.writeShellApplication {
-                name = "watch-check";
-                runtimeInputs = [
-                  nixpkgs.legacyPackages.${system}.entr
-                ];
-                text = ''
-                  while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
-                      echo file added or removed, restarting
-                      sleep 0.1s
-                  done
+              {
+                home = {
+                  file.".ssh/config".text = ''
+                    Include /home/sjanssen/.ssh/extra-config
+                  '';
+                  sessionPath = [ "/home/sjanssen/.local/bin" ];
+                  homeDirectory = "/home/sjanssen";
+                  username = "sjanssen";
+                };
+                programs.zsh.profileExtra = ''
+                  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+                    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+                  fi
                 '';
-              })
+              }
             ];
+            pkgs = nixpkgs.legacyPackages.${system};
+          }).activationPackage;
         };
-    };
+        devShells.default =
+          nixpkgs.legacyPackages.${system}.mkShell {
+            buildInputs =
+              [
+                nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+                nixpkgs.legacyPackages.${system}.treefmt
+                nixpkgs.legacyPackages.${system}.nodePackages.prettier
+                agenix.defaultPackage.${system}
+                (nixpkgs.legacyPackages.${system}.writeShellApplication {
+                  name = "watch-check";
+                  runtimeInputs = [
+                    nixpkgs.legacyPackages.${system}.entr
+                  ];
+                  text = ''
+                    while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
+                        echo file added or removed, restarting
+                        sleep 0.1s
+                    done
+                  '';
+                })
+              ];
+          };
+      };
     in
-    (flake-utils.lib.eachDefaultSystem forSystem)
+    (flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] forSystem)
     //
     {
       overlays = {
@@ -129,18 +131,6 @@
             self.nixosModules.personalOverlays
             ./me/secret-ssh-config.nix
             ./machines/mithlond
-          ];
-          specialArgs = { inherit inputs; };
-        };
-        imladris = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            home-manager.nixosModules.home-manager
-            self.nixosModules.channelAndRegistry
-            self.nixosModules.personalOverlays
-            ./nixos/imladris/configuration.nix
-            ./services/hydra-proxy.nix
-
           ];
           specialArgs = { inherit inputs; };
         };
