@@ -27,24 +27,25 @@
     let forSystem = system: {
       packages = {
         work-hm = (home-manager.lib.homeManagerConfiguration {
-          inherit system;
-          configuration = {
-            imports = [
-              ./nixos/home-manager/general-shell.nix
-              ./nixos/home-manager/zsh.nix
-            ];
-            home.sessionPath = [ "/home/sjanssen/.local/bin" ];
-            home.file.".ssh/config".text = ''
-              Include /home/sjanssen/.ssh/extra-config
-            '';
-            programs.zsh.profileExtra = ''
-              if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-                . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-              fi
-            '';
-          };
-          homeDirectory = "/home/sjanssen";
-          username = "sjanssen";
+          modules = [
+            ./nixos/home-manager/general-shell.nix
+            ./nixos/home-manager/zsh.nix
+            {
+              home = {
+                file.".ssh/config".text = ''
+                  Include /home/sjanssen/.ssh/extra-config
+                '';
+                sessionPath = [ "/home/sjanssen/.local/bin" ];
+                homeDirectory = "/home/sjanssen";
+                username = "sjanssen";
+              };
+              programs.zsh.profileExtra = ''
+                if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+                  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+                fi
+              '';
+            }
+          ];
           pkgs = nixpkgs.legacyPackages.${system};
         }).activationPackage;
       };

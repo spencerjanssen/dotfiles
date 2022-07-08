@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  home.stateVersion = "22.05";
+
   programs.ssh = {
     enable = true;
   };
