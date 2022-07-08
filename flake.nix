@@ -74,7 +74,7 @@
           };
       };
     in
-    (flake-utils.lib.eachDefaultSystem forSystem)
+    (flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] forSystem)
     //
     {
       overlays = {
@@ -131,18 +131,6 @@
             self.nixosModules.personalOverlays
             ./me/secret-ssh-config.nix
             ./machines/mithlond
-          ];
-          specialArgs = { inherit inputs; };
-        };
-        imladris = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            home-manager.nixosModules.home-manager
-            self.nixosModules.channelAndRegistry
-            self.nixosModules.personalOverlays
-            ./nixos/imladris/configuration.nix
-            ./services/hydra-proxy.nix
-
           ];
           specialArgs = { inherit inputs; };
         };
