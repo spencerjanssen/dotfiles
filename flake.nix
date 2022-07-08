@@ -24,54 +24,55 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, hydra, ... }:
-    let forSystem = system: {
-      packages = {
-        work-hm = (home-manager.lib.homeManagerConfiguration {
-          modules = [
-            ./nixos/home-manager/general-shell.nix
-            ./nixos/home-manager/zsh.nix
-            {
-              home = {
-                file.".ssh/config".text = ''
-                  Include /home/sjanssen/.ssh/extra-config
+    let
+      forSystem = system: {
+        packages = {
+          work-hm = (home-manager.lib.homeManagerConfiguration {
+            modules = [
+              ./nixos/home-manager/general-shell.nix
+              ./nixos/home-manager/zsh.nix
+              {
+                home = {
+                  file.".ssh/config".text = ''
+                    Include /home/sjanssen/.ssh/extra-config
+                  '';
+                  sessionPath = [ "/home/sjanssen/.local/bin" ];
+                  homeDirectory = "/home/sjanssen";
+                  username = "sjanssen";
+                };
+                programs.zsh.profileExtra = ''
+                  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+                    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+                  fi
                 '';
-                sessionPath = [ "/home/sjanssen/.local/bin" ];
-                homeDirectory = "/home/sjanssen";
-                username = "sjanssen";
-              };
-              programs.zsh.profileExtra = ''
-                if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-                  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-                fi
-              '';
-            }
-          ];
-          pkgs = nixpkgs.legacyPackages.${system};
-        }).activationPackage;
-      };
-      devShells.default =
-        nixpkgs.legacyPackages.${system}.mkShell {
-          buildInputs =
-            [
-              nixpkgs.legacyPackages.${system}.nixpkgs-fmt
-              nixpkgs.legacyPackages.${system}.treefmt
-              nixpkgs.legacyPackages.${system}.nodePackages.prettier
-              agenix.defaultPackage.${system}
-              (nixpkgs.legacyPackages.${system}.writeShellApplication {
-                name = "watch-check";
-                runtimeInputs = [
-                  nixpkgs.legacyPackages.${system}.entr
-                ];
-                text = ''
-                  while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
-                      echo file added or removed, restarting
-                      sleep 0.1s
-                  done
-                '';
-              })
+              }
             ];
+            pkgs = nixpkgs.legacyPackages.${system};
+          }).activationPackage;
         };
-    };
+        devShells.default =
+          nixpkgs.legacyPackages.${system}.mkShell {
+            buildInputs =
+              [
+                nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+                nixpkgs.legacyPackages.${system}.treefmt
+                nixpkgs.legacyPackages.${system}.nodePackages.prettier
+                agenix.defaultPackage.${system}
+                (nixpkgs.legacyPackages.${system}.writeShellApplication {
+                  name = "watch-check";
+                  runtimeInputs = [
+                    nixpkgs.legacyPackages.${system}.entr
+                  ];
+                  text = ''
+                    while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
+                        echo file added or removed, restarting
+                        sleep 0.1s
+                    done
+                  '';
+                })
+              ];
+          };
+      };
     in
     (flake-utils.lib.eachDefaultSystem forSystem)
     //
