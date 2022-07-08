@@ -51,9 +51,9 @@ main = xmonad . docks . ewmh $ defaultConfig
         ,((modm .|. shiftMask, xK_z     ), rescreen)
         ,((modm,               xK_b     ), sendMessage ToggleStruts)
         ,((modm .|. shiftMask, xK_l     ), spawn "systemctl suspend")
-        ,((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume PulseEffects_apps -5%")
-        ,((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume PulseEffects_apps +5%")
-        ,((0, xF86XK_AudioMute), spawn "pactl set-sink-mute PulseEffects_apps toggle")
+        ,((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume alsa_output.usb-SteelSeries_SteelSeries_Arctis_7-00.stereo-game -5%")
+        ,((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume alsa_output.usb-SteelSeries_SteelSeries_Arctis_7-00.stereo-game +5%")
+        ,((0, xF86XK_AudioMute), spawn "pactl set-sink-mute alsa_output.usb-SteelSeries_SteelSeries_Arctis_7-00.stereo-game toggle")
         ]
 
     myFont = "xft:Bitstream Vera Sans Mono:pixelsize=10"

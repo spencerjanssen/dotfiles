@@ -67,9 +67,6 @@
   services.screen-locker.enable = true;
   services.screen-locker.lockCmd = "${pkgs.i3lock}/bin/i3lock -n";
 
-  services.pulseeffects.enable = true;
-  services.pulseeffects.package = pkgs.pulseeffects-legacy;
-
   services.udiskie = {
     enable = true;
     notify = true;
