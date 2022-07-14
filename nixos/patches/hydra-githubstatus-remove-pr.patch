@@ -1,0 +1,13 @@
+diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
+index 3c5f5905..ea86a582 100644
+--- a/src/lib/Hydra/Plugin/GithubStatus.pm
++++ b/src/lib/Hydra/Plugin/GithubStatus.pm
+@@ -43,7 +43,7 @@ sub common {
+             next if !$finished && $build->finished == 1;
+ 
+             my $contextTrailer = $conf->{excludeBuildFromContext} ? "" : (":" . $build->id);
+-            my $github_job_name = $jobName =~ s/-pr-\d+//r;
++            my $github_job_name = $jobName =~ s/(-)?pr-\d+//r;
+             my $extendedContext = $conf->{context} // "continuous-integration/hydra:" . $jobName . $contextTrailer;
+             my $shortContext = $conf->{context} // "ci/hydra:" . $github_job_name . $contextTrailer;
+             my $context = $conf->{useShortContext} ? $shortContext : $extendedContext;
