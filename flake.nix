@@ -80,7 +80,7 @@
       overlays = {
         hydra-master = (final: prev: {
           hydra-master = hydra.defaultPackage.${final.stdenv.system}.overrideAttrs (old: {
-            patches = (old.patches or []) ++ [./nixos/patches/hydra-githubstatus-remove-pr.patch];
+            patches = (old.patches or [ ]) ++ [ ./nixos/patches/hydra-githubstatus-remove-pr.patch ];
           });
         });
       };
