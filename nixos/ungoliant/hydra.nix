@@ -13,6 +13,8 @@
       <githubstatus>
           jobs = (dotfiles:main|dotfiles-prs:pr-\d+):(ungoliant\.toplevel|mithlond\.toplevel|devShell|work-hm)
           inputs = declInput
+          excludeBuildFromContext = 1
+          useShortContext = 1
       </githubstatus>
     '';
   };
