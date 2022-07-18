@@ -10,6 +10,7 @@
       ../../nixos/common/packages.nix
       ../../nixos/common/users.nix
       ../../nixos/home-assistant-supervisor/module.nix
+      ../../services/hydra-proxy.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
