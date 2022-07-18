@@ -10,7 +10,9 @@ jobs:
     name: Update dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.FLAKE_UPDATE_SSH_KEY }}
       - uses: cachix/install-nix-action@v15
         with:
           extra_nix_config:

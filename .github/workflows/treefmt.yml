@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - flake-update
 
 jobs:
   check_formatting:
