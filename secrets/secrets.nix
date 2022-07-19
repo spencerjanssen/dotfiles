@@ -10,4 +10,5 @@ in
   "zrepl-ungoliant.key.age".publicKeys = [ sjanssen ungoliant ];
   "zrepl-mithlond.crt.age".publicKeys = [ sjanssen ungoliant mithlond ];
   "zrepl-mithlond.key.age".publicKeys = [ sjanssen mithlond ];
+  "nix-serve-mithlond.age".publicKeys = [ sjanssen mithlond ];
 }
