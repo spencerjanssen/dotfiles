@@ -7,6 +7,7 @@
     "nix-serve.ungoliant-1:nuNHK1FmW3xn0RkeJWHVcgFthS0RvyXC+yDAI22q0Hc="
     "nix-serve.imladris-1:6aBusOdd/hnxucLm1l2whlpf8gjvqtM604uCCG1CZ54="
     "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+    "mithlond.lan-1:dnJ/CK6UiqB9XwEC9k/Sigw06f7JTUCpfPuqTVfyLDw="
   ];
 
   # this prevents nix from garbage collecting build dependencies, especially
@@ -16,14 +17,16 @@
     gc-keep-derivations = true
   '';
 
-  nix.settings.substituters = [
-    "https://cache.nixos.org/"
-    "https://hydra.iohk.io"
-  ];
+  nix.settings.substituters =
+    (if config.networking.hostName != "mithlond" then [ "https://mithlond.lan:5000" ] else [ ])
+    ++
+    [
+      "https://cache.nixos.org/"
+      "https://hydra.iohk.io"
+    ];
   nix.settings.trusted-substituters = [
     "http://hydra.nixos.org/"
-    "http://ungoliant.lan:5000/"
-    "http://imladris.lan:5000/"
+    "http://mithlond.lan:5000"
   ];
 
   boot.cleanTmpDir = true;

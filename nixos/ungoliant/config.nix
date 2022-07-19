@@ -9,7 +9,6 @@
       ../common/packages.nix
       ../common/desktop.nix
       ../common/users.nix
-      ../common/nix-serve.nix
       ./hydra.nix
       ../../system/magic-sysrq.nix
       ../../system/enable-flakes.nix
