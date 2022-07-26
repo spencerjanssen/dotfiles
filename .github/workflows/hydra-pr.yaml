@@ -1,0 +1,12 @@
+name: Trigger Hydra Eval on PR
+on:
+  pull_request:
+    types: [opened, closed, reopened]
+jobs:
+  poke_hydra:
+    name: Trigger Hydra Eval
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call API
+        run: |
+          curl -X PUT "https://${{HYDRA_HOST}}/api/push?jobsets=dotfiles-prs:.jobsets"
