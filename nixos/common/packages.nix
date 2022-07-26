@@ -18,7 +18,7 @@
   '';
 
   nix.settings.substituters =
-    (if config.networking.hostName != "mithlond" then [ "https://mithlond.lan:5000" ] else [ ])
+    (if config.networking.hostName != "mithlond" then [ "http://mithlond.lan:5000" ] else [ ])
     ++
     [
       "https://cache.nixos.org/"
