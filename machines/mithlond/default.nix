@@ -60,4 +60,5 @@
     architecture = "amd64";
     machine = "generic-x86-64";
   };
+  services.tailscale.enable = true;
 }
