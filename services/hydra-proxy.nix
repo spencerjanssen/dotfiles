@@ -12,6 +12,9 @@
       locations."/api/push-github" = {
         proxyPass = "http://ungoliant.lan:9000";
       };
+      locations."/api/push" = {
+        proxyPass = "http://ungoliant.lan:9000";
+      };
     };
   };
 }
