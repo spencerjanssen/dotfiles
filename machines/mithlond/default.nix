@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./zrepl.nix
       ./auto-upgrade.nix
+      ./wireguard.nix
       ../../system/enable-flakes.nix
       ../../nixos/common/packages.nix
       ../../nixos/common/users.nix
