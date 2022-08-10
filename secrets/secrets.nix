@@ -5,11 +5,13 @@ let
 in
 {
   "sjanssen-ssh-config.age".publicKeys = [ sjanssen ungoliant mithlond ];
-  "hydra-github-token.age".publicKeys = [ sjanssen ungoliant ];
+  "hydra-github-token.age".publicKeys = [ sjanssen mithlond ];
   "zrepl-ungoliant.crt.age".publicKeys = [ sjanssen ungoliant mithlond ];
   "zrepl-ungoliant.key.age".publicKeys = [ sjanssen ungoliant ];
   "zrepl-mithlond.crt.age".publicKeys = [ sjanssen ungoliant mithlond ];
   "zrepl-mithlond.key.age".publicKeys = [ sjanssen mithlond ];
   "nix-serve-mithlond.age".publicKeys = [ sjanssen mithlond ];
   "wireguard-mithlond.age".publicKeys = [ sjanssen mithlond ];
+  "remote-builder-key.age".publicKeys = [ sjanssen mithlond ];
+  "hydra-git-private-key.age".publicKeys = [ sjanssen mithlond ];
 }

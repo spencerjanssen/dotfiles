@@ -10,10 +10,10 @@
       forceSSL = true;
       enableACME = true;
       locations."/api/push-github" = {
-        proxyPass = "http://ungoliant.lan:9000";
+        proxyPass = "http://mithlond.lan:9000";
       };
       locations."/api/push" = {
-        proxyPass = "http://ungoliant.lan:9000";
+        proxyPass = "http://mithlond.lan:9000";
       };
     };
   };
