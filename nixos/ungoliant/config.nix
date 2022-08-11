@@ -9,11 +9,11 @@
       ../common/packages.nix
       ../common/desktop.nix
       ../common/users.nix
-      ./hydra.nix
       ../../system/magic-sysrq.nix
       ../../system/enable-flakes.nix
       ../../hardware/acs.nix
       ../../hardware/moonlander.nix
+      ../../services/remote-builder.nix
     ];
 
   system.stateVersion = "21.11";
