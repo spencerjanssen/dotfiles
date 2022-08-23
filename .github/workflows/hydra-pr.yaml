@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Call API
         run: |
-          curl -X PUT "https://${{ secrets.HYDRA_HOST }}/api/push?jobsets=dotfiles-prs:.jobsets"
+          curl --retry 30 -X PUT "https://${{ secrets.HYDRA_HOST }}/api/push?jobsets=dotfiles-prs:.jobsets"
