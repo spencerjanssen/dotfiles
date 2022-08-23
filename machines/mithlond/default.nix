@@ -16,22 +16,28 @@
       ../../services/nix-serve.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    initrd = {
+      systemd.enable = true;
+      systemd.emergencyAccess = true;
+      secrets = {
+        "/keys/swap-luks" = null;
+        "/keys/mithlond-system" = null;
+        "/keys/mithlond-local" = null;
+        "/keys/mithlond-users" = null;
+      };
+    };
+    # we don't mount any filesystems from this pool, but zrepl does need it for backups
+    zfs.extraPools = [ "aman" ];
+  };
   networking.hostName = "mithlond";
   networking.hostId = "30ba7498";
   time.timeZone = "America/Chicago";
   system.stateVersion = "22.05";
-  boot.initrd.secrets = {
-    "/keys/swap-luks" = null;
-    "/keys/mithlond-system" = null;
-    "/keys/mithlond-local" = null;
-    "/keys/mithlond-users" = null;
-  };
-  boot.initrd = {
-    systemd.enable = true;
-    systemd.emergencyAccess = true;
-  };
   i18n.defaultLocale = "en_US.UTF-8";
   nix.settings.trusted-users = [ "@wheel" ];
   services.dbus.enable = true;
