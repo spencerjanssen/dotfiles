@@ -14,6 +14,7 @@
       ../../hardware/acs.nix
       ../../hardware/moonlander.nix
       ../../services/remote-builder.nix
+      ../../services/nix-gc.nix
     ];
 
   system.stateVersion = "21.11";
@@ -34,9 +35,6 @@
     secret-key-files = /root/ungoliant-1.secret
     experimental-features = nix-command flakes
   '';
-
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
 
   networking.hostName = "ungoliant"; # Define your hostname.
   networking.hostId = "9fd4ccb9";
