@@ -21,10 +21,15 @@
   # https://github.com/NixOS/hydra/issues/357
   nix.buildMachines = [
     {
+      hostName = "localhost";
+      systems = [ "i686-linux" "x86_64-linux" ];
+      maxJobs = 2;
+    }
+    {
       hostName = "ungoliant.lan";
       systems = [ "i686-linux" "x86_64-linux" ];
       maxJobs = 8;
-      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
+      mandatoryFeatures = [ "big-parallel" ];
       sshKey = config.age.secrets.remote-builder-key.path;
       sshUser = "remote-builder";
     }
