@@ -57,7 +57,7 @@
                 nixpkgs.legacyPackages.${system}.nixpkgs-fmt
                 nixpkgs.legacyPackages.${system}.treefmt
                 nixpkgs.legacyPackages.${system}.nodePackages.prettier
-                agenix.defaultPackage.${system}
+                agenix.packages.${system}.agenix
                 (nixpkgs.legacyPackages.${system}.writeShellApplication {
                   name = "watch-check";
                   runtimeInputs = [
