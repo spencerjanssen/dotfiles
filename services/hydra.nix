@@ -2,6 +2,7 @@
 {
   services.hydra = {
     enable = true;
+    package = pkgs.hydra_unstable;
     hydraURL = "http://mithlond.lan:9000";
     port = 9000;
     useSubstitutes = true;
