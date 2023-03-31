@@ -7,7 +7,6 @@
     useSubstitutes = true;
     notificationSender = "spencerjanssen@gmail.com";
     extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
-    package = pkgs.hydra-master;
     extraConfig = ''
       Include ${config.age.secrets.hydra-github-token.path}
       <githubstatus>

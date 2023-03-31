@@ -16,11 +16,6 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
-    hydra = {
-      # hydra isn't compatible with current nixos-unstable
-      url = "github:spencerjanssen/hydra/github-status-more-logging";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, hydra, ... }:
@@ -77,13 +72,7 @@
     (flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] forSystem)
     //
     {
-      overlays = {
-        hydra-master = (final: prev: {
-          hydra-master = hydra.defaultPackage.${final.stdenv.system}.overrideAttrs (old: {
-            patches = (old.patches or [ ]) ++ [ ./nixos/patches/hydra-githubstatus-remove-pr.patch ];
-          });
-        });
-      };
+      overlays = { };
       nixosModules = {
         channelAndRegistry = { ... }:
           {
