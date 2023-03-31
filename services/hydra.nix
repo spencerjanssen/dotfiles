@@ -7,7 +7,6 @@
     useSubstitutes = true;
     notificationSender = "spencerjanssen@gmail.com";
     extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
-    package = pkgs.hydra-master;
     extraConfig = ''
       Include ${config.age.secrets.hydra-github-token.path}
       <githubstatus>
@@ -21,12 +20,10 @@
   # https://github.com/NixOS/hydra/issues/357
   nix.buildMachines = [
     {
-      hostName = "ungoliant.lan";
-      systems = [ "i686-linux" "x86_64-linux" ];
-      maxJobs = 8;
+      hostName = "localhost";
+      systems = [ "x86_64-linux" ];
+      maxJobs = 2;
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
-      sshKey = config.age.secrets.remote-builder-key.path;
-      sshUser = "remote-builder";
     }
   ];
 

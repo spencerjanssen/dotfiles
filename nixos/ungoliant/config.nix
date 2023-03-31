@@ -11,7 +11,6 @@
       ../common/users.nix
       ../../system/magic-sysrq.nix
       ../../system/enable-flakes.nix
-      ../../hardware/acs.nix
       ../../hardware/moonlander.nix
       ../../services/remote-builder.nix
       ../../services/nix-gc.nix
@@ -49,7 +48,6 @@
     "amdgpu.dc=1"
     "kvm.ignore_msrs=1"
     "kvm.report_ignored_msrs=0"
-    "pcie_acs_override=downstream,multifunction"
   ];
 
   boot.extraModprobeConfig = ''
