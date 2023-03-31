@@ -72,7 +72,17 @@
     (flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] forSystem)
     //
     {
-      overlays = { };
+      overlays = {
+        patch-hydra = (final: prev: {
+          hydra_unstable = prev.hydra_unstable.overrideAttrs (old: {
+            patches = (old.patches or [ ]) ++ [
+              ./nixos/patches/hydra-githubstatus-remove-pr.patch
+              ./nixos/patches/hydra-mangle-github.patch
+            ];
+            doCheck = false;
+          });
+        });
+      };
       nixosModules = {
         channelAndRegistry = { ... }:
           {

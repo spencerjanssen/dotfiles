@@ -1,0 +1,21 @@
+diff --git a/src/lib/Hydra/Plugin/GithubStatus.pm b/src/lib/Hydra/Plugin/GithubStatus.pm
+index fe791533..3c5f5905 100644
+--- a/src/lib/Hydra/Plugin/GithubStatus.pm
++++ b/src/lib/Hydra/Plugin/GithubStatus.pm
+@@ -70,6 +70,7 @@ sub common {
+                     $seen{$input}->{$key} = 1;
+ 
+                     my $url = "https://api.github.com/repos/$owner/$repo/statuses/$rev";
++                    print STDERR $url;
+                     my $req = HTTP::Request->new('POST', $url);
+                     $req->header('Content-Type' => 'application/json');
+                     $req->header('Accept' => 'application/vnd.github.v3+json');
+@@ -97,7 +98,7 @@ sub common {
+                 if (defined $eval->flake) {
+                     my $fl = $eval->flake;
+                     print STDERR "Flake is $fl\n";
+-                    if ($eval->flake =~ m!github:([^/]+)/([^/]+)/([[:xdigit:]]{40})$! or $eval->flake =~ m!git\+ssh://git\@github.com/([^/]+)/([^/]+)\?.*rev=([[:xdigit:]]{40})$!) {
++                    if ($eval->flake =~ m!github:([^/]+)/([^/]+)/([[:xdigit:]]{40})$! or $eval->flake =~ m!git\+ssh://git\@github.com/([^/]+)/([^/]+).git\?.*rev=([[:xdigit:]]{40})$!) {
+                         $sendStatus->("src", $1, $2, $3);
+                     } else {
+                         print STDERR "Can't parse flake, skipping GitHub status update\n";
