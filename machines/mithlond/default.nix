@@ -41,8 +41,6 @@
   system.stateVersion = "22.05";
   i18n.defaultLocale = "en_US.UTF-8";
   nix.settings.trusted-users = [ "@wheel" ];
-  services.dbus.enable = true;
-  services.timesyncd.enable = true;
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -64,10 +62,15 @@
     extraOptions = "--storage-opt zfs.fsname=mithlond/local/docker";
   };
   users.users.sjanssen.extraGroups = [ "docker" ];
-  services.home-assistant-supervisor = {
-    enable = true;
-    architecture = "amd64";
-    machine = "generic-x86-64";
+  services = {
+    dbus.enable = true;
+    timesyncd.enable = true;
+    tailscale.enable = true;
+    iperf3.enable = true;
+    home-assistant-supervisor = {
+      enable = true;
+      architecture = "amd64";
+      machine = "generic-x86-64";
+    };
   };
-  services.tailscale.enable = true;
 }
