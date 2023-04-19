@@ -21,30 +21,6 @@
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, hydra, ... }:
     let
       forSystem = system: {
-        packages = {
-          work-hm = (home-manager.lib.homeManagerConfiguration {
-            modules = [
-              ./nixos/home-manager/general-shell.nix
-              ./nixos/home-manager/zsh.nix
-              {
-                home = {
-                  file.".ssh/config".text = ''
-                    Include /home/sjanssen/.ssh/extra-config
-                  '';
-                  sessionPath = [ "/home/sjanssen/.local/bin" ];
-                  homeDirectory = "/home/sjanssen";
-                  username = "sjanssen";
-                };
-                programs.zsh.profileExtra = ''
-                  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-                    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-                  fi
-                '';
-              }
-            ];
-            pkgs = nixpkgs.legacyPackages.${system};
-          }).activationPackage;
-        };
         devShells.default =
           nixpkgs.legacyPackages.${system}.mkShell {
             buildInputs =
@@ -84,23 +60,24 @@
         });
       };
       nixosModules = {
-        channelAndRegistry = { ... }:
+        channel = { ... }:
           {
-            nix = {
-              nixPath = [ "nixpkgs=${nixpkgs}" ];
-              registry = {
-                built-nixpkgs = {
-                  flake = nixpkgs;
-                };
-                built-dotfiles = {
-                  flake = self;
-                };
-                dotfiles = {
-                  to = {
-                    owner = "spencerjanssen";
-                    repo = "dotfiles";
-                    type = "github";
-                  };
+            nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+          };
+        registry = { ... }:
+          {
+            nix.registry = {
+              built-nixpkgs = {
+                flake = nixpkgs;
+              };
+              built-dotfiles = {
+                flake = self;
+              };
+              dotfiles = {
+                to = {
+                  owner = "spencerjanssen";
+                  repo = "dotfiles";
+                  type = "github";
                 };
               };
             };
@@ -116,7 +93,8 @@
           modules = [
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
-            self.nixosModules.channelAndRegistry
+            self.nixosModules.channel
+            self.nixosModules.registry
             self.nixosModules.personalOverlays
             ./me/secret-ssh-config.nix
             ./nixos/ungoliant/config.nix
@@ -128,7 +106,8 @@
           modules = [
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
-            self.nixosModules.channelAndRegistry
+            self.nixosModules.channel
+            self.nixosModules.registry
             self.nixosModules.personalOverlays
             ./me/secret-ssh-config.nix
             ./machines/mithlond
@@ -136,10 +115,34 @@
           specialArgs = { inherit inputs; };
         };
       };
+      homeConfigurations.work-hm = home-manager.lib.homeManagerConfiguration {
+        modules = [
+          ./nixos/home-manager/general-shell.nix
+          ./nixos/home-manager/zsh.nix
+          self.nixosModules.registry
+          self.nixosModules.personalOverlays
+          {
+            home = {
+              file.".ssh/config".text = ''
+                Include /home/sjanssen/.ssh/extra-config
+              '';
+              sessionPath = [ "/home/sjanssen/.local/bin" ];
+              homeDirectory = "/home/sjanssen";
+              username = "sjanssen";
+            };
+            programs.zsh.profileExtra = ''
+              if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+                . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+              fi
+            '';
+          }
+        ];
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      };
       hydraJobs = {
         ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
         mithlond = self.lib.hydraJobsFromSystem self.nixosConfigurations.mithlond;
-        work-hm = self.packages.x86_64-linux.work-hm;
+        work-hm = self.homeConfigurations.work-hm.activationPackage;
         devShell = self.devShells.x86_64-linux.default;
       };
       lib = {
