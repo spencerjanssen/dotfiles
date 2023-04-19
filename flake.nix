@@ -18,7 +18,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, hydra, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, ... }:
     let
       forSystem = system: {
         devShells.default =
@@ -28,6 +28,7 @@
                 nixpkgs.legacyPackages.${system}.nixpkgs-fmt
                 nixpkgs.legacyPackages.${system}.treefmt
                 nixpkgs.legacyPackages.${system}.nodePackages.prettier
+                nixpkgs.legacyPackages.${system}.nil
                 agenix.packages.${system}.agenix
                 (nixpkgs.legacyPackages.${system}.writeShellApplication {
                   name = "watch-check";
