@@ -55,6 +55,8 @@
       };
     };
   };
+  # for vscode-server:
+  programs.nix-ld.enable = true;
   virtualisation.docker = {
     autoPrune.enable = true;
     enable = true;
