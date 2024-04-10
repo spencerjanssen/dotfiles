@@ -1,5 +1,5 @@
 # just symlink this file to /etc/nixos/configuration.nix
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
