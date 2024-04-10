@@ -136,7 +136,7 @@
   environment.systemPackages = with pkgs; [
     qemu
     libvirt
-    virtmanager
+    virt-manager
     spice-gtk
     openconnect
     iptables

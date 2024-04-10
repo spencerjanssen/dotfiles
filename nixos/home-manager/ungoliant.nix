@@ -14,7 +14,6 @@
     };
   };
 
-  programs.broot.enable = true;
 
   programs.autorandr = {
     enable = true;
@@ -87,7 +86,6 @@
     win10-nvme-down
     lorri
     entr
-    teams
     zoom-us
     cascadia-code
     azuredatastudio
