@@ -25,6 +25,8 @@
       systems = [ "x86_64-linux" ];
       maxJobs = 2;
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
+      # special null protocol means build on localhost
+      protocol = null;
     }
   ];
 
