@@ -19,14 +19,22 @@
     '';
   };
   # https://github.com/NixOS/hydra/issues/357
-  nix.buildMachines = [
-    {
-      hostName = "localhost";
-      systems = [ "x86_64-linux" ];
-      maxJobs = 2;
-      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
-    }
-  ];
+  nix = {
+    # white list all of our flake deps because hydra uses restricted evaluation mode
+    extraOptions = ''
+      allowed-uris = github:numtide/flake-utils github:NixOS github:nixos github:spencerjanssen github:nix-community/home-manager github:ryantm/agenix github:nix-systems/default
+    '';
+    buildMachines = [
+      {
+        hostName = "localhost";
+        systems = [ "x86_64-linux" ];
+        maxJobs = 2;
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
+        # special null protocol means build on localhost
+        protocol = null;
+      }
+    ];
+  };
 
   users.groups.hydra-secrets.members = [
     "hydra-queue-runner"
