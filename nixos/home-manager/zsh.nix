@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
       enable = true;
-      custom = builtins.toPath (pkgs.callPackage ./oh-my-zsh-custom.nix { });
       plugins = [
         "git"
         "vi-mode"
