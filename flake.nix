@@ -9,46 +9,40 @@
     };
     agenix = {
       url = "github:ryantm/agenix";
+      inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, flake-utils, ... }:
-    let
-      forSystem = system: {
-        devShells.default =
-          nixpkgs.legacyPackages.${system}.mkShell {
-            buildInputs =
-              [
-                nixpkgs.legacyPackages.${system}.nixpkgs-fmt
-                nixpkgs.legacyPackages.${system}.treefmt
-                nixpkgs.legacyPackages.${system}.nodePackages.prettier
-                nixpkgs.legacyPackages.${system}.nil
-                agenix.packages.${system}.agenix
-                (nixpkgs.legacyPackages.${system}.writeShellApplication {
-                  name = "watch-check";
-                  runtimeInputs = [
-                    nixpkgs.legacyPackages.${system}.entr
-                  ];
-                  text = ''
-                    while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
-                        echo file added or removed, restarting
-                        sleep 0.1s
-                    done
-                  '';
-                })
-              ];
-          };
-      };
-    in
-    (flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] forSystem)
-    //
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ... }:
     {
+      devShells.x86_64-linux.default =
+        nixpkgs.legacyPackages.x86_64-linux.mkShell {
+          buildInputs =
+            [
+              nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt
+              nixpkgs.legacyPackages.x86_64-linux.treefmt
+              nixpkgs.legacyPackages.x86_64-linux.nodePackages.prettier
+              nixpkgs.legacyPackages.x86_64-linux.nil
+              agenix.packages.x86_64-linux.agenix
+              (nixpkgs.legacyPackages.x86_64-linux.writeShellApplication {
+                name = "watch-check";
+                runtimeInputs = [
+                  nixpkgs.legacyPackages.x86_64-linux.entr
+                ];
+                text = ''
+                  while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
+                      echo file added or removed, restarting
+                      sleep 0.1s
+                  done
+                '';
+              })
+            ];
+        };
       overlays = {
         patch-hydra = (final: prev: {
           hydra_unstable = prev.hydra_unstable.overrideAttrs (old: {
