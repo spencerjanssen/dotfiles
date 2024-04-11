@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
-      - uses: cachix/install-nix-action@5f45af07a1f451c75a4ce84e1514200195a1f279 # v15
+      - uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
       - run: |
           nix develop --command treefmt
       - uses: reviewdog/action-suggester@3d7fde6859623ad6174df5fd662677a0eb63310a # v1
