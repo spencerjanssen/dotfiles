@@ -12,13 +12,9 @@
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix }:
     {
       devShells.x86_64-linux.default =
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
