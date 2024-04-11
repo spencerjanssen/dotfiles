@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           ssh-key: ${{ secrets.FLAKE_UPDATE_SSH_KEY }}
-      - uses: cachix/install-nix-action@5f45af07a1f451c75a4ce84e1514200195a1f279 # v15
+      - uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
         with:
           extra_nix_config:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
