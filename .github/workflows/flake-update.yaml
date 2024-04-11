@@ -10,7 +10,7 @@ jobs:
     name: Update dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v3
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
           ssh-key: ${{ secrets.FLAKE_UPDATE_SSH_KEY }}
       - uses: cachix/install-nix-action@8887e596b4ee1134dae06b98d573bd674693f47c # v26
@@ -22,7 +22,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           nix flake update --commit-lock-file
-      - uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v3
+      - uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6.0.2
         name: Create PR
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
