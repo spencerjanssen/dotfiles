@@ -30,6 +30,12 @@
     {
       enable = true;
       settings = {
+        global = {
+          monitoring = [{
+            type = "prometheus";
+            listen = "127.0.0.1:9811";
+          }];
+        };
         jobs = [
           {
             name = "ungoliant-sink";

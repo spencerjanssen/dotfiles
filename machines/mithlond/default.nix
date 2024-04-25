@@ -15,6 +15,8 @@
       ../../services/hydra-proxy.nix
       ../../services/nix-serve.nix
       ../../services/nix-gc.nix
+      ../../services/grafana.nix
+      ../../services/prometheus.nix
     ];
 
   boot = {
