@@ -117,7 +117,7 @@
               file.".ssh/config".text = ''
                 Include /home/sjanssen/.ssh/extra-config
               '';
-              sessionPath = [ "/home/sjanssen/.local/bin" ];
+              sessionPath = [ "/home/sjanssen/.local/bin" "/home/sjanssen/.ghcup/bin" ];
               homeDirectory = "/home/sjanssen";
               username = "sjanssen";
             };
