@@ -10,6 +10,12 @@
     extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
     extraConfig = ''
       Include ${config.age.secrets.hydra-github-token.path}
+      <hydra_notify>
+        <prometheus>
+          listen_address = 127.0.0.1
+          port = 9199
+        </prometheus>
+      </hydra_notify>
       <githubstatus>
           jobs = (dotfiles:main|dotfiles-prs:pr-\d+):(ungoliant\.toplevel|mithlond\.toplevel|devShell|work-hm)
           inputs = declInput
