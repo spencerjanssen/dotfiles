@@ -28,7 +28,7 @@
   nix = {
     # white list all of our flake deps because hydra uses restricted evaluation mode
     extraOptions = ''
-      allowed-uris = github:numtide/flake-utils github:NixOS github:nixos github:spencerjanssen github:nix-community/home-manager github:ryantm/agenix github:nix-systems/default
+      allowed-uris = github:numtide/flake-utils github:NixOS github:nixos github:spencerjanssen github:nix-community/home-manager github:ryantm/agenix github:nix-systems/default https://api.flakehub.com/f/pinned/AshleyYakeley/NixVirt
     '';
     buildMachines = [
       {

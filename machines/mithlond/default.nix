@@ -10,7 +10,6 @@
       ../../system/enable-flakes.nix
       ../../nixos/common/packages.nix
       ../../nixos/common/users.nix
-      ../../nixos/home-assistant-supervisor/module.nix
       ../../services/hydra.nix
       ../../services/hydra-proxy.nix
       ../../services/nix-serve.nix
@@ -37,8 +36,40 @@
     # we don't mount any filesystems from this pool, but zrepl does need it for backups
     # zfs.extraPools = [ "aman" ];
   };
-  networking.hostName = "mithlond";
-  networking.hostId = "30ba7498";
+  networking = {
+    hostName = "mithlond";
+    hostId = "30ba7498";
+  };
+  systemd.network = {
+    enable = true;
+    netdevs = {
+      "20-br0" = {
+        netdevConfig = {
+          Kind = "bridge";
+          Name = "br0";
+          MACAddress = "7c:83:34:b1:c2:d1";
+        };
+      };
+    };
+    networks = {
+      "30-enp2s0" = {
+        matchConfig.Name = "enp2s0";
+        networkConfig.Bridge = "br0";
+        linkConfig.RequiredForOnline = "enslaved";
+      };
+      "40-br0" = {
+        matchConfig.Name = "br0";
+        bridgeConfig = { };
+        networkConfig = {
+          DHCP = true;
+        };
+        linkConfig = {
+          RequiredForOnline = "routable";
+        };
+      };
+    };
+  };
+
   time.timeZone = "America/Chicago";
   system.stateVersion = "22.05";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -65,16 +96,16 @@
     storageDriver = "zfs";
     extraOptions = "--storage-opt zfs.fsname=mithlond/local/docker";
   };
+  virtualisation.libvirtd = {
+    allowedBridges = [ "br0" ];
+  };
+  programs.virt-manager.enable = true;
   users.users.sjanssen.extraGroups = [ "docker" ];
   services = {
     dbus.enable = true;
     timesyncd.enable = true;
     tailscale.enable = true;
     iperf3.enable = true;
-    home-assistant-supervisor = {
-      enable = true;
-      architecture = "amd64";
-      machine = "generic-x86-64";
-    };
+    home-assistant-os.enable = true;
   };
 }

@@ -12,9 +12,13 @@
       inputs.home-manager.follows = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    NixVirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt }:
     {
       devShells.x86_64-linux.default =
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
@@ -77,6 +81,7 @@
           {
             nixpkgs.overlays = nixpkgs.lib.attrValues self.outputs.overlays;
           };
+        home-assistant-os = ./nixos/home-assistant-os/module.nix;
       };
       nixosConfigurations = {
         ungoliant = nixpkgs.lib.nixosSystem {
@@ -97,9 +102,11 @@
           modules = [
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
+            NixVirt.nixosModules.default
             self.nixosModules.channel
             self.nixosModules.registry
             self.nixosModules.personalOverlays
+            self.nixosModules.home-assistant-os
             ./me/secret-ssh-config.nix
             ./machines/mithlond
           ];
