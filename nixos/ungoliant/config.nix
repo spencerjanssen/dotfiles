@@ -138,8 +138,6 @@
     libvirt
     virt-manager
     spice-gtk
-    openconnect
-    iptables
     flatpak
     cryptsetup
     zfs
@@ -304,14 +302,9 @@
 
   services.fwupd.enable = true;
 
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "gnome-session";
-
   hardware.bluetooth.enable = true;
 
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
-
-  programs.wireshark.enable = true;
 
   services.resolved.enable = true;
 

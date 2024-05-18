@@ -50,15 +50,11 @@
 
   programs.zsh.shellAliases.autorandr = "autorandr --skip-options=gamma";
 
-  services.lorri.enable = true;
-
   home.packages = with pkgs; [
     nodejs
     vscode
     discord
     remmina
-    stack
-    haskellPackages.ghcid
     google-chrome
     networkmanagerapplet
     gnome.gnome-disk-utility
@@ -70,12 +66,9 @@
     evince
     mplayer
     scrot
-    dropbox
     firefox
     libreoffice
-    nodejs
     xorg.xmodmap
-    cabal2nix
     gdb
     looking-glass-client
     ddcutil
@@ -84,11 +77,9 @@
     win10-nvme-up
     win10-nvme-sleep
     win10-nvme-down
-    lorri
     entr
     zoom-us
     cascadia-code
-    azuredatastudio
     gnomeExtensions.material-shell
     jq
 
@@ -98,7 +89,6 @@
       self.cabal-install
     ]))
 
-    (pkgs.callPackage ../netextender { })
   ];
 
 }

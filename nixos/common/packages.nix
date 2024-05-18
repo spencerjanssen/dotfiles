@@ -6,7 +6,6 @@
     "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
     "nix-serve.ungoliant-1:nuNHK1FmW3xn0RkeJWHVcgFthS0RvyXC+yDAI22q0Hc="
     "nix-serve.imladris-1:6aBusOdd/hnxucLm1l2whlpf8gjvqtM604uCCG1CZ54="
-    "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
     "mithlond.lan-1:dnJ/CK6UiqB9XwEC9k/Sigw06f7JTUCpfPuqTVfyLDw="
   ];
 
@@ -22,7 +21,6 @@
     ++
     [
       "https://cache.nixos.org/"
-      "https://hydra.iohk.io"
     ];
   nix.settings.trusted-substituters = [
     "http://hydra.nixos.org/"
