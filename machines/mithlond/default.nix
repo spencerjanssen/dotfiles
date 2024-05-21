@@ -98,6 +98,7 @@
   };
   virtualisation.libvirtd = {
     allowedBridges = [ "br0" ];
+    onShutdown = "shutdown";
   };
   programs.virt-manager.enable = true;
   users.users.sjanssen.extraGroups = [ "docker" ];
