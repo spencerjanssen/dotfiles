@@ -19,8 +19,12 @@
     ];
 
   boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
     };
     initrd = {
@@ -109,4 +113,5 @@
     iperf3.enable = true;
     home-assistant-os.enable = true;
   };
+  environment.systemPackages = [ pkgs.sbctl ];
 }

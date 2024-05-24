@@ -16,9 +16,13 @@
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote }:
     {
       devShells.x86_64-linux.default =
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
@@ -103,6 +107,7 @@
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
             NixVirt.nixosModules.default
+            lanzaboote.nixosModules.lanzaboote
             self.nixosModules.channel
             self.nixosModules.registry
             self.nixosModules.personalOverlays
