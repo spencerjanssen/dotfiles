@@ -17,7 +17,7 @@
         </prometheus>
       </hydra_notify>
       <githubstatus>
-          jobs = (dotfiles:main|dotfiles-prs:pr-\d+):(ungoliant\.toplevel|mithlond\.toplevel|devShell|work-hm)
+          jobs = (dotfiles:main|dotfiles-prs:pr-\d+):(ungoliant\.toplevel|mithlond\.toplevel|devShell-aarch64-linux|devShell-x86_64-linux|work-hm)
           inputs = declInput
           excludeBuildFromContext = 1
           useShortContext = 1
@@ -33,7 +33,7 @@
     buildMachines = [
       {
         hostName = "localhost";
-        systems = [ "x86_64-linux" ];
+        systems = [ "x86_64-linux" "aarch64-linux" ];
         maxJobs = 2;
         supportedFeatures = [ "kvm" "nixos-test" "big-parallel" ];
         # special null protocol means build on localhost
@@ -74,4 +74,6 @@
       "ungoliant.lan".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMXquDD6OGlNFizceJpUetHPqfL3MmGtvqlGvOjtnqbR";
     };
   };
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
