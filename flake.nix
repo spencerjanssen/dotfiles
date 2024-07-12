@@ -150,7 +150,8 @@
         ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
         mithlond = self.lib.hydraJobsFromSystem self.nixosConfigurations.mithlond;
         work-hm = self.homeConfigurations.work-hm.activationPackage;
-        devShell = self.devShells.x86_64-linux.default;
+        devShell-aarch64-linux = self.devShells.aarch64-linux.default;
+        devShell-x86_64-linux = self.devShells.x86_64-linux.default;
       };
       lib = {
         allSystemPackages = system: builtins.listToAttrs (map (p: { name = (builtins.parseDrvName p.name).name; value = p; }) system.config.environment.systemPackages);
