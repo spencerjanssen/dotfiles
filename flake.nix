@@ -23,20 +23,20 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote }:
-    {
-      devShells.x86_64-linux.default =
-        nixpkgs.legacyPackages.x86_64-linux.mkShell {
+    let
+      mkDevShell = system:
+        nixpkgs.legacyPackages.${system}.mkShell {
           buildInputs =
             [
-              nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt
-              nixpkgs.legacyPackages.x86_64-linux.treefmt
-              nixpkgs.legacyPackages.x86_64-linux.nodePackages.prettier
-              nixpkgs.legacyPackages.x86_64-linux.nil
-              agenix.packages.x86_64-linux.agenix
-              (nixpkgs.legacyPackages.x86_64-linux.writeShellApplication {
+              nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+              nixpkgs.legacyPackages.${system}.treefmt
+              nixpkgs.legacyPackages.${system}.nodePackages.prettier
+              nixpkgs.legacyPackages.${system}.nil
+              agenix.packages.${system}.agenix
+              (nixpkgs.legacyPackages.${system}.writeShellApplication {
                 name = "watch-check";
                 runtimeInputs = [
-                  nixpkgs.legacyPackages.x86_64-linux.entr
+                  nixpkgs.legacyPackages.${system}.entr
                 ];
                 text = ''
                   while git ls-files | entr -d -c sh -c 'nix flake check' ; [ $? -eq 2 ]; do
@@ -47,6 +47,10 @@
               })
             ];
         };
+    in
+    {
+      devShells.aarch64-linux.default = mkDevShell "aarch64-linux";
+      devShells.x86_64-linux.default = mkDevShell "x86_64-linux";
       overlays = {
         patch-hydra = (final: prev: {
           hydra_unstable = prev.hydra_unstable.overrideAttrs (old: {
