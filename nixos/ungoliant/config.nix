@@ -348,4 +348,6 @@
       };
     };
   };
+  # for vscode-server:
+  programs.nix-ld.enable = true;
 }
