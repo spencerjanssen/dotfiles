@@ -7,8 +7,6 @@
   services.udisks2.enable = true;
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = true;
-
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.desktopManager.gnome.enable = true;

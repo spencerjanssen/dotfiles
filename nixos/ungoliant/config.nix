@@ -304,8 +304,6 @@
 
   hardware.bluetooth.enable = true;
 
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-
   services.resolved.enable = true;
 
   services.samba = {
