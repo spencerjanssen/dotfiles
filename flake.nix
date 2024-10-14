@@ -63,19 +63,20 @@
         });
       };
       nixosModules = {
-        channel = { ... }:
+        # used for home-manager configurations, on NixOS prefer nixpkgs.flake.setNixPath:
+        nixpkgsFromFlake = { ... }:
           {
-            nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+            nix = {
+              nixPath = [ "nixpkgs=${nixpkgs}" ];
+              registry = {
+                nixpkgs.flake = nixpkgs;
+              };
+            };
           };
+        # for either NixOS or home-manager configurations:
         registry = { ... }:
           {
             nix.registry = {
-              built-nixpkgs = {
-                flake = nixpkgs;
-              };
-              built-dotfiles = {
-                flake = self;
-              };
               dotfiles = {
                 to = {
                   owner = "spencerjanssen";
@@ -97,7 +98,6 @@
           modules = [
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
-            self.nixosModules.channel
             self.nixosModules.registry
             self.nixosModules.personalOverlays
             ./me/secret-ssh-config.nix
@@ -112,7 +112,6 @@
             agenix.nixosModules.age
             NixVirt.nixosModules.default
             lanzaboote.nixosModules.lanzaboote
-            self.nixosModules.channel
             self.nixosModules.registry
             self.nixosModules.personalOverlays
             self.nixosModules.home-assistant-os
@@ -126,6 +125,7 @@
         modules = [
           ./nixos/home-manager/general-shell.nix
           ./nixos/home-manager/zsh.nix
+          self.nixosModules.nixpkgsFromFlake
           self.nixosModules.registry
           self.nixosModules.personalOverlays
           {
