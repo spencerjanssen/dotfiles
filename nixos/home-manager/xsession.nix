@@ -23,7 +23,7 @@
       enable = true;
       defaultCursor = "left_ptr";
     };
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
     size = 24;
   };

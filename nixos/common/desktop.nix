@@ -8,16 +8,16 @@
   services.printing.enable = true;
 
   services.xserver.enable = true;
-  services.xserver.layout = "us";
+  services.xserver.xkb.layout = "us";
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = false;
-  services.xserver.displayManager.defaultSession = "gnome";
+  services.displayManager.defaultSession = "gnome";
 
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       corefonts
       inconsolata
       ttf_bitstream_vera
@@ -29,7 +29,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome.gnome-settings-daemon
+    gnome-settings-daemon
     gsettings-desktop-schemas
   ];
 }

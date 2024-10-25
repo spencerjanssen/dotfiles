@@ -57,11 +57,11 @@
     remmina
     google-chrome
     networkmanagerapplet
-    gnome.gnome-disk-utility
-    gnome.gnome-terminal
-    gnome.nautilus
-    gnome.gnome-session
-    gnome.gnome-tweaks
+    gnome-disk-utility
+    gnome-terminal
+    nautilus
+    gnome-session
+    gnome-tweaks
     pavucontrol
     evince
     mplayer
@@ -73,7 +73,7 @@
     looking-glass-client
     ddcutil
     hicolor-icon-theme
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     win10-nvme-up
     win10-nvme-sleep
     win10-nvme-down
