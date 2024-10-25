@@ -27,7 +27,7 @@
     "http://mithlond.lan:5000"
   ];
 
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   security.sudo.wheelNeedsPassword = false;
 

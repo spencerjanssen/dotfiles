@@ -308,7 +308,7 @@
 
   services.samba = {
     enable = true;
-    shares = {
+    settings = {
       blue = {
         browseable = "yes";
         comment = "Bulk storage";
