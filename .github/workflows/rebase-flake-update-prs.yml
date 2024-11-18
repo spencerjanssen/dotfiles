@@ -1,0 +1,40 @@
+name: Rebase Flake Update PRs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  rebase_flake_update_prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.FLAKE_UPDATE_SSH_KEY }}
+
+      - name: Set up Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Set GH_TOKEN environment variable
+        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Find open PRs with flake-update branch
+        id: find_prs
+        run: |
+          prs=$(gh pr list --state open --base main --json number,headRefName --jq '.[] | select(.headRefName == "flake-update") | .number')
+          echo "::set-output name=prs::$prs"
+
+      - name: Rebase flake-update branch onto main
+        if: steps.find_prs.outputs.prs != ''
+        run: |
+          for pr in $(echo ${{ steps.find_prs.outputs.prs }}); do
+            git fetch origin pull/$pr/head:pr-$pr
+            git checkout pr-$pr
+            git rebase origin/main
+            git push --force-with-lease origin pr-$pr:flake-update
+          done
