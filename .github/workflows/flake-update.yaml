@@ -25,8 +25,15 @@ jobs:
           git config user.email github-actions@github.com
           nix flake update --commit-lock-file
       - uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
+        id: create-pr
         name: Create PR
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: flake-update
           title: Automated flake update
+      - name: Set auto merge
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
+        run: |
+          gh pr merge --merge --auto ${{ steps.create-pr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
