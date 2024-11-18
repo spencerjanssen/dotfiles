@@ -80,7 +80,6 @@
     entr
     zoom-us
     cascadia-code
-    gnomeExtensions.material-shell
     jq
 
     (pkgs.haskellPackages.ghcWithPackages (self: [
