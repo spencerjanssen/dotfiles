@@ -100,8 +100,8 @@
             agenix.nixosModules.age
             self.nixosModules.registry
             self.nixosModules.personalOverlays
-            ./me/secret-ssh-config.nix
-            ./nixos/ungoliant/config.nix
+            ./nixos/me/secret-ssh-config.nix
+            ./nixos/machines/ungoliant/config.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -115,16 +115,16 @@
             self.nixosModules.registry
             self.nixosModules.personalOverlays
             self.nixosModules.home-assistant-os
-            ./me/secret-ssh-config.nix
-            ./machines/mithlond
+            ./nixos/me/secret-ssh-config.nix
+            ./nixos/machines/mithlond
           ];
           specialArgs = { inherit inputs; };
         };
       };
       homeConfigurations.work-hm = home-manager.lib.homeManagerConfiguration {
         modules = [
-          ./nixos/home-manager/general-shell.nix
-          ./nixos/home-manager/zsh.nix
+          ./home-manager/modules/general-shell.nix
+          ./home-manager/modules/zsh.nix
           self.nixosModules.nixpkgsFromFlake
           self.nixosModules.registry
           self.nixosModules.personalOverlays

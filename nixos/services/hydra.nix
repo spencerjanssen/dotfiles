@@ -50,18 +50,18 @@
 
   age.secrets = {
     hydra-github-token = {
-      file = ../secrets/hydra-github-token.age;
+      file = ../../secrets/hydra-github-token.age;
       group = "hydra-secrets";
       mode = "0440";
     };
     remote-builder-key =
       {
-        file = ../secrets/remote-builder-key.age;
+        file = ../../secrets/remote-builder-key.age;
         group = "hydra-secrets";
         mode = "0440";
       };
     hydra-git-private-key = {
-      file = ../secrets/hydra-git-private-key.age;
+      file = ../../secrets/hydra-git-private-key.age;
       group = "hydra-secrets";
       mode = "0440";
       path = "/var/lib/hydra/.ssh/id_ed25519";

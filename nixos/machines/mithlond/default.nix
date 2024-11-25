@@ -8,8 +8,8 @@
       ./auto-upgrade.nix
       ./wireguard.nix
       ../../system/enable-flakes.nix
-      ../../nixos/common/packages.nix
-      ../../nixos/common/users.nix
+      ../../common/packages.nix
+      ../../common/users.nix
       ../../services/hydra.nix
       ../../services/hydra-proxy.nix
       ../../services/nix-serve.nix
@@ -84,10 +84,10 @@
     users = {
       sjanssen = {
         imports = [
-          ../../nixos/home-manager/allow-unfree.nix
-          ../../nixos/home-manager/general-shell.nix
-          ../../nixos/home-manager/git-username.nix
-          ../../nixos/home-manager/zsh.nix
+          ../../../home-manager/modules/allow-unfree.nix
+          ../../../home-manager/modules/general-shell.nix
+          ../../../home-manager/modules/git-username.nix
+          ../../../home-manager/modules/zsh.nix
         ];
       };
     };
