@@ -24,5 +24,38 @@
     gh = {
       enable = true;
     };
+    git = {
+      enable = true;
+      userName = "Spencer Janssen";
+      extraConfig = {
+        user = {
+          useConfigOnly = true;
+        };
+        pull = {
+          ff = "only";
+        };
+        push = {
+          autoSetupRemote = true;
+        };
+      };
+      includes = [
+        {
+          condition = "hasconfig:remote.*.url:https://github.com/MasterWordServices/**";
+          contents = {
+            user = {
+              email = "sjanssen@masterword.com";
+            };
+          };
+        }
+        {
+          condition = "hasconfig:remote.*.url:https://github.com/spencerjanssen/**";
+          contents = {
+            user = {
+              email = "spencerjanssen@gmail.com";
+            };
+          };
+        }
+      ];
+    };
   };
 }
