@@ -109,7 +109,11 @@
   services = {
     dbus.enable = true;
     timesyncd.enable = true;
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+      extraUpFlags = [ "--advertise-exit-node" ];
+    };
     iperf3.enable = true;
     home-assistant-os.enable = true;
   };
