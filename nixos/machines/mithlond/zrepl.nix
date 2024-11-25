@@ -4,9 +4,9 @@
     pkgs.zrepl
   ];
   age.secrets = {
-    zrepl-mithlond-crt.file = ../../secrets/zrepl-mithlond.crt.age;
-    zrepl-mithlond-key.file = ../../secrets/zrepl-mithlond.key.age;
-    zrepl-ungoliant-crt.file = ../../secrets/zrepl-ungoliant.crt.age;
+    zrepl-mithlond-crt.file = ../../../secrets/zrepl-mithlond.crt.age;
+    zrepl-mithlond-key.file = ../../../secrets/zrepl-mithlond.key.age;
+    zrepl-ungoliant-crt.file = ../../../secrets/zrepl-ungoliant.crt.age;
   };
   services.zrepl =
     let

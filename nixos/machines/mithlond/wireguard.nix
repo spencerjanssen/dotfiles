@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 {
-  age.secrets.wireguard-mithlond.file = ../../secrets/wireguard-mithlond.age;
+  age.secrets.wireguard-mithlond.file = ../../../secrets/wireguard-mithlond.age;
   networking.nat = {
     enable = true;
     externalInterface = "enp2s0";

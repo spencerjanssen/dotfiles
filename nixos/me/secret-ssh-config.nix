@@ -2,7 +2,7 @@
 {
   age.secrets.sjanssen-ssh-config = {
     owner = "sjanssen";
-    file = ../secrets/sjanssen-ssh-config.age;
+    file = ../../secrets/sjanssen-ssh-config.age;
   };
 
   # can't use programs.ssh.extraConfig because that config is made part of the "Host *" stanza

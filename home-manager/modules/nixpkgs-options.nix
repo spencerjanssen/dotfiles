@@ -2,6 +2,6 @@
 {
   nixpkgs = {
     config = import ./config.nix;
-    overlays = import ../common/overlays.nix;
+    overlays = import ../../nixos/common/overlays.nix;
   };
 }

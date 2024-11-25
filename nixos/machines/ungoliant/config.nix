@@ -6,9 +6,9 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common/packages.nix
-      ../common/desktop.nix
-      ../common/users.nix
+      ../../common/packages.nix
+      ../../common/desktop.nix
+      ../../common/users.nix
       ../../system/magic-sysrq.nix
       ../../system/enable-flakes.nix
       ../../hardware/moonlander.nix
@@ -40,7 +40,7 @@
 
   time.timeZone = "US/Central";
 
-  nixpkgs.overlays = import ../common/overlays.nix;
+  nixpkgs.overlays = import ../../common/overlays.nix;
 
   boot.kernelParams = [
     "amd_iommu=on"
@@ -148,9 +148,9 @@
   services.flatpak.enable = true;
 
   age.secrets = {
-    zrepl-mithlond-crt.file = ../../secrets/zrepl-mithlond.crt.age;
-    zrepl-ungoliant-crt.file = ../../secrets/zrepl-ungoliant.crt.age;
-    zrepl-ungoliant-key.file = ../../secrets/zrepl-ungoliant.key.age;
+    zrepl-mithlond-crt.file = ../../../secrets/zrepl-mithlond.crt.age;
+    zrepl-ungoliant-crt.file = ../../../secrets/zrepl-ungoliant.crt.age;
+    zrepl-ungoliant-key.file = ../../../secrets/zrepl-ungoliant.key.age;
   };
   services.zrepl =
     let
@@ -335,13 +335,13 @@
     users = {
       sjanssen = {
         imports = [
-          ../home-manager/ungoliant.nix
-          ../home-manager/allow-unfree.nix
-          ../home-manager/general-shell.nix
-          ../home-manager/git-username.nix
-          ../home-manager/xsession.nix
-          ../home-manager/zsh.nix
-          ../home-manager/sign-commits.nix
+          ../../../home-manager/homes/ungoliant.nix
+          ../../../home-manager/modules/allow-unfree.nix
+          ../../../home-manager/modules/general-shell.nix
+          ../../../home-manager/modules/git-username.nix
+          ../../../home-manager/modules/xsession.nix
+          ../../../home-manager/modules/zsh.nix
+          ../../../home-manager/modules/sign-commits.nix
         ];
       };
     };
