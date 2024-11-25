@@ -133,7 +133,7 @@
               file.".ssh/config".text = ''
                 Include /home/sjanssen/.ssh/extra-config
               '';
-              sessionPath = [ "/home/sjanssen/.local/bin" "/home/sjanssen/.ghcup/bin" ];
+              sessionPath = [ "$HOME/.local/bin" "$HOME/.ghcup/bin" ];
               homeDirectory = "/home/sjanssen";
               username = "sjanssen";
             };
