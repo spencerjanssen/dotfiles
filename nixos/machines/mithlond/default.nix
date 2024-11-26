@@ -38,7 +38,14 @@
       };
     };
     # we don't mount any filesystems from this pool, but zrepl does need it for backups
-    # zfs.extraPools = [ "aman" ];
+    zfs = {
+      extraPools = [ "aman" ];
+      requestEncryptionCredentials = [
+        "mithlond/local"
+        "mithlond/system"
+        "mithlond/users"
+      ];
+    };
   };
   networking = {
     hostName = "mithlond";
