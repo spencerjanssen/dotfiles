@@ -11,7 +11,7 @@
     file.".ssh/config".text = ''
       Include /home/sjanssen/.ssh/extra-config
     '';
-    sessionPath = [ "$HOME/.local/bin" "$HOME/.ghcup/bin" ];
+    sessionPath = [ "$HOME/.local/bin" "$HOME/.ghcup/bin" "$HOME/.dotnet/tools" ];
     homeDirectory = "/home/sjanssen";
     username = "sjanssen";
   };
