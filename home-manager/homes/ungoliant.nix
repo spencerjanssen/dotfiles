@@ -70,7 +70,6 @@
     libreoffice
     xorg.xmodmap
     gdb
-    looking-glass-client
     ddcutil
     hicolor-icon-theme
     adwaita-icon-theme
