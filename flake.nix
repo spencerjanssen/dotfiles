@@ -121,6 +121,11 @@
           specialArgs = { inherit inputs; };
         };
       };
+      homeConfigurations.samwise = home-manager.lib.homeManagerConfiguration {
+        modules = [ ./home-manager/homes/samwise.nix ];
+        pkgs = nixpkgs.legacyPackages."aarch64-linux";
+        extraSpecialArgs = { dotfiles = self; };
+      };
       homeConfigurations.work-hm = home-manager.lib.homeManagerConfiguration {
         modules = [ ./home-manager/homes/work.nix ];
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
@@ -129,6 +134,7 @@
       hydraJobs = {
         ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
         mithlond = self.lib.hydraJobsFromSystem self.nixosConfigurations.mithlond;
+        samwise = self.homeConfigurations.samwise.activationPackage;
         work-hm = self.homeConfigurations.work-hm.activationPackage;
         devShell-aarch64-linux = self.devShells.aarch64-linux.default;
         devShell-x86_64-linux = self.devShells.x86_64-linux.default;
