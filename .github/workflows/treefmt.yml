@@ -16,7 +16,7 @@ jobs:
       - uses: cachix/install-nix-action@3715ab1a11cac9e991980d7b4a28d80c7ebdd8f9 # v27
       - run: |
           nix develop --command treefmt
-      - uses: reviewdog/action-suggester@db4abb16fbaabe386831e5addb7be1485d0d63d3 # v1
+      - uses: reviewdog/action-suggester@a3026c6020837c23b61a79d12db223a00df19e6a # v1
         with:
           tool_name: treefmt
           level: warning
