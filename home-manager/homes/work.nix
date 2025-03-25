@@ -15,6 +15,13 @@
     homeDirectory = "/home/sjanssen";
     username = "sjanssen";
   };
+  nix = {
+    gc = {
+      automatic = true;
+      frequency = "daily";
+      options = "--delete-older-than 5d";
+    };
+  };
   programs = {
     zsh.profileExtra = ''
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
