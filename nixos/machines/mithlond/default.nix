@@ -16,6 +16,7 @@
       ../../services/nix-gc.nix
       ../../services/grafana.nix
       ../../services/prometheus.nix
+      ../../services/github-runner.nix
     ];
 
   boot = {
