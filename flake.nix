@@ -132,19 +132,22 @@
         extraSpecialArgs = { dotfiles = self; };
       };
       hydraJobs = {
-        ungoliant = self.lib.hydraJobsFromSystem self.nixosConfigurations.ungoliant;
-        mithlond = self.lib.hydraJobsFromSystem self.nixosConfigurations.mithlond;
+        ungoliant.toplevel = self.nixosConfigurations.ungoliant.config.system.build.toplevel;
+        mithlond.toplevel = self.nixosConfigurations.mithlond.config.system.build.toplevel;
         samwise = self.homeConfigurations.samwise.activationPackage;
         work-hm = self.homeConfigurations.work-hm.activationPackage;
         devShell-aarch64-linux = self.devShells.aarch64-linux.default;
         devShell-x86_64-linux = self.devShells.x86_64-linux.default;
       };
-      lib = {
-        allSystemPackages = system: builtins.listToAttrs (map (p: { name = (builtins.parseDrvName p.name).name; value = p; }) system.config.environment.systemPackages);
-        hydraJobsFromSystem = system: {
-          toplevel = system.config.system.build.toplevel;
-          kernel = system.config.system.build.kernel;
-        } // self.lib.allSystemPackages system;
+      checks = {
+        x86_64-linux = {
+          inherit (self.hydraJobs) work-hm devShell-x86_64-linux;
+          ungoliant = self.hydraJobs.ungoliant.toplevel;
+          mithlond = self.hydraJobs.mithlond.toplevel;
+        };
+        aarch64-linux = {
+          inherit (self.hydraJobs) samwise devShell-aarch64-linux;
+        };
       };
     };
 }
