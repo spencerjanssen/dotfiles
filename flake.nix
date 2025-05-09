@@ -51,17 +51,7 @@
     {
       devShells.aarch64-linux.default = mkDevShell "aarch64-linux";
       devShells.x86_64-linux.default = mkDevShell "x86_64-linux";
-      overlays = {
-        patch-hydra = (final: prev: {
-          hydra_unstable = prev.hydra_unstable.overrideAttrs (old: {
-            patches = (old.patches or [ ]) ++ [
-              ./nixos/patches/hydra-githubstatus-remove-pr.patch
-              ./nixos/patches/hydra-mangle-github.patch
-            ];
-            doCheck = false;
-          });
-        });
-      };
+      overlays = { };
       nixosModules = {
         # used for home-manager configurations, on NixOS prefer nixpkgs.flake.setNixPath:
         nixpkgsFromFlake = { ... }:

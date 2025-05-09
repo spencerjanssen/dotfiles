@@ -10,8 +10,6 @@
       ../../system/enable-flakes.nix
       ../../common/packages.nix
       ../../common/users.nix
-      ../../services/hydra.nix
-      ../../services/hydra-proxy.nix
       ../../services/nix-serve.nix
       ../../services/nix-gc.nix
       ../../services/grafana.nix
