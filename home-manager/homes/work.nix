@@ -3,6 +3,7 @@
   imports = [
     ../modules/general-shell.nix
     ../modules/zsh.nix
+    ../modules/allow-unfree.nix
     dotfiles.nixosModules.nixpkgsFromFlake
     dotfiles.nixosModules.registry
     dotfiles.nixosModules.personalOverlays
@@ -11,7 +12,12 @@
     file.".ssh/config".text = ''
       Include /home/sjanssen/.ssh/extra-config
     '';
-    sessionPath = [ "$HOME/.local/bin" "$HOME/.ghcup/bin" "$HOME/.dotnet/tools" ];
+    sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/.ghcup/bin"
+      "$HOME/.dotnet/tools"
+      "$HOME/.cabal/bin"
+    ];
     homeDirectory = "/home/sjanssen";
     username = "sjanssen";
   };
