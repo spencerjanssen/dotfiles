@@ -27,9 +27,13 @@
   home.file.".haskeline".text = "editMode: Vi";
   home.file.".inputrc".text = "set editing-mode vi";
 
-  programs.mcfly = {
+  programs.atuin = {
     enable = true;
     enableZshIntegration = true;
-    keyScheme = "vim";
+    flags = [ "--disable-up-arrow" ];
+    settings = {
+      keymap_mode = "auto";
+      filter_mode = "directory";
+    };
   };
 }
