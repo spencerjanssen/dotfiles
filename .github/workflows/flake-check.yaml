@@ -15,3 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - run: nix flake check --print-build-logs --keep-going --all-systems .
+      - name: Trigger upgrade
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        run: systemctl start --wait nixos-upgrade.service
