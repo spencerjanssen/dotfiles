@@ -50,6 +50,9 @@
         push = {
           autoSetupRemote = true;
         };
+        branch = {
+          autoSetupMerge = "simple";
+        };
       };
       includes = [
         {
