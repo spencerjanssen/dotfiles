@@ -13,5 +13,5 @@ in
   "nix-serve-mithlond.age".publicKeys = [ sjanssen mithlond ];
   "wireguard-mithlond.age".publicKeys = [ sjanssen mithlond ];
   "remote-builder-key.age".publicKeys = [ sjanssen mithlond ];
-  "dotfiles-builder-github-token.age".publicKeys = [ sjanssen mithlond ];
+  "dotfiles-builder-github-token.age".publicKeys = [ sjanssen sjanssen-mithlond mithlond ];
 }
