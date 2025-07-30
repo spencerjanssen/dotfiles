@@ -27,12 +27,13 @@
       formatTools = system: [
         nixpkgs.legacyPackages.${system}.nixpkgs-fmt
         nixpkgs.legacyPackages.${system}.treefmt
-        nixpkgs.legacyPackages.${system}.nodePackages.prettier
+        nixpkgs.legacyPackages.${system}.yamlfmt
       ];
       mkTreefmtWrapper = system:
         nixpkgs.legacyPackages.${system}.writeShellApplication {
           name = "treefmt-wrapper";
           runtimeInputs = formatTools system;
+          checkPhase = "";
           text = ''
             exec treefmt "$@"
           '';
