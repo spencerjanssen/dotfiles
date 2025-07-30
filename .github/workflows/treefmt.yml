@@ -20,5 +20,5 @@ jobs:
         with:
           tool_name: treefmt
           level: warning
-          fail_on_error: true
+          fail_level: any
           filter_mode: nofilter
