@@ -19,7 +19,7 @@
     polkit.addRule(function(action, subject) {
       if (
         action.id == "org.freedesktop.systemd1.manage-units" &&
-        action.lookup("unit") == "nixos-upgrade.timer" &&
+        (action.lookup("unit") == "nixos-upgrade.timer" || action.lookup("unit") == "nixos-upgrade.service") &&
         subject.isInGroup("dotfiles-builder")
       ) {
         return polkit.Result.YES;
