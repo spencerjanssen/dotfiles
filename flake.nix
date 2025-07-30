@@ -24,13 +24,24 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote }:
     let
+      formatTools = system: [
+        nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+        nixpkgs.legacyPackages.${system}.treefmt
+        nixpkgs.legacyPackages.${system}.nodePackages.prettier
+      ];
+      mkTreefmtWrapper = system:
+        nixpkgs.legacyPackages.${system}.writeShellApplication {
+          name = "treefmt-wrapper";
+          runtimeInputs = formatTools system;
+          text = ''
+            exec treefmt "$@"
+          '';
+        };
       mkDevShell = system:
         nixpkgs.legacyPackages.${system}.mkShell {
           buildInputs =
+            formatTools system ++
             [
-              nixpkgs.legacyPackages.${system}.nixpkgs-fmt
-              nixpkgs.legacyPackages.${system}.treefmt
-              nixpkgs.legacyPackages.${system}.nodePackages.prettier
               nixpkgs.legacyPackages.${system}.nil
               agenix.packages.${system}.agenix
               (nixpkgs.legacyPackages.${system}.writeShellApplication {
@@ -51,6 +62,7 @@
     {
       devShells.aarch64-linux.default = mkDevShell "aarch64-linux";
       devShells.x86_64-linux.default = mkDevShell "x86_64-linux";
+      packages.x86_64-linux.treefmt-wrapper = mkTreefmtWrapper "x86_64-linux";
       overlays = { };
       nixosModules = {
         # used for home-manager configurations, on NixOS prefer nixpkgs.flake.setNixPath:
