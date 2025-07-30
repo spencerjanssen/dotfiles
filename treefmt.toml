@@ -7,9 +7,9 @@ excludes = [
     "nixos/imladris/*.nix"
 ]
 
-[formatter.prettier]
-command = "prettier"
-options = ["--write"]
+[formatter.yamlfmt]
+command = "yamlfmt"
+options = []
 includes = [
     "*.yml",
     "*.yaml"
