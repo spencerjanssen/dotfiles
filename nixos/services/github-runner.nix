@@ -26,5 +26,26 @@
       }
     });
   '';
+  
+  # Allow dotfiles-builder group to run systemctl commands via sudo
+  security.sudo.extraRules = [
+    {
+      groups = [ "dotfiles-builder" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/systemctl start nixos-upgrade.service";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl start --wait nixos-upgrade.service";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/etc/nixos/dotfiles/nixos/scripts/trigger-upgrade.sh";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }
 
