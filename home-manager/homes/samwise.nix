@@ -10,6 +10,7 @@
   home = {
     homeDirectory = "/home/sjanssen";
     username = "sjanssen";
+    sessionPath = [ "$HOME/.ghcup/bin" ];
   };
   programs = {
     zsh.profileExtra = ''
