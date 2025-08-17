@@ -204,11 +204,11 @@
     },
     "nixpkgs-github-runner-node24": {
       "locked": {
-        "lastModified": 1755407419,
-        "narHash": "sha256-1jHZaHhOasTosPttap1z8VAjmtJ4KjLlTaU43Y6GjgA=",
+        "lastModified": 1755431833,
+        "narHash": "sha256-Ug9a1Rwn4gbCLb0Q5ZBfw5AAVq/aUMNGtGzO8Ukd4WQ=",
         "owner": "spencerjanssen",
         "repo": "nixpkgs",
-        "rev": "999cb1d4fed25c377238135cfaebc2dd203537da",
+        "rev": "b0a59d9e629d24c4550ecab50399d3add4a5b962",
         "type": "github"
       },
       "original": {
