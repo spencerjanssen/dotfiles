@@ -202,6 +202,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-github-runner-node24": {
+      "locked": {
+        "lastModified": 1755405147,
+        "narHash": "sha256-7dPWH1zQt3n/Os5C3vcfol65RjJiMb85em9l1uTywYI=",
+        "owner": "spencerjanssen",
+        "repo": "nixpkgs",
+        "rev": "f963444f1598789e3541a50632e3b323faa8231e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "spencerjanssen",
+        "ref": "github-runner-node24",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -251,7 +267,8 @@
         "agenix": "agenix",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-github-runner-node24": "nixpkgs-github-runner-node24"
       }
     },
     "rust-overlay": {
