@@ -128,27 +128,29 @@
           specialArgs = { inherit inputs; };
         };
       };
-      homeConfigurations.samwise = home-manager.lib.homeManagerConfiguration {
-        modules = [ ./home-manager/homes/samwise.nix ];
-        pkgs = nixpkgs.legacyPackages."aarch64-linux";
-        extraSpecialArgs = { dotfiles = self; };
-      };
-      homeConfigurations.work-hm = home-manager.lib.homeManagerConfiguration {
-        modules = [ ./home-manager/homes/work.nix ];
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        extraSpecialArgs = { dotfiles = self; };
+      homeConfigurations = {
+        "sjanssen@samwise" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./home-manager/homes/samwise.nix ];
+          pkgs = nixpkgs.legacyPackages."aarch64-linux";
+          extraSpecialArgs = { dotfiles = self; };
+        };
+        "sjanssen@MW-LT-0069" = home-manager.lib.homeManagerConfiguration {
+          modules = [ ./home-manager/homes/work.nix ];
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { dotfiles = self; };
+        };
       };
       hydraJobs = {
         ungoliant.toplevel = self.nixosConfigurations.ungoliant.config.system.build.toplevel;
         mithlond.toplevel = self.nixosConfigurations.mithlond.config.system.build.toplevel;
-        samwise = self.homeConfigurations.samwise.activationPackage;
-        work-hm = self.homeConfigurations.work-hm.activationPackage;
+        samwise = self.homeConfigurations."sjanssen@samwise".activationPackage;
+        MW-LT-0069 = self.homeConfigurations."sjanssen@MW-LT-0069".activationPackage;
         devShell-aarch64-linux = self.devShells.aarch64-linux.default;
         devShell-x86_64-linux = self.devShells.x86_64-linux.default;
       };
       checks = {
         x86_64-linux = {
-          inherit (self.hydraJobs) work-hm devShell-x86_64-linux;
+          inherit (self.hydraJobs) MW-LT-0069 devShell-x86_64-linux;
           ungoliant = self.hydraJobs.ungoliant.toplevel;
           mithlond = self.hydraJobs.mithlond.toplevel;
         };
