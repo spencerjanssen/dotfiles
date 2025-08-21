@@ -45,6 +45,7 @@
             formatTools system ++
             [
               nixpkgs.legacyPackages.${system}.nil
+              nixpkgs.legacyPackages.${system}.nh
               agenix.packages.${system}.agenix
               (nixpkgs.legacyPackages.${system}.writeShellApplication {
                 name = "watch-check";
