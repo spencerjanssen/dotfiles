@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-github-runner-node24.url = "github:spencerjanssen/nixpkgs/github-runner-node24";
+    nixpkgs-github-runner-node24.url = "github:NixOS/nixpkgs/61308fbb163ae7045c9b3004a0d067822984df33";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
