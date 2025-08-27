@@ -4,6 +4,16 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = {
+        controlMaster = "auto";
+        controlPersist = "5m";
+        controlPath = "~/.ssh/control-%C";
+        forwardAgent = false;
+        identitiesOnly = true;
+      };
+    };
   };
 
   programs.direnv = {
