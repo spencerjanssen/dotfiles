@@ -21,9 +21,13 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixGL = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote, nixpkgs-github-runner-node24 }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote, nixpkgs-github-runner-node24, nixGL }:
     let
       formatTools = system: [
         nixpkgs.legacyPackages.${system}.nixpkgs-fmt

@@ -5,6 +5,7 @@
     ../modules/zsh.nix
     ../modules/allow-unfree.nix
     ../modules/nh.nix
+    ../modules/nixgl.nix
     dotfiles.nixosModules.nixpkgsFromFlake
     dotfiles.nixosModules.registry
     dotfiles.nixosModules.personalOverlays
