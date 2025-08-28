@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-github-runner-node24.url = "github:NixOS/nixpkgs/61308fbb163ae7045c9b3004a0d067822984df33";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +26,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote, nixpkgs-github-runner-node24, nixGL }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote, nixGL }:
     let
       formatTools = system: [
         nixpkgs.legacyPackages.${system}.nixpkgs-fmt
@@ -126,9 +125,6 @@
             self.nixosModules.home-assistant-os
             ./nixos/me/secret-ssh-config.nix
             ./nixos/machines/mithlond
-            {
-              services.github-runners.dotfiles-builder.package = nixpkgs-github-runner-node24.legacyPackages."x86_64-linux".github-runner;
-            }
           ];
           specialArgs = { inherit inputs; };
         };
