@@ -6,6 +6,7 @@
     ../modules/allow-unfree.nix
     ../modules/nh.nix
     ../modules/nixgl.nix
+    ../modules/cache.nix
     dotfiles.nixosModules.nixpkgsFromFlake
     dotfiles.nixosModules.registry
     dotfiles.nixosModules.personalOverlays
