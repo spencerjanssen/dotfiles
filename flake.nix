@@ -106,6 +106,7 @@
           modules = [
             home-manager.nixosModules.home-manager
             agenix.nixosModules.age
+            lanzaboote.nixosModules.lanzaboote
             self.nixosModules.registry
             self.nixosModules.personalOverlays
             ./nixos/me/secret-ssh-config.nix

@@ -1,5 +1,5 @@
 # just symlink this file to /etc/nixos/configuration.nix
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -18,7 +18,11 @@
 
   system.stateVersion = "21.11";
 
-  boot.loader.systemd-boot.enable = true;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.timeout = 30;
 
   boot = {
@@ -142,6 +146,7 @@
     cryptsetup
     zfs
     zrepl
+    sbctl
   ];
   environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17 ];
 
