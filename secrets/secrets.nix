@@ -10,7 +10,7 @@ in
   "zrepl-ungoliant.key.age".publicKeys = [ sjanssen ungoliant ];
   "zrepl-mithlond.crt.age".publicKeys = [ sjanssen ungoliant mithlond ];
   "zrepl-mithlond.key.age".publicKeys = [ sjanssen mithlond ];
-  "nix-serve-mithlond.age".publicKeys = [ sjanssen mithlond ];
+  "nix-serve-mithlond.age".publicKeys = [ sjanssen sjanssen-mithlond mithlond ];
   "wireguard-mithlond.age".publicKeys = [ sjanssen mithlond ];
   "remote-builder-key.age".publicKeys = [ sjanssen mithlond ];
   "dotfiles-builder-github-token.age".publicKeys = [ sjanssen sjanssen-mithlond mithlond ];

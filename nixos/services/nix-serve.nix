@@ -1,13 +1,11 @@
 { config, ... }:
 
 {
-  services.nix-serve = {
+  services.harmonia = {
     enable = true;
-    secretKeyFile = config.age.secrets.nix-serve.path;
+    signKeyPaths = [ config.age.secrets.harmonia.path ];
   };
-  age.secrets.nix-serve = {
+  age.secrets.harmonia = {
     file = ../../secrets/nix-serve-${config.networking.hostName}.age;
-    owner = "nix-serve";
-    group = "nix-serve";
   };
 }
