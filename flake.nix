@@ -28,6 +28,7 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, agenix, NixVirt, lanzaboote, nixGL }:
     let
+      lib = nixpkgs.lib;
       formatTools = system: [
         nixpkgs.legacyPackages.${system}.nixpkgs-fmt
         nixpkgs.legacyPackages.${system}.treefmt
@@ -96,12 +97,12 @@
           };
         personalOverlays = { ... }:
           {
-            nixpkgs.overlays = nixpkgs.lib.attrValues self.outputs.overlays;
+            nixpkgs.overlays = lib.attrValues self.outputs.overlays;
           };
         home-assistant-os = ./nixos/home-assistant-os/module.nix;
       };
       nixosConfigurations = {
-        ungoliant = nixpkgs.lib.nixosSystem {
+        ungoliant = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             home-manager.nixosModules.home-manager
@@ -114,7 +115,7 @@
           ];
           specialArgs = { inherit inputs; };
         };
-        mithlond = nixpkgs.lib.nixosSystem {
+        mithlond = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             home-manager.nixosModules.home-manager
@@ -142,23 +143,23 @@
           extraSpecialArgs = { dotfiles = self; };
         };
       };
-      hydraJobs = {
-        ungoliant.toplevel = self.nixosConfigurations.ungoliant.config.system.build.toplevel;
-        mithlond.toplevel = self.nixosConfigurations.mithlond.config.system.build.toplevel;
-        samwise = self.homeConfigurations."sjanssen@samwise".activationPackage;
-        MW-LT-0069 = self.homeConfigurations."sjanssen@MW-LT-0069".activationPackage;
-        devShell-aarch64-linux = self.devShells.aarch64-linux.default;
-        devShell-x86_64-linux = self.devShells.x86_64-linux.default;
-      };
-      checks = {
-        x86_64-linux = {
-          inherit (self.hydraJobs) MW-LT-0069 devShell-x86_64-linux;
-          ungoliant = self.hydraJobs.ungoliant.toplevel;
-          mithlond = self.hydraJobs.mithlond.toplevel;
-        };
-        aarch64-linux = {
-          inherit (self.hydraJobs) samwise devShell-aarch64-linux;
-        };
-      };
+      checks =
+        let
+          foldRecursiveUpdate = lib.foldl' lib.attrsets.recursiveUpdate { };
+          mkSystemCheck = name: config: {
+            ${config.config.nixpkgs.system}.${name} = config.config.system.build.toplevel;
+          };
+          mkHomeCheck = name: config: {
+            ${config.pkgs.system}.${name} = config.activationPackage;
+          };
+          mapAttrValues = f: lib.mapAttrs (_name: value: f value);
+          mapAttrName = f: lib.mapAttrs' (name: value: { name = f name; value = value; });
+        in
+        foldRecursiveUpdate [
+          (foldRecursiveUpdate (lib.mapAttrsToList mkSystemCheck self.nixosConfigurations))
+          (foldRecursiveUpdate (lib.mapAttrsToList mkHomeCheck self.homeConfigurations))
+          (mapAttrValues (mapAttrName (name: "devShell-${name}")) self.devShells)
+          (mapAttrValues (mapAttrName (name: "package-${name}")) self.packages)
+        ];
     };
 }
