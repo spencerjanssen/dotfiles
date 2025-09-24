@@ -1,11 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   nix.settings.trusted-public-keys = [
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-    "ungoliant-1:SVpigbAekoSnOExbVYT0pQvKWofIRv0Te4ouazLb/BU="
-    "nix-serve.ungoliant-1:nuNHK1FmW3xn0RkeJWHVcgFthS0RvyXC+yDAI22q0Hc="
-    "nix-serve.imladris-1:6aBusOdd/hnxucLm1l2whlpf8gjvqtM604uCCG1CZ54="
     "mithlond.lan-1:dnJ/CK6UiqB9XwEC9k/Sigw06f7JTUCpfPuqTVfyLDw="
   ];
 
@@ -16,16 +13,8 @@
     gc-keep-derivations = true
   '';
 
-  nix.settings.substituters =
-    (if config.networking.hostName != "mithlond" then [ "http://mithlond.lan:5000" ] else [ ])
-    ++
-    [
-      "https://cache.nixos.org/"
-    ];
-  nix.settings.trusted-substituters = [
-    "http://hydra.nixos.org/"
-    "http://mithlond.lan:5000"
-  ];
+  nix.settings.substituters = lib.modules.mkOverride 0 [ "http://mithlond.lan:8501" ];
+  nix.settings.trusted-substituters = [ "https://cache.nixos.org" ];
 
   boot.tmp.cleanOnBoot = true;
 

@@ -11,6 +11,7 @@
       ../../common/packages.nix
       ../../common/users.nix
       ../../services/nix-serve.nix
+      ../../services/ncps.nix
       ../../services/nix-gc.nix
       ../../services/grafana.nix
       ../../services/prometheus.nix
