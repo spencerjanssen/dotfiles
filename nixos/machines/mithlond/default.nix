@@ -121,4 +121,6 @@
     home-assistant-os.enable = true;
   };
   environment.systemPackages = [ pkgs.sbctl ];
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
