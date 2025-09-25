@@ -13,7 +13,7 @@
       ../../system/enable-flakes.nix
       ../../hardware/moonlander.nix
       ../../services/remote-builder.nix
-      ../../services/nix-gc.nix
+      ../../common/nh.nix
     ];
 
   system.stateVersion = "21.11";
