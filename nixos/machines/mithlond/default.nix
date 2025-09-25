@@ -12,7 +12,7 @@
       ../../common/users.nix
       ../../services/nix-serve.nix
       ../../services/ncps.nix
-      ../../services/nix-gc.nix
+      ../../common/nh.nix
       ../../services/grafana.nix
       ../../services/prometheus.nix
       ../../services/github-runner.nix
