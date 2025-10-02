@@ -1,4 +1,4 @@
-{ dotfiles, ... }:
+{ dotfiles, pkgs, ... }:
 {
   imports = [
     ../modules/general-shell.nix
@@ -40,6 +40,7 @@
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
+      extensions = [ pkgs.gh-actions-cache ];
     };
     git = {
       enable = true;
