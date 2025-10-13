@@ -11,7 +11,6 @@
         "cabal"
         "screen"
       ];
-      theme = "robbyrussell";
     };
 
     shellAliases = {
@@ -20,6 +19,14 @@
     sessionVariables = {
       EDITOR = "vim";
       COMPLETION_WAITING_DOTS = "true";
+    };
+  };
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      time = { disabled = false; };
+      direnv = { disabled = false; };
     };
   };
 }
