@@ -44,6 +44,8 @@
     settings = {
       keymap_mode = "auto";
       filter_mode = "directory";
+      inline_height = "0";
+      style = "full";
     };
   };
 }
