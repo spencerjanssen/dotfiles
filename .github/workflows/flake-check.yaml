@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - flake-update
+permissions: {}
 jobs:
   check:
     name: Check flake
