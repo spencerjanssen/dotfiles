@@ -32,9 +32,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: flake-update
           title: Automated flake update
-      - name: Set auto merge
-        if: ${{ steps.create-pr.outputs.pull-request-number }}
-        run: |
-          gh pr merge --merge --auto ${{ steps.create-pr.outputs.pull-request-number }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
