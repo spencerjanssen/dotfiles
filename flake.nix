@@ -154,12 +154,24 @@
           };
           mapAttrValues = f: lib.mapAttrs (_name: value: f value);
           mapAttrName = f: lib.mapAttrs' (name: value: { name = f name; value = value; });
+          systemsAndHomes = foldRecursiveUpdate (
+            (lib.mapAttrsToList mkSystemCheck self.nixosConfigurations)
+            ++
+            (lib.mapAttrsToList mkHomeCheck self.homeConfigurations)
+          );
         in
         foldRecursiveUpdate [
-          (foldRecursiveUpdate (lib.mapAttrsToList mkSystemCheck self.nixosConfigurations))
-          (foldRecursiveUpdate (lib.mapAttrsToList mkHomeCheck self.homeConfigurations))
           (mapAttrValues (mapAttrName (name: "devShell-${name}")) self.devShells)
           (mapAttrValues (mapAttrName (name: "package-${name}")) self.packages)
-        ];
+          (lib.mapAttrs
+            (system: sh: {
+              all-systems-and-homes =
+                nixpkgs.legacyPackages.${system}.linkFarm
+                  "systems-and-homes-${system}"
+                  sh;
+            })
+            systemsAndHomes)
+        ]
+      ;
     };
 }
