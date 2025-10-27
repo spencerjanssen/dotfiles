@@ -44,9 +44,9 @@
     };
     git = {
       enable = true;
-      userName = "Spencer Janssen";
-      extraConfig = {
+      settings = {
         user = {
+          name = "Spencer Janssen";
           useConfigOnly = true;
         };
         pull = {

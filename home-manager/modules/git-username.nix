@@ -2,9 +2,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "Spencer Janssen";
-    userEmail = "spencerjanssen@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Spencer Janssen";
+        email = "spencerjanssen@gmail.com";
+      };
       color = {
         ui = "auto";
       };
