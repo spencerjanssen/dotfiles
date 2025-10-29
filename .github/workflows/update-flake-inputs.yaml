@@ -21,7 +21,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
       - uses: cachix/install-nix-action@fd24c48048070c1be9acd18c9d369a83f0fe94d7 # v31.8.1
       - name: Update flake inputs
-        uses: mic92/update-flake-inputs@48e061c1942183b43a5f13ce83ab4ac97d790c56
+        uses: mic92/update-flake-inputs@d4fc9ee80758a38fbc30cfba46392d4b0b239323
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           auto-merge: 'true'
