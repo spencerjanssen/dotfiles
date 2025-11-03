@@ -54,7 +54,6 @@
     nodejs
     vscode
     discord
-    remmina
     google-chrome
     networkmanagerapplet
     gnome-disk-utility
@@ -66,8 +65,6 @@
     evince
     mplayer
     scrot
-    firefox
-    libreoffice
     xorg.xmodmap
     gdb
     ddcutil
@@ -77,7 +74,6 @@
     win10-nvme-sleep
     win10-nvme-down
     entr
-    zoom-us
     cascadia-code
     jq
 
