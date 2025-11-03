@@ -42,7 +42,7 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    vimHugeX
+    vim-full
     git
     zsh
     psmisc
