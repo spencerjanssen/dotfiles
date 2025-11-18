@@ -63,7 +63,6 @@
     gnome-tweaks
     pavucontrol
     evince
-    mplayer
     scrot
     xorg.xmodmap
     gdb
