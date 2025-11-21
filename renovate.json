@@ -5,5 +5,8 @@
   ],
   "nix": {
     "enabled": true
-  }
+  },
+  "internalChecksFilter": "strict",
+  "prCreation": "not-pending",
+  "minimumReleaseAge": "7 days"
 }
