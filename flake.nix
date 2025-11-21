@@ -171,6 +171,17 @@
                   sh;
             })
             systemsAndHomes)
+          {
+
+            x86_64-linux.validate-renovate-config = nixpkgs.legacyPackages.x86_64-linux.runCommand "validate-renovate-config"
+              {
+                buildInputs = [ nixpkgs.legacyPackages.x86_64-linux.renovate ];
+              }
+              ''
+                mkdir -p $out
+                renovate-config-validator ${./renovate.json}
+              '';
+          }
         ]
       ;
     };
