@@ -10,6 +10,7 @@
     dotfiles.nixosModules.registry
     dotfiles.nixosModules.personalOverlays
   ];
+  targets.genericLinux.enable = true;
   home = {
     homeDirectory = "/home/sjanssen";
     username = "sjanssen";
