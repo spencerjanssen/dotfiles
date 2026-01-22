@@ -1,7 +1,9 @@
 { dotfiles, ... }:
 {
-  nixGL = {
-    packages = dotfiles.inputs.nixGL.packages;
-    installScripts = [ "mesa" ];
+  targets.genericLinux = {
+    nixGL = {
+      packages = dotfiles.inputs.nixGL.packages;
+      installScripts = [ "mesa" ];
+    };
   };
 }

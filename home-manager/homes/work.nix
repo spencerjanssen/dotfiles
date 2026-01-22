@@ -11,6 +11,7 @@
     dotfiles.nixosModules.registry
     dotfiles.nixosModules.personalOverlays
   ];
+  targets.genericLinux.enable = true;
   home = {
     file.".ssh/config".text = ''
       Include /home/sjanssen/.ssh/extra-config
