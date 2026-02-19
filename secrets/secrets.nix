@@ -14,4 +14,5 @@ in
   "wireguard-mithlond.age".publicKeys = [ sjanssen mithlond ];
   "remote-builder-key.age".publicKeys = [ sjanssen mithlond ];
   "dotfiles-builder-github-token.age".publicKeys = [ sjanssen sjanssen-mithlond mithlond ];
+  "grafana-secret-key.age".publicKeys = [ sjanssen sjanssen-mithlond mithlond ];
 }
