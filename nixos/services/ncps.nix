@@ -12,16 +12,16 @@
         schedule = "0 2 * * *";
         scheduleTimeZone = "America/Chicago";
       };
-    };
-    upstream = {
-      caches = [
-        "http://127.0.0.1:5000"
-        "https://cache.nixos.org"
-      ];
-      publicKeys = [
-        "mithlond.lan-1:dnJ/CK6UiqB9XwEC9k/Sigw06f7JTUCpfPuqTVfyLDw"
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      ];
+      upstream = {
+        urls = [
+          "http://127.0.0.1:5000"
+          "https://cache.nixos.org"
+        ];
+        publicKeys = [
+          "mithlond.lan-1:dnJ/CK6UiqB9XwEC9k/Sigw06f7JTUCpfPuqTVfyLDw"
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        ];
+      };
     };
   };
   age.secrets.ncps = {
