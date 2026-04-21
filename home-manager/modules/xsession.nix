@@ -18,27 +18,6 @@
     };
   };
 
-  home.pointerCursor = {
-    x11 = {
-      enable = true;
-      defaultCursor = "left_ptr";
-    };
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
-    size = 24;
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.gnome-themes-extra;
-      name = "Adwaita-dark";
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
-
   services.network-manager-applet.enable = true;
 
   xsession.initExtra = ''

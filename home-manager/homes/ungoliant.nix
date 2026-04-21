@@ -64,7 +64,7 @@
     pavucontrol
     evince
     scrot
-    xorg.xmodmap
+    xmodmap
     gdb
     ddcutil
     hicolor-icon-theme

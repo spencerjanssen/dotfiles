@@ -147,10 +147,10 @@
         let
           foldRecursiveUpdate = lib.foldl' lib.attrsets.recursiveUpdate { };
           mkSystemCheck = name: config: {
-            ${config.config.nixpkgs.system}.${name} = config.config.system.build.toplevel;
+            ${config.config.nixpkgs.localSystem.system}.${name} = config.config.system.build.toplevel;
           };
           mkHomeCheck = name: config: {
-            ${config.pkgs.system}.${name} = config.activationPackage;
+            ${config.pkgs.stdenv.hostPlatform.system}.${name} = config.activationPackage;
           };
           mapAttrValues = f: lib.mapAttrs (_name: value: f value);
           mapAttrName = f: lib.mapAttrs' (name: value: { name = f name; value = value; });
