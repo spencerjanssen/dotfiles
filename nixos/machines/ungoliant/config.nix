@@ -33,6 +33,8 @@
   boot = {
     supportedFilesystems = [ "zfs" ];
     initrd = {
+      # todo the zfs and luks encryption hacks below don't work in the systemd initrd
+      systemd.enable = false;
       supportedFilesystems = [ "zfs" "vfat" ];
     };
   };
