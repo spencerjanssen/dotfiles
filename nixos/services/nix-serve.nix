@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  services.harmonia = {
+  services.harmonia.cache = {
     enable = true;
     signKeyPaths = [ config.age.secrets.harmonia.path ];
   };
