@@ -28,17 +28,6 @@
     size = 24;
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.gnome-themes-extra;
-      name = "Adwaita-dark";
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
-
   services.network-manager-applet.enable = true;
 
   xsession.initExtra = ''
