@@ -18,16 +18,6 @@
     };
   };
 
-  home.pointerCursor = {
-    x11 = {
-      enable = true;
-      defaultCursor = "left_ptr";
-    };
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
-    size = 24;
-  };
-
   services.network-manager-applet.enable = true;
 
   xsession.initExtra = ''
