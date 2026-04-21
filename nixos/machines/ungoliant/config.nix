@@ -153,7 +153,6 @@
     zrepl
     sbctl
   ];
-  environment.unixODBCDrivers = [ pkgs.unixODBCDrivers.msodbcsql17 ];
 
   services.flatpak.enable = true;
 
