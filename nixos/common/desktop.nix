@@ -11,7 +11,6 @@
   services.xserver.xkb.layout = "us";
   services.desktopManager.gnome.enable = true;
   services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = false;
   services.displayManager.defaultSession = "gnome";
 
   fonts = {
