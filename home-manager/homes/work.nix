@@ -21,6 +21,7 @@
       "$HOME/.ghcup/bin"
       "$HOME/.dotnet/tools"
       "$HOME/.cabal/bin"
+      "$HOME/.volta/bin"
     ];
     homeDirectory = "/home/sjanssen";
     username = "sjanssen";
