@@ -7,6 +7,7 @@
     ../modules/nh.nix
     ../modules/nixgl.nix
     ../modules/cache.nix
+    ../modules/otel-desktop-viewer.nix
     dotfiles.nixosModules.nixpkgsFromFlake
     dotfiles.nixosModules.registry
     dotfiles.nixosModules.personalOverlays
