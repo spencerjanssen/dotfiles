@@ -19,7 +19,7 @@
     packages = with pkgs; [
       corefonts
       inconsolata
-      ttf_bitstream_vera
+      ttf-bitstream-vera
       dejavu_fonts
       hasklig
       fira-code
