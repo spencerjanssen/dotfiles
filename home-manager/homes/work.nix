@@ -81,5 +81,9 @@
         }
       ];
     };
+    worktrunk = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
