@@ -33,7 +33,6 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
-      systemd.enable = true;
       systemd.emergencyAccess = true;
       secrets = {
         "/keys/swap-luks" = null;
@@ -44,6 +43,7 @@
     };
     # we don't mount any filesystems from this pool, but zrepl does need it for backups
     zfs = {
+      forceImportRoot = false;
       extraPools = [ "aman" ];
       requestEncryptionCredentials = [
         "mithlond/local"
