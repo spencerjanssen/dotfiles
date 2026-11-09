@@ -33,8 +33,7 @@
   boot = {
     supportedFilesystems = [ "zfs" ];
     initrd = {
-      # todo the zfs and luks encryption hacks below don't work in the systemd initrd
-      systemd.enable = false;
+      systemd.enable = true;
       supportedFilesystems = [ "zfs" "vfat" ];
     };
   };
@@ -77,7 +76,6 @@
     allowDiscards = true;
     keyFileSize = 4096;
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
-    fallbackToPassword = true;
   };
 
   boot.initrd.luks.devices."nvmeswap" = {
@@ -85,14 +83,12 @@
     allowDiscards = true;
     keyFileSize = 4096;
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
-    fallbackToPassword = true;
   };
 
   boot.initrd.luks.devices."tank-keys" = {
     allowDiscards = true;
     keyFileSize = 4096;
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
-    fallbackToPassword = true;
   };
   boot.zfs.pools.tank.luksUnlock = {
     zvol = "keys";

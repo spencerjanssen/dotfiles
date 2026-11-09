@@ -44,7 +44,6 @@ in
 
       networking.hostId = "deadbeef";
       boot.supportedFilesystems = [ "zfs" ];
-      boot.initrd.systemd.enable = false;
       # /dev/disk/by-id doesn't get populated in the NixOS test framework
       boot.zfs.devNodes = "/dev/disk/by-uuid";
 
