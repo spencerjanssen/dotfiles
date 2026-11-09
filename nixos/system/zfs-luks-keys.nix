@@ -148,13 +148,6 @@ in
   };
 
   config = lib.mkIf (unlockPools != { }) {
-    assertions = [
-      {
-        assertion = config.boot.initrd.systemd.enable;
-        message = "boot.zfs.pools.<name>.luksUnlock requires systemd stage 1 (boot.initrd.systemd.enable).";
-      }
-    ];
-
     boot.initrd.supportedFilesystems = [ "zfs" ] ++ lib.mapAttrsToList (_: pool: pool.luksUnlock.fsType) unlockPools;
 
     boot.initrd.luks.devices = lib.mapAttrs'

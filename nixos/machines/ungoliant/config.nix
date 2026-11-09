@@ -33,7 +33,6 @@
   boot = {
     supportedFilesystems = [ "zfs" ];
     initrd = {
-      systemd.enable = true;
       supportedFilesystems = [ "zfs" "vfat" ];
     };
   };
