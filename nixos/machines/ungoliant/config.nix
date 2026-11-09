@@ -88,31 +88,17 @@
     fallbackToPassword = true;
   };
 
-  boot.initrd.preLVMCommands = ''
-    echo importing tank
-    zpool import tank
-    echo tank imported
-  '';
   boot.initrd.luks.devices."tank-keys" = {
-    device = "/dev/disk/by-uuid/4762fb6d-bf46-44fd-bd00-e607e7f77606";
     allowDiscards = true;
     keyFileSize = 4096;
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
     fallbackToPassword = true;
-    preLVM = false;
-    postOpenCommands = ''
-      echo creating /media/tank-keys
-      mkdir -p /media/tank-keys || echo failed to mkdir
-      mount /dev/disk/by-id/dm-name-tank-keys /media/tank-keys || ( echo dm-name-tank-keys mount failed ; sleep 5s; mount /dev/disk/by-id/dm-name-tank-keys /media/tank-keys || echo failed again)
-      echo mounted tank-keys
-      echo loading keys
-      zfs load-key -a
-      echo loaded keys
-      umount /media/tank-keys
-      rmdir /media-tank-keys
-    '';
   };
-
+  boot.zfs.pools.tank.luksUnlock = {
+    zvol = "keys";
+    luksDevice = "tank-keys";
+    fsType = "ext4";
+  };
 
   fileSystems."/media/spinning".options = [ "noauto" ];
 

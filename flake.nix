@@ -100,6 +100,7 @@
             nixpkgs.overlays = lib.attrValues self.outputs.overlays;
           };
         home-assistant-os = ./nixos/home-assistant-os/module.nix;
+        zfs-luks-keys = ./nixos/system/zfs-luks-keys.nix;
       };
       nixosConfigurations = {
         ungoliant = lib.nixosSystem {
@@ -110,6 +111,7 @@
             lanzaboote.nixosModules.lanzaboote
             self.nixosModules.registry
             self.nixosModules.personalOverlays
+            self.nixosModules.zfs-luks-keys
             ./nixos/me/secret-ssh-config.nix
             ./nixos/machines/ungoliant/config.nix
           ];
@@ -172,6 +174,7 @@
             })
             systemsAndHomes)
           {
+            x86_64-linux.zfs-luks-keys = nixpkgs.legacyPackages.x86_64-linux.testers.runNixOSTest ./nixos/tests/zfs-luks-keys.nix;
 
             x86_64-linux.validate-renovate-config = nixpkgs.legacyPackages.x86_64-linux.runCommand "validate-renovate-config"
               {
