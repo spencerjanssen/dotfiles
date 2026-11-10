@@ -85,12 +85,15 @@
   };
 
   boot.initrd.luks.devices."tank-keys" = {
-    device = "/dev/disk/by-uuid/4762fb6d-bf46-44fd-bd00-e607e7f77606";
     allowDiscards = true;
     keyFileSize = 4096;
     keyFile = "/dev/disk/by-partuuid/c59a413a-01";
   };
-
+  boot.zfs.pools.tank.luksUnlock = {
+    zvol = "keys";
+    luksDevice = "tank-keys";
+    fsType = "ext4";
+  };
 
   fileSystems."/media/spinning".options = [ "noauto" ];
 
