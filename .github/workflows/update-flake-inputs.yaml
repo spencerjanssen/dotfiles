@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: update-flake-inputs
     steps:
-      - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31.11.3
+      - uses: cachix/install-nix-action@v31.11.3
       - name: Generate GitHub token
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        uses: actions/create-github-app-token@v3.3.0
         id: app-token
         with:
           app-id: ${{ secrets.APP_ID }}
@@ -21,13 +21,13 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
           permission-metadata: read
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@v7.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
           # update-flake-inputs needs to push changes, hence needs credentials
           persist-credentials: true
       - name: Update flake inputs
-        uses: mic92/update-flake-inputs@1e056167bd2101e587bd39deb2f64909b4759652 # v1.0.4
+        uses: mic92/update-flake-inputs@v1.0.4
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           auto-merge: 'true'
