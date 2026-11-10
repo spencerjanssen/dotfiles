@@ -43,7 +43,10 @@
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
-      extensions = [ pkgs.gh-stack ];
+      extensions = [
+        pkgs.gh-stack
+        pkgs.gh-actions-lock
+      ];
     };
     git = {
       enable = true;
