@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: update-flake-inputs
     steps:
-      - uses: cachix/install-nix-action@v31.11.3
+      - uses: cachix/install-nix-action@v31.11.5
       - name: Generate GitHub token
         uses: actions/create-github-app-token@v3.3.0
         id: app-token
