@@ -10,7 +10,7 @@ workflows:
     '.github/workflows/treefmt.yml':
         - 'actions/checkout@v7.0.1'
         - 'cachix/install-nix-action@v31.11.5'
-        - 'reviewdog/action-suggester@v1.26.3'
+        - 'reviewdog/action-suggester@v1.27.1'
     '.github/workflows/update-flake-inputs.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/create-github-app-token@v3.3.0'
@@ -50,9 +50,9 @@ dependencies:
         commit: 'sha1-d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f'
         owner_id: 48765237
         repo_id: 286005511
-    'reviewdog/action-suggester@v1.26.3':
-        ref: 'v1.26.3'
-        commit: 'sha1-ac5ce6d94e35c00530447dc63c271e38e4fd36c6'
+    'reviewdog/action-suggester@v1.27.1':
+        ref: 'v1.27.1'
+        commit: 'sha1-fd22a83b1ebc13fd8aee5d57b06793fce6f20fb9'
         owner_id: 48765237
         repo_id: 284627247
         uses:
